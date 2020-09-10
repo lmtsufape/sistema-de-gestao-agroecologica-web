@@ -15,6 +15,10 @@
         <div class= conteudo-principal>
 
         </div>
+
+        <div class="imagem">
+            <button>Cadastrar</button>
+        </div>
     
         <footer>
             isso aqui é um rodapé

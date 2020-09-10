@@ -39,6 +39,39 @@ nav .logo{
     background: #FFFFFF;
 }
 
+.imagem{
+    position: absolute;
+    width: 547px;
+    height: 905px;
+    left: 893px;
+    top: 50px;
+
+    background: #555555;
+    border-radius: 5px;
+}
+
+.imagem button{
+    position: absolute;
+    width: 259px;
+    height: 74px;
+    left: 144px;
+    top: 417px;
+
+    background: #08862D;
+    border-radius: 15px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #FFFFFF;
+}
+
+
+
 footer{ 
     position: absolute;
     width: 1440px;
