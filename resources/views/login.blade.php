@@ -32,10 +32,10 @@
                     <input type="password">
                 </div>
             </div>
-            
-
+    
+            <a href="/">
             <button>Login</button>
-            
+            </a>
         </div>
 
         <div class="imagem">
