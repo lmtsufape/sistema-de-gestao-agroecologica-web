@@ -1,0 +1,10 @@
+nav{
+    position: absolute;
+    width: 1440px;
+    height: 120px;
+    left: 0px;
+    top: 0px;
+
+    background: #010F16;
+    border-radius: 5px;
+}
