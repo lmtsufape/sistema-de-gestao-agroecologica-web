@@ -8,3 +8,42 @@ nav{
     background: #010F16;
     border-radius: 5px;
 }
+
+nav .logo{  
+    position: absolute;
+    width: 163px;
+    height: 38px;
+    left: 90px;
+    top: 35px;
+
+    background: #555555;
+}
+
+nav .notificacoes{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 1195px;
+    top: 35px;
+
+    text-align: center;
+    /*background: url(../images/icons8-notification-24.png) no-repeat;*/
+}
+
+nav .notificacoes img{
+    width: 50px;
+    height: 50px;
+}
+
+nav .menubar{
+    position: absolute;
+    width: 60px;
+    height: 50px;
+    left: 1282px;
+    top: 35px;
+}
+
+nav .menubar img{
+    width: 60px;
+    height: 50px;
+}
