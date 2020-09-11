@@ -2,8 +2,6 @@ body{
     margin: 0;
     padding: 0;
     position: relative;
-    width: 1440px;
-    height: 1024px;
 
     background: url(../images/background_web.jpg) no-repeat;
 }
