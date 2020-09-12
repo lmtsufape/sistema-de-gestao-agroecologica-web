@@ -16,6 +16,9 @@ class CreateOcssTable extends Migration
         Schema::create('ocss', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            //// TODO: Temos que saber quais são os atributos daqui, esse migration foi criado só pra tabela
+            ////        ser referenciada em users!!!
         });
     }
 
