@@ -15,7 +15,18 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nome');
+            $table->date('data_nascimento');
+            $table->string('cpf')->unique();
+            $table->string('rg')->unique();
+            $table->unsignedBigInteger('id_endereco');
+            $table->foreign('id_endereco')->references('id')->on('enderecos');
+            $table->unsignedBigInteger('id_osc');
+            $table->foreign('id_osc')->references('id')->on('ocss');
+            $table->string('telefone');
+            $table->string('tipo_perfil');  // Se é ciirdenador ou produtor
+            $table->string('nome_conjugue')->nullable();
+            $table->text('nome_filhos')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
