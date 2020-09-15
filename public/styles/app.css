@@ -1,7 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body{
     margin: 0;
     padding: 0;
-    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
 
-    background: url(../images/background_web.jpg) no-repeat;
+.main{
+    
+}
+
+form .input-block{
+    width: 615px;
+    height: 80px;
+    margin: 3px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    background: #D5D1D1;
+    border-radius: 15px;
+}
+
+form .input-block label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
 }
