@@ -1,38 +1,9 @@
 footer{
-    position: absolute;
-    width: 1440px;
-    height: 200px;
-    left: 0px;
-    top: 1105px;
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+    height: 120px;
 
     background: #010F16;
-    border-radius: 5px;
-}
-
-footer .logo-ufape{
-    position: absolute;
-    width: 345px;
-    height: 140px;
-    left: 90px;
-    top: 1124px;
-}
-
-footer .logo-ufape img{
-    width: 345px;
-    height: 140px;
-}
-
-footer .logo-lmts{
-    position: absolute;
-    width: 345px;
-    height: 140px;
-    left: 462px;
-    top: 1135px;
-
-    opacity: 0.6;
-}
-
-footer .logo-lmts img{
-    width: 345px;
-    height: 140px;
 }
