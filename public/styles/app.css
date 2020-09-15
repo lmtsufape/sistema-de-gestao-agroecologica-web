@@ -7,7 +7,8 @@ body{
 }
 
 .main{
-    
+    position: relative;
+    margin: 20px;
 }
 
 form .input-block{
@@ -27,4 +28,10 @@ form .input-block label{
     font-weight: normal;
     font-size: 18px;
     line-height: 21px;
+}
+
+form .input-block .botao input{
+    border: none;
+    background: #08862D;
+    border-radius: 15px;
 }
