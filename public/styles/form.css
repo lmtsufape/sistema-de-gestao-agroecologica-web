@@ -35,10 +35,6 @@ form .input-block{
     border-radius: 15px;
 }
 
-.formulario form .input-block input:nth-child(1){
-    background: url("/public/images/person.png") left no-repeat;
-}
-
 form .input-block label{
     font-style: normal;
     font-weight: normal;
@@ -56,6 +52,8 @@ form button{
 
     border-radius: 10px;
     border: none;
+    outline: none;
+    cursor: pointer;
 
     font-family: 'Roboto', sans-serif;
     text-align: center;
