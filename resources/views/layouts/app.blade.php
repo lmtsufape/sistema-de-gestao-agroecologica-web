@@ -5,15 +5,13 @@
 
         <link rel="stylesheet" href="/styles/app.css">
         <link rel="stylesheet" href="/styles/nav.css">
+        <link rel="stylesheet" href="/styles/form.css">
         <link rel="stylesheet" href="/styles/footer.css">
 
     </head>
     <body>
         @include('incluir.navbar')
-        <div class="main">
-        maeeeeeeeeeeee
-            @yield('content')
-        </div>
+        @yield('content')
         @include('incluir.footer')
     </body>
 </html>
