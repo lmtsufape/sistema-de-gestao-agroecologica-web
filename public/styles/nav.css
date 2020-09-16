@@ -23,7 +23,20 @@ nav .icones{
     flex-wrap: wrap;
 }
 
+nav .icones .notificacoes{
+    margin-right: 40px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+nav .icones .menu{
+    margin-right: 160px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 nav .icones img{
     width: 40px;
     height: 40px;
+    
 }
