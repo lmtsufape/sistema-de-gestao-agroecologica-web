@@ -1,0 +1,69 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+h2{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+
+    color: #000000;
+
+}
+
+.formulario{
+    flex: 1;
+    align-items: center;
+}
+
+
+form .input-block{
+    width: 615px;
+    height: 80px;
+    margin: 10px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    background: #D5D1D1;
+    border-radius: 15px;
+}
+
+.formulario form .input-block input:nth-child(1){
+    background: url("/public/images/person.png") left no-repeat;
+}
+
+form .input-block label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+form button{
+    flex: 1;
+    background: #08862D;
+    width: 215px;
+    height: 58px;
+    margin: 20px 300px;
+
+
+    border-radius: 10px;
+    border: none;
+
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    line-height: 21px;
+
+
+    vertical-align: middle;
+}
