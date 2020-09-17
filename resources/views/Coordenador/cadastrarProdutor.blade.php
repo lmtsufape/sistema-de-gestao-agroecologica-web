@@ -11,7 +11,7 @@
                 <input type="text" placeholder="Nome Completo" name="nome" id="nome">
             </div>
 
-            <div class="nascimento-rg">
+            <div class="grupo-informacoes">
                 <div class="input-block"> 
                     <input type="date" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento">
                     </input>
@@ -28,12 +28,16 @@
             <div class="input-block">
                 <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
             </div>
-            <div class="input-block">
-                <input type="number" placeholder="CPF do Cônjuge" name="cpf_conjuge" id="cpf_conjuge">
+
+            <div class="grupo-informacoes">
+                <div class="input-block">
+                    <input type="number" placeholder="CPF do Cônjuge" name="cpf_conjuge" id="cpf_conjuge">
+                </div>
+                <div class="input-block">
+                    <input type="date" placeholder="Data de Nascimento do Cônjuge" name="data_nascimento_conjuge" id="data_nascimento_conjuge">
+                </div>
             </div>
-            <div class="input-block">
-                <input type="date" placeholder="Data de Nascimento do Cônjuge" name="data_nascimento_conjuge" id="data_nascimento_conjuge">
-            </div>
+            
             <div class="input-block">
                 <input type="text" placeholder="Nome Dos Filhos" name="nomes-filhos" id="nomes-filhos">
             </div>
