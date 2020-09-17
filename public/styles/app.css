@@ -6,3 +6,11 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+.main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+

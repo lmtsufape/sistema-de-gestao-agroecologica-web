@@ -1,11 +1,3 @@
-.main{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
 h2{
     font-family: Roboto;
     font-style: normal;
@@ -24,23 +16,42 @@ h2{
 
 
 form .input-block{
-    width: 615px;
+    width: 100%;
     height: 80px;
     margin: 10px;
 
     text-align: center;
     vertical-align: middle;
-
-    background: #D5D1D1;
     border-radius: 15px;
 }
 
-form .input-block label{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
+form .input-block input{
+    width: 100%;
+    height: 100%;
+
+    text-align: left;
+    font-size: 18; 
+
+    background: #D5D1D1;
+    border: none;
+    stroke: none;
+    border-radius: 15px;
+    outline: none;
 }
+
+form .nascimento-rg .input-block input{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    width: 40%;
+}
+
+form .input-block input img{
+    width: 60px;
+    height: 60px;
+}
+
 
 form button{
     flex: 1;
