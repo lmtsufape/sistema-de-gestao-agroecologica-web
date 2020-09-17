@@ -6,6 +6,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+<<<<<<< HEAD
 .main{
     display: flex;
     flex-direction: column;
@@ -14,3 +15,5 @@ body{
     align-items: center;
 }
 
+=======
+>>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
