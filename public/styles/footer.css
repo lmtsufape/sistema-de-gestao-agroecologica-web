@@ -1,0 +1,43 @@
+footer{
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+    height: 120px;
+    background: #010F16;
+}
+
+footer .conteudo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background: #010F16;
+}
+
+footer .conteudo .logo-ufape{
+    flex: 1;
+}
+
+footer .conteudo .logo-ufape img{
+    width: 280px;
+    height: 140px;
+}
+
+footer .conteudo .logo-lmts{
+    flex: 1;
+}
+
+footer .conteudo .logo-lmts img{
+    width: 220px;
+    height: 110px;
+}
+
+footer .conteudo .mapa-site{
+    font-family: Roboto;
+    color: white;
+}
+
+footer .conteudo .mapa-site h1{
+    
+}

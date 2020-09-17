@@ -1,0 +1,42 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 50px;
+
+    background: #010F16;
+}
+
+nav .logo{
+    background: #ffffff;
+    width: 163px;
+    height: 38px;
+
+    margin: 6.5px 160px;
+}
+
+nav .icones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+nav .icones .notificacoes{
+    margin-right: 40px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+nav .icones .menu{
+    margin-right: 160px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+nav .icones img{
+    width: 40px;
+    height: 40px;
+    
+}

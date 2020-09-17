@@ -1,0 +1,132 @@
+<<<<<<< HEAD
+=======
+.main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+>>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
+h2{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+
+    color: #000000;
+
+}
+
+.formulario{
+    flex: 1;
+    align-items: center;
+}
+
+
+form .input-block{
+<<<<<<< HEAD
+    width: 100%;
+=======
+    width: 615px;
+>>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
+    height: 80px;
+    margin: 10px;
+
+    text-align: center;
+    vertical-align: middle;
+<<<<<<< HEAD
+    border-radius: 15px;
+}
+
+form .input-block input{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+
+    text-align: left;
+    font-size: 18px; 
+    line-height: 21px;
+
+    background: #D5D1D1;
+    border: none;
+    stroke: none;
+    border-radius: 15px;
+    outline: none;
+}
+
+form .grupo-informacoes{
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
+}
+
+form #rg{
+    margin-left: 20px;
+}
+
+form #data_nascimento_conjuge{
+    margin-left: 20px;
+}
+
+
+form .grupo-informacoes .input-block input{
+    width: 100%;
+    padding: 10px;
+
+    flex: 1;
+}
+
+form .input-block input img{
+    width: 60px;
+    height: 60px;
+}
+
+
+=======
+
+    background: #D5D1D1;
+    border-radius: 15px;
+}
+
+form .input-block label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+>>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
+form button{
+    flex: 1;
+    background: #08862D;
+    width: 215px;
+    height: 58px;
+    margin: 20px 300px;
+
+
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    line-height: 21px;
+
+
+    vertical-align: middle;
+}
+<<<<<<< HEAD
+
+form button:hover{
+    background: #08c240;
+}
+=======
+>>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
