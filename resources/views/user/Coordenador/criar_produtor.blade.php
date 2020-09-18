@@ -4,20 +4,28 @@
     <h2>CADASTRO DO PRODUTOR</h2>
 
     <div class="formulario">
-        <form action="">
+        <form method="" action="">
             @csrf
+            <div class="agrupar">
+                <div class="input-block">
+                    <input type="text" placeholder="Nome Completo" name="nome" id="nome">
+                </div>
 
-            <div class="input-block">
-                <input type="text" placeholder="Nome Completo" name="nome" id="nome">
+                <div class="input-block">
+                    <input type="email" placeholder="Email" name="email" id="email">
+                </div>
             </div>
+            
+            <div class="grupo-informacoes">
+                <div class="input-block">
+                    <input type="password" placeholder="Senha" name="password" id="password">
+                </div>
 
-            <div class="input-block">
-                <input type="email" placeholder="Email" name="nome" id="nome">
+                <div class="input-block">
+                    <input type="password" placeholder="Confirmar Senha" name="password" id="password">
+                </div>
             </div>
-
-            <div class="input-block">
-                <input type="password" placeholder="Senha" name="password" id="password">
-            </div>
+            
 
             <div class="grupo-informacoes">
                 <div class="input-block"> 
@@ -27,16 +35,15 @@
                 <div class="input-block">
                     <input type="number" placeholder="RG" name="rg" id="rg">
                 </div>
+                <div class="input-block">
+                    <input type="number" placeholder="CPF" name="cpf" id="cpf">
+                </div>
             </div>
             
-
-            <div class="input-block">
-                <input type="number" placeholder="CPF" name="cpf" id="cpf">
-            </div>
             <div class="input-block">
                 <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
             </div>
-
+        
             <div class="grupo-informacoes">
                 <div class="input-block">
                     <input type="number" placeholder="CPF do Cônjuge" name="cpf_conjuge" id="cpf_conjuge">
@@ -103,13 +110,15 @@
                     <input type="number" placeholder="cep" name="cep" id="cep">
                 </div>
             </div>
+            <div class="agrupar">
+                <div class="input-block">
+                    <input type="text" placeholder="descricao" name="descricao" id="descricao">
+                </div>
+                <div class="input-block">
+                    <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
+                </div>
+            </div>
             
-            <div class="input-block">
-                <input type="text" placeholder="descricao" name="descricao" id="descricao">
-            </div>
-            <div class="input-block">
-                <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
-            </div>
 
             <button type="submit">Cadastrar</button>
         </form>

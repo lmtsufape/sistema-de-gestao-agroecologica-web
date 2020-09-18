@@ -16,20 +16,13 @@ h2{
 
 
 form .input-block{
-    width: 100%;
+    width: 96%;
     height: 80px;
-    margin: 10px;
+    margin: 20px;
 
     text-align: center;
     vertical-align: middle;
     border-radius: 15px;
-}
-
-form .grupo-informacoes{
-    display: flex;
-    align-items: flex-start;
-
-    width: 100%;
 }
 
 form .input-block input{
@@ -51,25 +44,28 @@ form .input-block input{
 form .grupo-informacoes .input-block select{
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 20px;
 
-    text-align: left;
+    
     font-size: 18px; 
     line-height: 21px;
 
     background: #D5D1D1;
-    border: none;
-    stroke: none;
     border-radius: 15px;
+    border: none;
     outline: none;
 }
 
-form #rg{
-    margin-left: 20px;
+form .agrupar{
+    display: flex;
+    flex-direction: column;
 }
 
-form #data_nascimento_conjuge{
-    margin-left: 20px;
+form .grupo-informacoes{
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
 }
 
 
@@ -84,6 +80,7 @@ form .input-block input img{
     width: 60px;
     height: 60px;
 }
+
 
 form button{
     flex: 1;
