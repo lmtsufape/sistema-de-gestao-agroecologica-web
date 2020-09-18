@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\CoordenadorController;
+use app\Http\Controllers\User\CoordenadorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +16,10 @@ use app\Http\Controllers\CoordenadorController;
 
 Route::get('/', function () {
     return view('/layouts/app');
+});
+
+Route::get('/cadastrar_ocs', function () {
+    return view('cadastro_ocs');
 });
 
 Route::get('/cadastro_produtor', function () {
