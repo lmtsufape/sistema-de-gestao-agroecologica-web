@@ -20,7 +20,9 @@ class User extends Authenticatable
         'cpf',
         'rg',
         'telefone',
+        'tipo_perfil',
         'nome_conjugue',
+        'nome_filhos',
         'email',
         'password',
     ];
@@ -62,6 +64,12 @@ class User extends Authenticatable
 	public function ocs() {
 		return $this->belongsTo('App\Models\Ocs', 'id', 'id_ocs');
 	}
+
+    public function coordenadorOcs(){
+        if ($this->tipo_perfil == 'Coordendor') {
+            return $this->hasOne('App\Models\Ocs', 'id', 'id_ocs');
+        }
+    }
 
 
 
