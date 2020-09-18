@@ -24,7 +24,7 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroProdutor() {
-        return view('user/coordenador/criar_prdutor');
+        return view('Coordenador\cadastrarProdutor');
     }
 
 
