@@ -19,4 +19,8 @@ class UserController extends Controller {
         'password.required' => 'A senha é obrigatória.',
     ];
 
+    public function cadastroProdutor() {
+        return view('user/coordenador/criar_prdutor');
+    }
+
 }

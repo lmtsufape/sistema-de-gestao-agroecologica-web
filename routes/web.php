@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\CoordenadorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,20 @@ Route::get('/', function () {
     return view('/layouts/app');
 });
 
-Route::get('/cadastro', function () {
-    return view('/Coordenador/cadastrarProdutor');
+
+
+Route::prefix('/user')->name('user')->namespace('User')->group(function(){
+    Route::prefix('/coordenador')->name('.coordenador')->group(function () {
+        Route::prefix('/criar_prdutor')->name('.cadastrarProdutor')->group(function () {
+            Route::get('/', [CoordenadorController::class, 'cadastroProdutor']);
+            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
+        });
+
+        Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
+
+    });
+
 });
+
+//Todo: Criar controller home e a funçãod e erro!!!
+//Route::get('/erro', 'HomeController@mostrarErro')->name('erro');

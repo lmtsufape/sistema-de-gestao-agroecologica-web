@@ -44,8 +44,6 @@ class Ocs extends Authenticatable
 		return $this->belongsTo('App\Models\User', 'id', 'id_coordenador');
 	}
 
-
-
     public function endereco() {
         return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
     }
