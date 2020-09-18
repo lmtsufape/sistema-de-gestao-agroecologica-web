@@ -9,6 +9,7 @@
 
         <link rel="stylesheet" href="/styles/app.css">
         <link rel="stylesheet" href="/styles/nav.css">
+        <link rel="stylesheet" href="/styles/home.css">
         <link rel="stylesheet" href="/styles/form.css">
         <link rel="stylesheet" href="/styles/footer.css">
 
