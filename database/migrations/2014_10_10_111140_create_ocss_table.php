@@ -25,9 +25,6 @@ class CreateOcssTable extends Migration
             $table->string('fax')->nullable();
             $table->string('email')->nullable();
             $table->string('nome_para_contato');
-            // representante legal:
-            $table->unsignedBigInteger('id_coordenador');
-            $table->foreign('id_coordenador')->references('id')->on('user');
             $table->string('orgao_fiscalizador')->nullable();
             $table->string('unidade_federacao');
 
