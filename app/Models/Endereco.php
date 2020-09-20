@@ -9,6 +9,7 @@ class Endereco extends Authenticatable
         'estado',
         'cidade',
         'bairro',
+        'cep',
         'nome_rua',
         'numero_casa',
         'descricao',
@@ -20,6 +21,7 @@ class Endereco extends Authenticatable
         'estado' => 'required',
         'cidade' => 'required',
         'bairro' => 'required',
+        'cep' => 'required|numeric'
         'nome_rua' => 'required',
         'numero_casa' => 'required|numeric',
         'descricao' => 'required',

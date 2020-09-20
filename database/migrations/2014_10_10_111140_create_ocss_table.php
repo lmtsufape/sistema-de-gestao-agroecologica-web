@@ -16,9 +16,19 @@ class CreateOcssTable extends Migration
         Schema::create('ocss', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('cnpj')->unique();
+            $table->string('nome_entidade');
+            $table->unsignedBigInteger('id_endereco');
+            $table->foreign('id_endereco')->references('id')->on('enderecos');
+            $table->string('telefone');
+            $table->string('celular')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('email')->nullable();
+            $table->string('nome_para_contato');
+            $table->string('orgao_fiscalizador')->nullable();
+            $table->string('unidade_federacao');
 
-            //// TODO: Temos que saber quais são os atributos daqui, esse migration foi criado só pra tabela
-            ////        ser referenciada em users!!!
+
         });
     }
 

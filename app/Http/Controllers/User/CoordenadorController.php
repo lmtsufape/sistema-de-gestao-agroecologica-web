@@ -24,7 +24,58 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroProdutor() {
-        return view('user/coordenador/criar_produtor');
+        return view('Coordenador\cadastrarProdutor');
     }
+
+
+    //Todo, isso aqui tem que ser todo revisto...
+    public function verProdutor($id) {
+        $produtor = User::find($id);
+        if($produtor){
+            return view('Coordenador/ver_produtor', ['produtor' => $produtor]);
+        } else {
+            return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
+        }
+    }
+
+
+    public function salvarCadastrarProdutor(Request $request) {
+        $entrada = $request->all();
+
+        $time = strtotime($entrada['data_nascimento']);
+        $entrada['data_nascimento'] = date('Y-m-d',$time);
+
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+        $validator_produtor = Validator::make($entrada, User::$regras_validacao, $messages);
+        if ($validator_produtor->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_produtor)
+                             ->withInput();
+        }
+
+
+
+        $endereco = new Endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
+
+
+        $produtor = new User;
+        $produtor->fill($entrada);
+        $produtor->id_endereco = $endereco->id;
+
+        $produtor->password = Hash::make($entrada['password']);
+        $produtor->save();
+
+        //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
+        //return redirect()->route('user/coordenador/ver_produtor/{id}', $produtor->id);
+}
 
 }

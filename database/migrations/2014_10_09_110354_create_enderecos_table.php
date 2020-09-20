@@ -21,6 +21,7 @@ class CreateEnderecosTable extends Migration
             $table->string('cidade');
             $table->string('bairro')->nullable(true);
             $table->string('nome_rua')->nullable(true);
+            $table->string('cep');
             $table->unsignedInteger('numero_casa')->nullable(true);
             $table->text('descricao')->nullable(true);
             $table->string('ponto_referencia');
