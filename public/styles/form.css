@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-.main{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
->>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
 h2{
     font-family: Roboto;
     font-style: normal;
@@ -27,17 +16,12 @@ h2{
 
 
 form .input-block{
-<<<<<<< HEAD
-    width: 100%;
-=======
-    width: 615px;
->>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
+    width: 96%;
     height: 80px;
-    margin: 10px;
+    margin: 20px;
 
     text-align: center;
     vertical-align: middle;
-<<<<<<< HEAD
     border-radius: 15px;
 }
 
@@ -57,19 +41,31 @@ form .input-block input{
     outline: none;
 }
 
+form .grupo-informacoes .input-block select{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    
+    font-size: 18px; 
+    line-height: 21px;
+
+    background: #D5D1D1;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+}
+
+form .agrupar{
+    display: flex;
+    flex-direction: column;
+}
+
 form .grupo-informacoes{
     display: flex;
     align-items: flex-start;
 
     width: 100%;
-}
-
-form #rg{
-    margin-left: 20px;
-}
-
-form #data_nascimento_conjuge{
-    margin-left: 20px;
 }
 
 
@@ -86,20 +82,6 @@ form .input-block input img{
 }
 
 
-=======
-
-    background: #D5D1D1;
-    border-radius: 15px;
-}
-
-form .input-block label{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-}
-
->>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
 form button{
     flex: 1;
     background: #08862D;
@@ -123,10 +105,7 @@ form button{
 
     vertical-align: middle;
 }
-<<<<<<< HEAD
 
 form button:hover{
     background: #08c240;
 }
-=======
->>>>>>> acbbb8f7531134b08eb81367d37ed1fe2a2370aa
