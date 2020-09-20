@@ -24,11 +24,7 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroProdutor() {
-<<<<<<< HEAD
         return view('Coordenador\cadastrarProdutor');
-=======
-        return view('user/coordenador/criar_produtor');
->>>>>>> ad305c8ae3ba03ed4d3502e7f6fceb74defa2978
     }
 
 
