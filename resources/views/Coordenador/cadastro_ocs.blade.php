@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>CADASTRO DO PRODUTOR</h2>
+<h2>CADASTRO DA OCS</h2>
 
 <div class="formulario">
-    <form method="" action="">
+    <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
         @csrf
-        
+
         <div class="grupo-informacoes">
             <div class="input-block">
                 <input type="number" placeholder="CNPJ" name="cnpj" id="cnjp">

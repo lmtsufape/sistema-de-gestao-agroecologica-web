@@ -2,9 +2,18 @@
 
 @section('content')
     <h2>CADASTRO DO PRODUTOR</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul style="padding: 0px;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <div class="formulario">
-        <form method="" action="">
+        <form method="post" action="{{ route('user.coordenador.cadastrarProdutor.salvar') }}">
             @csrf
             <div class="agrupar">
                 <div class="input-block">
@@ -15,7 +24,7 @@
                     <input type="email" placeholder="Email" name="email" id="email">
                 </div>
             </div>
-            
+
             <div class="grupo-informacoes">
                 <div class="input-block">
                     <input type="password" placeholder="Senha" name="password" id="password">
@@ -25,10 +34,10 @@
                     <input type="password" placeholder="Confirmar Senha" name="password" id="password">
                 </div>
             </div>
-            
+
 
             <div class="grupo-informacoes">
-                <div class="input-block"> 
+                <div class="input-block">
                     <input type="date" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento">
                     </input>
                 </div>
@@ -39,20 +48,20 @@
                     <input type="number" placeholder="CPF" name="cpf" id="cpf">
                 </div>
             </div>
-            
+
             <div class="input-block">
                 <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
             </div>
-        
+
             <div class="grupo-informacoes">
                 <div class="input-block">
-                    <input type="number" placeholder="CPF do Cônjuge" name="cpf_conjuge" id="cpf_conjuge">
+                    <input type="number" placeholder="Telefone" name="telefone" id="telefone">
                 </div>
                 <div class="input-block">
                     <input type="date" placeholder="Data de Nascimento do Cônjuge" name="data_nascimento_conjuge" id="data_nascimento_conjuge">
                 </div>
             </div>
-            
+
             <div class="input-block">
                 <input type="textarea" placeholder="Nome Dos Filhos" name="nomes-filhos" id="nomes-filhos">
             </div>
@@ -65,7 +74,7 @@
                     <input type="number" placeholder="Numero da casa" name="numero_casa" id="numero_casa">
                 </div>
             </div>
-           
+
             <div class="input-block">
                 <input type="text" placeholder="Bairro" name="bairro" id="bairro">
             </div>
@@ -118,11 +127,11 @@
                     <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
                 </div>
             </div>
-            
+
 
             <button type="submit">Cadastrar</button>
         </form>
     </div>
-    
-    
+
+
 @endsection

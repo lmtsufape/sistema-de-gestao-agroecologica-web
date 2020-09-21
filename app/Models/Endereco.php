@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Endereco extends Authenticatable
+class Endereco extends Model
 {
     protected $fillable = [
         'estado',
@@ -21,7 +21,7 @@ class Endereco extends Authenticatable
         'estado' => 'required',
         'cidade' => 'required',
         'bairro' => 'required',
-        'cep' => 'required|numeric'
+        'cep' => 'required|numeric',
         'nome_rua' => 'required',
         'numero_casa' => 'required|numeric',
         'descricao' => 'required',

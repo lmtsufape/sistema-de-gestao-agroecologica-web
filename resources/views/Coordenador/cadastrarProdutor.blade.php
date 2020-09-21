@@ -65,7 +65,7 @@
 
             <button type="submit">Cadastrar</button>
         </form>
-=======
+
     <div class="main">
         <h2>CADASTRO DO PRODUTOR</h2>
 

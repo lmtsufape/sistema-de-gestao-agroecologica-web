@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class CoordenadorController extends Controller {
 
-    private $mensagens = [
+    private $messages = [
         'required' => 'O campo :attribute é obrigatório.',
         'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
         'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
@@ -20,11 +20,19 @@ class CoordenadorController extends Controller {
     ];
 
     public function coordenadorHome() {
-        return view('user/home/coordenador');
+        return view('Coordenador\home');
     }
 
     public function cadastroProdutor() {
-        return view('Coordenador\cadastrarProdutor');
+        return view('Coordenador\criar_produtor');
+    }
+
+    public function cadastroCoordenador() {
+        return view('Coordenador\cadastro_coordenador');
+    }
+
+    public function cadastroOcs() {
+        return view('Coordenador\cadastro_ocs');
     }
 
 
@@ -42,9 +50,15 @@ class CoordenadorController extends Controller {
     public function salvarCadastrarProdutor(Request $request) {
         $entrada = $request->all();
 
-        $time = strtotime($entrada['data_nascimento']);
-        $entrada['data_nascimento'] = date('Y-m-d',$time);
+        $messages = [
+            'required' => 'O campo :attribute é obrigatório.',
+            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+            'password.required' => 'A senha é obrigatória.',
+        ];
 
+
+        printf("AAAAAAAAAAAA");
         $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
         if ($validator_endereco->fails()) {
             return redirect()->back()
@@ -52,7 +66,7 @@ class CoordenadorController extends Controller {
                              ->withInput();
         }
 
-        $validator_produtor = Validator::make($entrada, User::$regras_validacao, $messages);
+        $validator_produtor = Validator::make($entrada, User::$regras_validacao_criar, $messages);
         if ($validator_produtor->fails()) {
             return redirect()->back()
                              ->withErrors($validator_produtor)
@@ -66,16 +80,105 @@ class CoordenadorController extends Controller {
         $endereco->save();
 
 
-
         $produtor = new User;
         $produtor->fill($entrada);
+        $produtor->tipo_perfil = 'Produtor';
         $produtor->id_endereco = $endereco->id;
 
         $produtor->password = Hash::make($entrada['password']);
         $produtor->save();
 
         //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
-        //return redirect()->route('user/coordenador/ver_produtor/{id}', $produtor->id);
-}
+        redirect()->route('user/coordenador/ver_produtor/{id}', $produtor->id);
+    }
+
+
+    public function salvarCadastrarCoordenador(Request $request) {
+        $entrada = $request->all();
+
+        $messages = [
+            'required' => 'O campo :attribute é obrigatório.',
+            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+            'password.required' => 'A senha é obrigatória.',
+        ];
+
+        $time = strtotime($entrada['data_nascimento']);
+        $entrada['data_nascimento'] = date('Y-m-d',$time);
+
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+        $validator_coordenador = Validator::make($entrada, User::$regras_validacao_criar, $messages);
+        if ($validator_coordenador->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_coordenador)
+                             ->withInput();
+        }
+
+
+
+        $endereco = new Endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
+
+        $produtor = new User;
+        $produtor->fill($entrada);
+        $produtor->tipo_perfil = 'Coordenador';
+        $produtor->id_endereco = $endereco->id;
+
+        $produtor->password = Hash::make($entrada['password']);
+        $produtor->save();
+
+        //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
+        //return redirect()->route('Coordenador/home');
+    }
+
+    public function salvarCadastrarOcs(Request $request) {
+        $entrada = $request->all();
+
+        $messages = [
+            'required' => 'O campo :attribute é obrigatório.',
+            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+            'password.required' => 'A senha é obrigatória.',
+        ];
+
+
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+        $validator_ocs = Validator::make($entrada, Ocs::$regras_validacao_criar, $messages);
+        if ($validator_produtor->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_produtor)
+                             ->withInput();
+        }
+
+
+
+        $endereco = new Endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
+        $ocs = new Ocs;
+        $ocs->fill($entrada);
+        $ocs->id_endereco = $endereco->id;
+
+        $ocs->password = Hash::make($entrada['password']);
+        $ocs->save();
+
+        //Todo: Tem que tirar o comment e ajustar a tela de view da ocs...
+        //return redirect()->route('coordenador/ver_ccs/{id}', $ocs->id);
+    }
 
 }

@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers\User;
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,8 +11,8 @@ use App\Models\Endereco;
 use App\Models\Ocs;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller {
-
+class OcsController extends BaseController
+{
     private $mensagens = [
         'required' => 'O campo :attribute é obrigatório.',
         'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
