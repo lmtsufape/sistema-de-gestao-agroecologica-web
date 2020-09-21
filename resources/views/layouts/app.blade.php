@@ -23,5 +23,7 @@
         </div>
         
         @include('incluir.footer')
+        <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+        <script src="https://raw.githubusercontent.com/igorescobar/jQuery-Mask-Plugin/master/src/jquery.mask.js"></script>
     </body>
 </html>
