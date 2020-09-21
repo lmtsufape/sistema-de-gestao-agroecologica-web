@@ -52,7 +52,6 @@ class User extends Authenticatable
         'cpf' => 'required|numeric',
         'rg' => 'required|numeric',
         'telefone' => 'required',
-        'tipo_perfil' => 'required|min:5|max:11',
         'nome_conjugue' => 'nullable|max:255',
         'nome_filhos'=> 'nullable',
         'email' => 'required|max:255',
