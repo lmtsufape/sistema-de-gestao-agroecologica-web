@@ -38,7 +38,7 @@
 
             <div class="grupo-informacoes">
                 <div class="input-block">
-                    <input type="text" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento">
+                    <input type="text" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento" data-mask="00/00/0000">
                     </input>
                 </div>
                 <div class="input-block">
