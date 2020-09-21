@@ -26,6 +26,15 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::get('/', [CoordenadorController::class, 'cadastroProdutor']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
         });
+        Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
+            Route::get('/', [CoordenadorController::class, 'cadastroCoordenador']);
+            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarCoordenador'])->name('.salvar');
+        });
+        Route::prefix('/criar_ocs')->name('.cadastrarOcs')->group(function () {
+            Route::get('/', [CoordenadorController::class, 'cadastroOcs']);
+            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
+        });
+
 
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
 
