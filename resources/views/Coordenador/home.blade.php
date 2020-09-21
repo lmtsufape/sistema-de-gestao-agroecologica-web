@@ -5,7 +5,7 @@
         <div class="botao">
             <button>
                <a href="/home">
-                    <img src="../images/info.png" alt="">
+                    <img src="{{ asset('images/info.png') }}" alt="">
                     <span>Minhas Informações</span>
                 </a> 
             </button>
@@ -13,7 +13,7 @@
         <div class="botao">
             <button>
                 <a href="/home">
-                    <img src="../images/group.png" alt="">
+                    <img src="{{ asset('images/group.png') }}" alt="">
                     <span>Usuários</span>
                 </a>   
             </button>
@@ -21,7 +21,7 @@
         <div class="botao">
             <button>
                 <a href="/home">
-                    <img src="../images/meeting.png" alt="">
+                    <img src="{{ asset('images/meeting.png') }}" alt="">
                     <span>Reuniões</span>
                 </a>
             </button>
