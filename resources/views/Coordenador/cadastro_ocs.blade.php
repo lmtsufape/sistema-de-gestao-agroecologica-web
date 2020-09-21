@@ -13,7 +13,7 @@
             </div>
 
             <div class="input-block">
-                <input type="text" placeholder="Nome" name="nome" id="nome">
+                <input type="text" placeholder="Nome" name="nome_entidade" id="nome">
             </div>
         </div>
 
@@ -95,6 +95,15 @@
                 <input type="text" placeholder="Nome para Contato" name="nome_para_contato" id="nome_para_contato">
             </div>
         </div>
+
+        <div class="agrupar">
+                <div class="input-block">
+                    <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
+                </div>
+                <div class="input-block">
+                    <textarea palceholder="Descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea>
+                </div>
+            </div>
 
         <button type="submit">Cadastrar</button>
     </form>

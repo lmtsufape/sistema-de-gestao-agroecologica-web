@@ -49,21 +49,15 @@
                 </div>
             </div>
 
-            <div class="input-block">
-                <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
-            </div>
+            
 
-            <div class="grupo-informacoes">
+            <div class="agrupar">
                 <div class="input-block">
-                    <input type="number" placeholder="Telefone" pattern="\(\d{2}\)\d{5}-\d{4}" name="telefone" id="telefone">
+                    <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
                 </div>
                 <div class="input-block">
-                    <input type="date" placeholder="Data de Nascimento do Cônjuge" name="data_nascimento_conjuge" id="data_nascimento_conjuge">
+                    <input type="textarea" placeholder="Nome Dos Filhos" name="nomes-filhos" id="nomes-filhos">
                 </div>
-            </div>
-
-            <div class="input-block">
-                <input type="textarea" placeholder="Nome Dos Filhos" name="nomes-filhos" id="nomes-filhos">
             </div>
 
             <div class="grupo-informacoes">
@@ -72,6 +66,9 @@
                 </div>
                 <div class="input-block">
                     <input type="number" placeholder="Numero da casa" name="numero_casa" id="numero_casa">
+                </div>
+                <div class="input-block">
+                    <input type="number" placeholder="Telefone" pattern="\(\d{2}\)\d{5}-\d{4}" name="telefone" id="telefone">
                 </div>
             </div>
 
