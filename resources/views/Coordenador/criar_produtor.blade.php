@@ -121,10 +121,10 @@
             </div>
             <div class="agrupar">
                 <div class="input-block">
-                    <input type="text" placeholder="descricao" name="descricao" id="descricao">
+                    <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
                 </div>
                 <div class="input-block">
-                    <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
+                    <textarea palceholder="Descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea>
                 </div>
             </div>
 
