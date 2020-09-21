@@ -21,7 +21,7 @@ form{
 }
 
 form .input-block{
-    width: 96%;
+    width: 98%;
     height: 80px;
     margin: 10px;
 
@@ -86,9 +86,9 @@ form .input-block input img{
     height: 60px;
 }
 
-form .input-block textarea{
+form .agrupar .input-block textarea{
     width: 100%;
-    height: 100%;
+    height: 100px;
     padding: 20px;
    
 

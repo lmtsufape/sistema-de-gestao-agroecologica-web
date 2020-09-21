@@ -38,7 +38,7 @@
 
             <div class="grupo-informacoes">
                 <div class="input-block">
-                    <input type="date" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento">
+                    <input type="text" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento">
                     </input>
                 </div>
                 <div class="input-block">
@@ -49,18 +49,15 @@
                 </div>
             </div>
 
-            <div class="input-block">
-                <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
-            </div>
-
             <div class="grupo-informacoes">
+                <div class="input-block">
+                    <input type="text" placeholder="Nome do Cônjuge" name="nome_conjuge" id="nome_conjuge">
+                </div>
                 <div class="input-block">
                     <input type="number" placeholder="Telefone" name="telefone" id="telefone">
                 </div>
-                <div class="input-block">
-                    <input type="date" placeholder="Data de Nascimento do Cônjuge" name="data_nascimento_conjuge" id="data_nascimento_conjuge">
-                </div>
             </div>
+            
 
             <div class="input-block">
                 <input type="textarea" placeholder="Nome Dos Filhos" name="nomes-filhos" id="nomes-filhos">
@@ -119,6 +116,7 @@
                     <input type="number" placeholder="cep" name="cep" id="cep">
                 </div>
             </div>
+
             <div class="agrupar">
                 <div class="input-block">
                     <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
