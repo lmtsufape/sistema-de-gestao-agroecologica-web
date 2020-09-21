@@ -57,9 +57,6 @@
                 <div class="input-block">
                     <input type="number" placeholder="Telefone" name="telefone" id="telefone">
                 </div>
-                <div class="input-block">
-                    <input type="date" placeholder="Data de Nascimento do Cônjuge" name="data_nascimento_conjuge" id="data_nascimento_conjuge">
-                </div>
             </div>
 
             <div class="input-block">

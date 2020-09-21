@@ -158,9 +158,9 @@ class CoordenadorController extends Controller {
         }
 
         $validator_ocs = Validator::make($entrada, Ocs::$regras_validacao_criar, $messages);
-        if ($validator_produtor->fails()) {
+        if ($validator_ocs->fails()) {
             return redirect()->back()
-                             ->withErrors($validator_produtor)
+                             ->withErrors($validator_ocs)
                              ->withInput();
         }
 
@@ -173,8 +173,8 @@ class CoordenadorController extends Controller {
         $ocs = new Ocs;
         $ocs->fill($entrada);
         $ocs->id_endereco = $endereco->id;
+        $ocs->unidade_federacao = $endereco->estado;
 
-        $ocs->password = Hash::make($entrada['password']);
         $ocs->save();
 
         //Todo: Tem que tirar o comment e ajustar a tela de view da ocs...
