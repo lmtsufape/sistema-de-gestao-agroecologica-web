@@ -13,7 +13,7 @@
     @endif
 
     <div class="formulario">
-        <form method="post" action="{{ route('user.coordenador.cadastrarProdutor.salvar') }}">
+        <form method="post" action="{{ route('user.coordenador.cadastrarCoordenador.salvar') }}">
             @csrf
             <div class="agrupar">
                 <div class="input-block">
