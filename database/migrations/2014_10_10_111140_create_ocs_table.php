@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOcssTable extends Migration
+class CreateOcsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOcssTable extends Migration
      */
     public function up()
     {
-        Schema::create('ocss', function (Blueprint $table) {
+        Schema::create('ocs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('cnpj')->unique();
@@ -39,6 +39,6 @@ class CreateOcssTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ocss');
+        Schema::dropIfExists('ocs');
     }
 }

@@ -18,12 +18,10 @@ class Ocs extends Authenticatable
         'cnpj',
         'nome_entidade',
         'telefone',
-        'celular',
         'fax',
         'email',
         'nome_para_contato',
         'orgao_fiscalizador',
-        'unidade_federacao',
     ];
 
 
@@ -31,12 +29,10 @@ class Ocs extends Authenticatable
         'cnpj' => 'required|max:20',
         'nome_entidade' => 'required|max:255',
         'telefone' => 'required|numeric|min:10',
-        'celular' => 'numeric|min:10',
         'fax' => 'max:255',
         'email' => 'max:255',
         'nome_para_contato' => 'required|max:255',
         'orgao_fiscalizador' => 'required|max:255',
-        'unidade_federacao' => 'required|min:2|max:2',
     ];
 
 

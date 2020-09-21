@@ -44,3 +44,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
 
 //Todo: Criar controller home e a funçãod e erro!!!
 //Route::get('/erro', 'HomeController@mostrarErro')->name('erro');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
