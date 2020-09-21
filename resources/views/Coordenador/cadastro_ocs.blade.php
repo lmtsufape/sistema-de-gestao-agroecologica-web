@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>CADASTRO DO PRODUTOR</h2>
+<h2>CADASTRO DA OCS</h2>
 
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -14,7 +14,7 @@
 @endif
 
 <div class="formulario">
-    <form method="post" action="">
+    <form method="post" action="{{ route('user.coordenador.cadastraroCS.salvar') }}">
         @csrf
 
         <div class="grupo-informacoes">
