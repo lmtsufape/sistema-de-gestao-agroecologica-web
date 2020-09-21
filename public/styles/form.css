@@ -4,6 +4,7 @@ h2{
     font-weight: normal;
     font-size: 48px;
     line-height: 56px;
+    margin-top: 20px;
 
     color: #000000;
 
@@ -14,6 +15,10 @@ h2{
     align-items: center;
 }
 
+form{
+    font-family: Roboto, sans-serif;
+    color: #333333;
+}
 
 form .input-block{
     width: 96%;
@@ -79,6 +84,23 @@ form .grupo-informacoes .input-block input{
 form .input-block input img{
     width: 60px;
     height: 60px;
+}
+
+form .input-block textarea{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+   
+
+    font-family: Roboto, sans-serif;
+    text-align: left;
+    font-size: 18px; 
+    line-height: 21px;
+
+    background: #D5D1D1;
+    border-radius: 15px;
+    border: none;
+    outline: none;
 }
 
 
