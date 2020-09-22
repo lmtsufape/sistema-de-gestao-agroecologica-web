@@ -3,8 +3,18 @@
 @section('content')
 <h2>CADASTRO DA OCS</h2>
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul style="padding: 0px;">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div class="formulario">
-    <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
+    <form method="post" action="{{ route('user.coordenador.cadastraroCS.salvar') }}">
         @csrf
 
         <div class="grupo-informacoes">
