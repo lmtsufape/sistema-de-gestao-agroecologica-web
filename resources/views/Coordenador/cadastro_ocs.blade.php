@@ -13,7 +13,15 @@
 </div>
 @endif
 
-<div class="formulario">
+<form action="">
+    @csrf
+    <div class="form-group">
+        <label for="Nome Completo">Nome Completo</label>
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome Completo">
+    </div>
+</form>
+
+<!--<div class="formulario">
     <form method="post" action="{{ route('user.coordenador.cadastraroCS.salvar') }}">
         @csrf
 
@@ -117,5 +125,5 @@
 
         <button type="submit">Cadastrar</button>
     </form>
-</div>
+</div>-->
 @endsection
