@@ -17,22 +17,22 @@
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="nome">Nome Completo</label>
-                <input type="text" class="form-control" id="nome" name="nome"placeholder="Nome Completo">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome Completo">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="Email">Email</label>
-                <input type="email" class="form-control" id="email" name="email"placeholder="Email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
             </div>
         </div>
         
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+                <input type="password" class="form-control" id="senha" name="password" placeholder="Senha">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="confirmar senha">Confirmar Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+                <input type="password" class="form-control" id="senha" name="password" placeholder="Senha">
             </div>
         </div>
 
@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <label>Bairro</label>
-                <input type="text" class="form-control" name="cpf" placeholder="Bairro">
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro">
             </div>
         </div>
 
@@ -133,7 +133,7 @@
 
         <div class="form-group">
             <label>Descrição</label>
-            <textarea class="form-control" id="descricao" name="descicao" rows="3"></textarea>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
         </div>
 
         <button class="btn botao-submit" type="submit">Cadastrar</button>
