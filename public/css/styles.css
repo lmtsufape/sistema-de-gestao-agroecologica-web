@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+h2{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navegação{
+    background: #010F16;
+}
+
+.formulario{
+    padding: 10px;
+}
+
+.botao-submit{
+    background: #08862D;
+    color: #ffffff;
+}
