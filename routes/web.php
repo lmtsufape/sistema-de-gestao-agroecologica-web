@@ -15,7 +15,7 @@ use App\Http\Controllers\User\CoordenadorController;
 */
 
 Route::get('/', function () {
-    return view('/Coordenador/home');
+    return view('/layouts/app');
 });
 
 
