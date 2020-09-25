@@ -12,6 +12,7 @@
         </div>
     @endif
 
+
     <div class="formulario">
         <form method="post" action="{{ route('user.coordenador.cadastrarCoordenador.salvar') }}">
             @csrf
@@ -126,6 +127,7 @@
                 <div class="input-block">
                     <input type="text" placeholder="Pontos de Referencia" name="ponto_referencia" id="ponto_referencia">
                 </div>
+
             </div>
 
 

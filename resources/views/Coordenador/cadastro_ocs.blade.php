@@ -14,7 +14,7 @@
 @endif
 
 <div class="formulario">
-    <form method="post" action="{{ route('user.coordenador.cadastraroCS.salvar') }}">
+    <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
         @csrf
 
         <div class="grupo-informacoes">
@@ -23,7 +23,7 @@
             </div>
 
             <div class="input-block">
-                <input type="text" placeholder="Nome" name="nome" id="nome">
+                <input type="text" placeholder="Nome" name="nome_entidade" id="nome_entidade">
             </div>
         </div>
 
@@ -82,6 +82,12 @@
             </div>
             <div class="input-block">
                 <input type="number" placeholder="cep" name="cep" id="cep">
+            </div>
+            <div class="input-block">
+                <input type="text" placeholder="descricao" name="descricao" id="descricao">
+            </div>
+            <div class="input-block">
+                <input type="text" placeholder="ponto de Referencia" name="ponto_referencia" id="ponto_referencia">
             </div>
         </div>
 
