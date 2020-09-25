@@ -40,5 +40,6 @@ class CreateOcsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('ocs');
+        Schema::dropIfExists('ocss');
     }
 }
