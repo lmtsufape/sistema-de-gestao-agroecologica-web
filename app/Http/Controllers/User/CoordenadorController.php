@@ -95,6 +95,8 @@ class CoordenadorController extends Controller {
 
     public function salvarCadastrarCoordenador(Request $request) {
         $entrada = $request->all();
+        $ocs = $request->session()->get('ocs');
+
 
         $messages = [
             'required' => 'O campo :attribute é obrigatório.',
@@ -127,13 +129,18 @@ class CoordenadorController extends Controller {
         $endereco->save();
 
 
-        $produtor = new User;
-        $produtor->fill($entrada);
-        $produtor->tipo_perfil = 'Coordenador';
-        $produtor->id_endereco = $endereco->id;
+        $coordenador = new User;
+        $coordenador->fill($entrada);
+        $coordenador->tipo_perfil = 'Coordenador';
+        $coordenador->id_endereco = $endereco->id;
 
-        $produtor->password = Hash::make($entrada['password']);
-        $produtor->save();
+
+        $coordenador->password = Hash::make($entrada['password']);
+        $ocs->save();
+        $coordenador->id_osc = $ocs->id;
+        $coordenador->save();
+        $request->session()->forget('ocs');
+
 
         //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
         //return redirect()->route('Coordenador/home');
@@ -174,11 +181,9 @@ class CoordenadorController extends Controller {
         $ocs->fill($entrada);
         $ocs->id_endereco = $endereco->id;
         $ocs->unidade_federacao = $endereco->estado;
+        $request->session()->put('ocs', $ocs);
 
-        $ocs->save();
-
-        //Todo: Tem que tirar o comment e ajustar a tela de view da ocs...
-        //return redirect()->route('coordenador/ver_ccs/{id}', $ocs->id);
+        return view('Coordenador\cadastro_coordenador');
     }
 
 }
