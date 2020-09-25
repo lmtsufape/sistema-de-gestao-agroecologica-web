@@ -26,12 +26,11 @@ class Ocs extends Authenticatable
 
 
     public static $regras_validacao_criar = [
-        'cnpj' => 'required|max:20',
+        'cnpj' => 'required|max:20|unique:ocs,cnpj',
         'nome_entidade' => 'required|max:255',
         'telefone' => 'required|numeric|min:10',
         'fax' => 'max:255',
         'email' => 'max:255',
-        'nome_para_contato' => 'required|max:255',
         'orgao_fiscalizador' => 'required|max:255',
     ];
 

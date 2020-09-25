@@ -12,7 +12,8 @@
         </div>
     @endif
 
-    <form class="formulario" method="post" action="{{ route('user.coordenador.cadastrarProdutor.salvar') }}">
+<div class="formulario">
+    <form class="formulario" method="post" action="{{ route('user.coordenador.cadastrarCoordenador.salvar') }}">
         @csrf
         <div class="form-row">
             <div class="col-md-6 mb-3">
@@ -24,7 +25,7 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
             </div>
         </div>
-        
+
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="senha">Senha</label>
@@ -125,7 +126,7 @@
             <input type="text" class="form-control" id="cep" name="cep" placeholder="">
             </div>
         </div>
-        
+
         <div class="form-group">
             <label>Ponto de Referencia</label>
             <textarea class="form-control" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
@@ -138,6 +139,7 @@
 
         <button class="btn botao-submit" type="submit">Cadastrar</button>
     </form>
+</div>
     <!--<div class="formulario">
         <form method="post" action="{{ route('user.coordenador.cadastrarCoordenador.salvar') }}">
             @csrf
@@ -175,7 +177,7 @@
                 </div>
             </div>
 
-            
+
 
             <div class="agrupar">
                 <div class="input-block">
@@ -249,6 +251,7 @@
                 <div class="input-block">
                     <textarea palceholder="Descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea>
                 </div>
+
             </div>
 
 

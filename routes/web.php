@@ -27,7 +27,6 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
         });
         Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'cadastroCoordenador']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarCoordenador'])->name('.salvar');
         });
         Route::prefix('/criar_ocs')->name('.cadastrarOcs')->group(function () {
