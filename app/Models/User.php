@@ -49,12 +49,12 @@ class User extends Authenticatable
     public static $regras_validacao_criar = [
         'nome' => 'required|max:255',
         'data_nascimento' => 'required',
-        'cpf' => 'required|numeric',
-        'rg' => 'required|numeric',
+        'cpf' => 'required|numeric|unique:users,cpf',
+        'rg' => 'required|numeric|unique:users,rg',
         'telefone' => 'required',
         'nome_conjugue' => 'nullable|max:255',
         'nome_filhos'=> 'nullable',
-        'email' => 'required|max:255',
+        'email' => 'required|max:255|unique:users,email',
         'password' => 'required|max:255|min:6',
     ];
 
