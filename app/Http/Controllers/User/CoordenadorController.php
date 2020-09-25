@@ -58,7 +58,6 @@ class CoordenadorController extends Controller {
         ];
 
 
-        printf("AAAAAAAAAAAA");
         $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
         if ($validator_endereco->fails()) {
             return redirect()->back()
@@ -103,6 +102,7 @@ class CoordenadorController extends Controller {
             'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
             'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
             'password.required' => 'A senha é obrigatória.',
+            'unique' => 'O :attribute já existe',
         ];
 
         $time = strtotime($entrada['data_nascimento']);
@@ -136,7 +136,18 @@ class CoordenadorController extends Controller {
 
 
         $coordenador->password = Hash::make($entrada['password']);
-        $ocs->save();
+        $ocs->nome_para_contato = $coordenador->nome;
+        $ocs_aux = Ocs::select('cnpj')->get();
+        $cad = false;
+        foreach ($ocs_aux as $oc) {
+            if(str_contains($oc->cnpj, $ocs->cnpj)) {
+                $cad = true;
+            }
+        }
+
+        if(!$cad){
+            $ocs->save();
+        }
         $coordenador->id_osc = $ocs->id;
         $coordenador->save();
         $request->session()->forget('ocs');
@@ -154,6 +165,7 @@ class CoordenadorController extends Controller {
             'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
             'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
             'password.required' => 'A senha é obrigatória.',
+            'unique' => 'O :attribute já existe',
         ];
 
 
