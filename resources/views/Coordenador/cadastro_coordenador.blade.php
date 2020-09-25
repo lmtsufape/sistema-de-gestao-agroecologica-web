@@ -12,7 +12,8 @@
         </div>
     @endif
 
-    <form class="formulario" method="post" action="{{ route('user.coordenador.cadastrarProdutor.salvar') }}">
+<div class="formulario">
+    <form class="formulario" method="post" action="{{ route('user.coordenador.cadastrarCoordenador.salvar') }}">
         @csrf
         <div class="form-row">
             <div class="col-md-6 mb-3">
@@ -138,6 +139,7 @@
 
         <button class="btn botao-submit" type="submit">Cadastrar</button>
     </form>
+</div>
     <!--<div class="formulario">
         <form method="post" action="{{ route('user.coordenador.cadastrarCoordenador.salvar') }}">
             @csrf

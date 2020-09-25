@@ -13,11 +13,8 @@
 </div>
 @endif
 
-<<<<<<< HEAD
 <div class="formulario">
-    <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
-=======
-<form method="post" action="{{ route('user.coordenador.cadastraroCS.salvar') }}">
+<form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
     @csrf
     <div class="form-row">
         <div class="col-md-6 mb-3">
@@ -33,6 +30,10 @@
     <div class="form-group">
         <label>Email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label>Órgão fiscalizador</label>
+        <input type="text" class="form-control" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="Órgão fiscalizador">
     </div>
 
     <div class="form-row">
@@ -108,7 +109,7 @@
                 <input type="number" class="form-control" name="fax" placeholder="FAX">
             </div>
         </div>
-        
+
         <div class="form-group">
             <label>Ponto de Referencia</label>
             <textarea class="form-control" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
@@ -121,10 +122,10 @@
 
     <button class="btn botao-submit" type="submit">Cadastrar</button>
 </form>
+</div>
 
 <!--<div class="formulario">
-    <form method="post" action="{{ route('user.coordenador.cadastraroCS.salvar') }}">
->>>>>>> 37a6e42ee6af7c33473f0be675f086c71ea82908
+    <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
         @csrf
 
         <div class="grupo-informacoes">
@@ -133,11 +134,7 @@
             </div>
 
             <div class="input-block">
-<<<<<<< HEAD
-                <input type="text" placeholder="Nome" name="nome_entidade" id="nome_entidade">
-=======
                 <input type="text" placeholder="Nome" name="nome_entidade" id="nome">
->>>>>>> 37a6e42ee6af7c33473f0be675f086c71ea82908
             </div>
         </div>
 
