@@ -10,13 +10,8 @@
         <!--Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
-        <!--stules feitos a mão-->
-        <link rel="stylesheet" href="/css/styles.css">
-        <!--<link rel="stylesheet" href="/styles/app.css">
-        <link rel="stylesheet" href="/styles/nav.css">
-        <link rel="stylesheet" href="/styles/home.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css">-->
+        <!--styles feitos a mão-->
+        <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
 
     </head>
     <body>
@@ -25,9 +20,7 @@
         <div class="container">
             @yield('content')
         </div>
-        
-        
-        <!--@include('incluir.footer')-->
+        @include('incluir.footer')
 
         <!--Bootstrap scripts-->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
