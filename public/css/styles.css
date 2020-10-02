@@ -15,7 +15,7 @@ h2{
 }
 
 .navegação{
-    background: #010F16;
+    background: #167F14;
 }
 
 .formulario{
@@ -39,11 +39,18 @@ footer{
     font-weight: bold;
     font-size: 18px;
     line-height: 21px;
-
-    border-bottom: #ffffff;
 }
 
 .imagem{
     background: transparent;
     border: none;
+}
+
+.redesocial{
+    width: 80px;
+    height: 80px;
+}
+
+footer .container .row{
+    text-align: center;
 }
