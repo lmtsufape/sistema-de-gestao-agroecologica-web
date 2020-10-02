@@ -32,6 +32,18 @@ footer{
     color: white;
 }
 
-.partedecima{
+.texto-footer{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+
     border-bottom: #ffffff;
+}
+
+.imagem{
+    background: transparent;
+    border: none;
 }
