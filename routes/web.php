@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::prefix('/user')->name('user')->namespace('User')->group(function(){
     Route::prefix('/coordenador')->name('.coordenador')->group(function () {
         Route::prefix('/criar_produtor')->name('.cadastrarProdutor')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'cadastroProdutor']);
+            Route::get('/', [CoordenadorController::class, 'cadastroProdutor'])->middleware('auth');
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
         });
         Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
