@@ -18,6 +18,11 @@ h2{
     background: #167F14;
 }
 
+.navegação > img{
+    background: transparent;
+
+}
+
 .formulario{
     padding: 10px;
 }
@@ -27,6 +32,10 @@ h2{
     color: #ffffff;
 }
 
+.botão{
+    border: none;
+}
+
 footer{
     background: #167F14;
     color: white;
@@ -34,11 +43,6 @@ footer{
 
 .texto-footer{
     text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 21px;
 }
 
 .imagem{
@@ -47,8 +51,8 @@ footer{
 }
 
 .redesocial{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
 }
 
 footer .container .row{
