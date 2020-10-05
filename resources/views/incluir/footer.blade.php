@@ -1,5 +1,5 @@
-<footer>
-    <div class="container-fluid rodape mt-5" aling="center">
+<footer class="page-footer fixed-bottom footer mt-5">
+    <div class="container-fluid rodape" aling="center">
         <div class="container pt-5">
             <p class="texto-footer">
               Ínicio • SGA • Sobre  
