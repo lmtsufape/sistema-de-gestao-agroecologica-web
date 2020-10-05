@@ -19,6 +19,8 @@ class CreateRelatoriosTable extends Migration
             $table->text('problemas');
             $table->text('possiveis_solucoes');
             $table->longText('observacoes');
+            $table->unsignedBigInteger('id_propriedade');
+            $table->foreign('id_propriedade')->references('id')->on('propriedades');
         });
     }
 
