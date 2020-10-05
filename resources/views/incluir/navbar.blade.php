@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark navegação">
+<nav class="navbar navbar-expand-md navbar-dark navegação mb-5">
     <a class="navbar-brand mb-0 h1" href="#">Sistema de Gestão Agrícola</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,30 +19,4 @@
             </li>
         </ul>
     </div>
-
-
 </nav>
-
-
-
-
-
-
-
-
-
-<!--<nav>
-    <div class="logo"></div>
-
-    <div class="icones">
-        @if(Auth::check())
-            <div class="notificacoes">
-                <img src="{{ asset('images/notifications.png') }}" alt="" onclick=>
-            </div>
-            <div class="menu">
-                <img src="{{ asset('images/menu.png')}}" alt="dropdown menu" onclick=dropdownMenu()>
-            </div>
-        @endif
-    </div>
-    
-</nav>-->
