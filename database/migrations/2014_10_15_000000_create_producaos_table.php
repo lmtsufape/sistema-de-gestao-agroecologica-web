@@ -17,6 +17,8 @@ class CreateProducaosTable extends Migration
             $table->id();
             $table->date('data');
             $table->longText('observacoes');
+            $table->unsignedBigInteger('id_canteirodeproducao');
+            $table->foreign('id_canteirodeproducao')->references('id')->on('canteirodeproducaos');
         });
     }
 
