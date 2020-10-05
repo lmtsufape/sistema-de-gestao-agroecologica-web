@@ -15,6 +15,8 @@
                 @endif
                 </li>
             @endauth
+
+            
         </ul>
     </div>
 </nav>
