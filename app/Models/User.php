@@ -61,15 +61,8 @@ class User extends Authenticatable
 
 	// Ocs que o produtor participa
 	public function ocs() {
-		return $this->belongsTo('App\Models\Ocs', 'id', 'id_ocs');
+		return $this->belongsTo('App\Models\Ocs', 'id_ocs');
 	}
-
-    public function coordenadorOcs(){
-        if ($this->tipo_perfil == 'Coordendor') {
-            return $this->hasOne('App\Models\Ocs', 'id', 'id_ocs');
-        }
-    }
-
 
 
     public function endereco() {

@@ -16,6 +16,28 @@
             </div>
         </div>
     </div>
+<h3 style="text-align: center">Canteiros de Produção:</h3>
+    <div class="row">
+        @iF(count($canteiros) > 0)
+            @foreach($canteiros as $cant)
+            <div class="col-md-12 d-flex justify-content-center">
+                <a href="{{route('user.canteiroProducao.ver', ['id_canteiro' => $cant->id])}}">
+                    <img class="imagem-menor" src="{{ asset('images/agriculture.png') }}" alt="">
+                    <span>{{$cant->localizacao}}</span>
+                </a>
+                <br>
+                <br>
+            </div>
+            @endforeach
+         @endif
+         <br>
+        <div class="col-md-12 d-flex justify-content-center">
+             <a href="{{route('user.canteiroProducao.cadastrar')}}">
+                <img class="imagem-menor" src="{{ asset('images/rounded-add-button.png') }}" alt="">
+                <span>Cadastrar canteiro de produção</span>
+             </a>
+        </div>
+    </div>
 </div>
 
 

@@ -54,6 +54,11 @@ footer{
     width: 30%;
 }
 
+.imagem-menor{
+    width: 70px;
+    height: auto;
+}
+
 .redesocial{
     width: 60px;
     height: 60px;

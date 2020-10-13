@@ -20,5 +20,10 @@ class UserController extends Controller {
         'password.required' => 'A senha é obrigatória.',
     ];
 
+    public function verPerfil() {
+        $produtor = User::find(Auth::id());
+        return view('Produtor/ver_perfil', ['produtor' => $produtor]);
+    }
+
 
 }
