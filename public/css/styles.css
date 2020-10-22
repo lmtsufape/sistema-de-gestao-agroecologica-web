@@ -50,6 +50,10 @@ footer{
     border: none;
 }
 
+.imagem-home{
+    width: 30%;
+}
+
 .redesocial{
     width: 60px;
     height: 60px;

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CoordenadorController;
+use App\Http\Controllers\User\PropriedadeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,10 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
 
 
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
-
     });
-
+    Route::get('/cadastrar_propriedade/',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
+    Route::get('/ver_propriedade/',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
+    Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade');
 });
 
 //Todo: Criar controller home e a funçãod e erro!!!
