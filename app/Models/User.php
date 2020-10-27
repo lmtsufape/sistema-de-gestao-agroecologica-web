@@ -69,4 +69,8 @@ class User extends Authenticatable
         return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
     }
 
+    public function propriedade() {
+        return $this->hasOne('\App\Models\Propriedade', 'id', 'id_produtor');
+    }
+
 }
