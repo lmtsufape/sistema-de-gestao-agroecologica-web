@@ -79,7 +79,7 @@ footer .container .row{
 }
 
 .upper-div{
-    border-style: solid;
+    box-shadow: 0.5px 1px 0.5px 1px #B8B8B8;
     border-radius: 20px;
     border-width: 2px;
     border-color: black;
