@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Endereco;
 use App\Models\Ocs;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class CoordenadorController extends Controller {
 
@@ -33,6 +34,13 @@ class CoordenadorController extends Controller {
 
     public function cadastroOcs() {
         return view('Coordenador\cadastro_ocs');
+    }
+
+    public function verOcs(){
+        $coordenadorlogado = User::find(Auth::id());
+        return view('Coordenador\ver_ocs', [
+            'ocs' => $coordenadorlogado->ocs,
+        ]);
     }
 
 
@@ -148,7 +156,7 @@ class CoordenadorController extends Controller {
         if(!$cad){
             $ocs->save();
         }
-        $coordenador->id_osc = $ocs->id;
+        $coordenador->id_ocs = $ocs->id;
         $coordenador->save();
         $request->session()->forget('ocs');
 

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CanteiroDeProducao extends Model
 {
-
+    public $timestamps = false;
+    protected $table = 'canteirodeproducaos';
     /**
      * The attributes that are mass assignable.
      *

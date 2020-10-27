@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('rg')->unique();
             $table->unsignedBigInteger('id_endereco');
             $table->foreign('id_endereco')->references('id')->on('enderecos');
-            $table->unsignedBigInteger('id_osc');
-            $table->foreign('id_osc')->references('id')->on('ocs');
+            $table->unsignedBigInteger('id_ocs');
+            $table->foreign('id_ocs')->references('id')->on('ocs');
             $table->string('telefone');
             $table->string('tipo_perfil');  // Se é ciirdenador ou produtor
             $table->string('nome_conjugue')->nullable();

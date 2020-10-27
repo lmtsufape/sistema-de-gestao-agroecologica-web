@@ -19,6 +19,8 @@ class CreatePropriedadesTable extends Migration
             $table->string('fonte_de_agua');
             $table->unsignedBigInteger('id_produtor');
             $table->foreign('id_produtor')->references('id')->on('users');
+            $table->unsignedBigInteger('id_endereco');
+            $table->foreign('id_endereco')->references('id')->on('enderecos');
         });
     }
 

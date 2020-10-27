@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CoordenadorController;
 use App\Http\Controllers\User\PropriedadeController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +35,35 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::get('/', [CoordenadorController::class, 'cadastroOcs']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
         });
-
+        Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs');
 
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
     });
-    Route::get('/cadastrar_propriedade/',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
-    Route::get('/ver_propriedade/',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
+    Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil');
+    Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
+    Route::get('/ver_propriedade',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
     Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade');
+
+    Route::prefix('/manejo')->name('.manejo')->namespace('manejo')->group(function(){
+        Route::get('/cadastrar',  [PropriedadeController::class, 'cadastrarManejo'])->name('.cadastrar')->middleware('auth');
+        Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarManejo'])->name('.salvar')->middleware('auth');
+    });
+
+    Route::prefix('/produto')->name('.produto')->namespace('produto')->group(function(){
+        Route::get('/cadastrar',  [PropriedadeController::class, 'cadastrarProduto'])->name('.cadastrar')->middleware('auth');
+        Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarProduto'])->name('.salvar')->middleware('auth');
+    });
+
+    Route::prefix('/canteiroDeProducao')->name('.canteiroProducao')->namespace('CanteiroProducao')->group(function(){
+        Route::get('/cadastrar',  [PropriedadeController::class, 'cadastrarCanteiroDeProducao'])->name('.cadastrar')->middleware('auth');
+        Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarCanteiroDeProducao'])->name('.salvar')->middleware('auth');
+        Route::get('/{id_canteiro}/ver',  [PropriedadeController::class, 'verCanteiroDeProducao'])->name('.ver')->middleware('auth');
+        Route::prefix('/producao')->name('.producao')->namespace('producao')->group(function(){
+            Route::get('{id_canteiro}/cadastrar',  [PropriedadeController::class, 'cadastrarProducao'])->name('.cadastrar')->middleware('auth');
+            Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarProducao'])->name('.salvar')->middleware('auth');
+        });
+    });
+
 });
 
 //Todo: Criar controller home e a funçãod e erro!!!

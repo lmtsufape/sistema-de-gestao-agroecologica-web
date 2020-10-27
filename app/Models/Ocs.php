@@ -34,17 +34,12 @@ class Ocs extends Authenticatable
         'orgao_fiscalizador' => 'required|max:255',
     ];
 
-
-	public function coordenador() {
-		return $this->belongsTo('App\Models\User', 'id', 'id_coordenador');
-	}
-
     public function endereco() {
         return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
     }
 
     public function produtor(){
-        return $this->hasMany('App\Models\User');
+        return $this->hasMany('App\Models\User', 'id');
     }
 
 }

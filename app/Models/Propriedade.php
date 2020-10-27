@@ -31,6 +31,10 @@ class Propriedade extends Model
         return $this->hasMany('App\Models\CanteiroDeProducao', 'id');
     }
 
+    public function endereco(){
+        return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
+    }
+
     /*
     public function producoes() {
         return $this->hasMany('App\Models\Producao', 'id', 'id_propriedade');

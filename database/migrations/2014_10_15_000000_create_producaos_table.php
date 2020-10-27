@@ -15,8 +15,10 @@ class CreateProducaosTable extends Migration
     {
         Schema::create('producaos', function (Blueprint $table) {
             $table->id();
-            $table->date('data');
-            $table->longText('observacoes');
+            $table->string('tipo_producao');
+            $table->longText('observacoes')->nullable();
+            $table->longText('lista_produtos');
+            $table->longText('lista_produtos_exteriores_beneficiado')->nullable();
             $table->unsignedBigInteger('id_canteirodeproducao');
             $table->foreign('id_canteirodeproducao')->references('id')->on('canteirodeproducaos');
         });

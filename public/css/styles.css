@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -54,6 +55,11 @@ footer{
     width: 30%;
 }
 
+.imagem-menor{
+    width: 50px;
+    height: auto;
+}
+
 .redesocial{
     width: 60px;
     height: 60px;
@@ -61,4 +67,78 @@ footer{
 
 footer .container .row{
     text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.command_hidden:checked ~ .hidden,
+{
+    display: block;
+}
+
+.upper-div{
+    box-shadow: 0.5px 1px 0.5px 1px #B8B8B8;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    padding: 20px;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95)
+}
+
+.titles {
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+    color: #3CB371;
+}
+
+.label-static {
+    font-size: 24px;
+    font-weight: bold;
+    color: #008080;
+}
+
+.label-static-2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #008080;
+    text-align: center;
+}
+
+.label-ntstatic {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.label-ntstatic-2 {
+    font-size: 18px;
+    text-align: center;
+}
+
+.marker{
+    font-weight: bold;
+    text-align: center;
+    color: #3CB371;
+}
+
+.marker-link{
+    text-align: center;
+    color: red;
+}
+
+body{
+    background-image: url('../images/background_web.jpg');
+    background-size: cover;
+}
+
+.input-stl{
+    background-color: #D3D3D3;
+    color: black;
+}
+
+.container-main{
+    min-height: 480px;
 }
