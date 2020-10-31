@@ -21,24 +21,24 @@ class CoordenadorController extends Controller {
     ];
 
     public function coordenadorHome() {
-        return view('Coordenador\home');
+        return view('Coordenador.home');
     }
 
     public function cadastroProdutor() {
-        return view('Coordenador\criar_produtor');
+        return view('Coordenador.criar_produtor');
     }
 
     public function cadastroCoordenador() {
-        return view('Coordenador\cadastro_coordenador');
+        return view('Coordenador.cadastro_coordenador');
     }
 
     public function cadastroOcs() {
-        return view('Coordenador\cadastro_ocs');
+        return view('Coordenador.cadastro_ocs');
     }
 
     public function verOcs(){
         $coordenadorlogado = User::find(Auth::id());
-        return view('Coordenador\ver_ocs', [
+        return view('Coordenador.ver_ocs', [
             'ocs' => $coordenadorlogado->ocs,
         ]);
     }
@@ -203,7 +203,7 @@ class CoordenadorController extends Controller {
         $ocs->unidade_federacao = $endereco->estado;
         $request->session()->put('ocs', $ocs);
 
-        return view('Coordenador\cadastro_coordenador');
+        return view('Coordenador.cadastro_coordenador');
     }
 
 }
