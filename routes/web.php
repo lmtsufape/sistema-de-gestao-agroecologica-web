@@ -35,9 +35,14 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::get('/', [CoordenadorController::class, 'cadastroOcs']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
         });
+        Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
+            Route::get('/', [CoordenadorController::class, 'cadastroReuniao']);
+            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar');
+        });
+        
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs');
-
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
+        Route::get('/verReunioes', [CoordenadorController::class, 'verReunioes'])->name('.ver_reunioes');
     });
     Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil');
     Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
@@ -63,7 +68,6 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarProducao'])->name('.salvar')->middleware('auth');
         });
     });
-
 });
 
 //Todo: Criar controller home e a funçãod e erro!!!

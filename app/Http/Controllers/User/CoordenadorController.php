@@ -36,13 +36,16 @@ class CoordenadorController extends Controller {
         return view('Coordenador.cadastro_ocs');
     }
 
+    public function cadastroReuniao(){
+        return view('Coordenador.cadastro_reuniao');
+    }
+
     public function verOcs(){
         $coordenadorlogado = User::find(Auth::id());
         return view('Coordenador.ver_ocs', [
             'ocs' => $coordenadorlogado->ocs,
         ]);
     }
-
 
     //Todo, isso aqui tem que ser todo revisto...
     public function verProdutor($id) {
@@ -52,6 +55,10 @@ class CoordenadorController extends Controller {
         } else {
             return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
         }
+    }
+
+    public function verReunioes(){
+        return view('Coordenador.ver_reunioes');
     }
 
 
