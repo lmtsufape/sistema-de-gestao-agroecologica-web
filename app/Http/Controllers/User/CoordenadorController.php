@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Endereco;
 use App\Models\Ocs;
+use App\Models\Reuniao;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -211,6 +212,24 @@ class CoordenadorController extends Controller {
         $request->session()->put('ocs', $ocs);
 
         return view('Coordenador.cadastro_coordenador');
+    }
+
+    public function salvarCadastrarReuniao(Request $request){
+        $entrada = $request->all();
+        $time = strtotime($entrada['data_reuniao']);
+        $entrada['data_reuniao'] = date('Y-m-d', $time);
+
+        $coordenadorlogado = User::find(Auth::id());
+
+        $reuniao = new Reuniao();
+        $reuniao->nome = $entrada['nome_reuniao'];
+        $reuniao->data = $entrada['data_reuniao'];
+        $reuniao->participantes = $entrada['nome_participantes'];
+        $reuniao->descricao = $entrada['descricao_reuniao'];
+        $reuniao->id_ocs = $coordenadorlogado->id_ocs;
+        $reuniao->save();
+        
+        return view('Coordenador.ver_reunioes');
     }
 
 }

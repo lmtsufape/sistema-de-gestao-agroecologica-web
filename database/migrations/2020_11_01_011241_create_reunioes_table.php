@@ -13,7 +13,7 @@ class CreateReunioesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reunioes', function (Blueprint $table) {
+        Schema::create('reuniaos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
