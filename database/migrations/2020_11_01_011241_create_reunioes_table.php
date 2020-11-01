@@ -21,6 +21,9 @@ class CreateReunioesTable extends Migration
             $table->date('data');
             $table->text('participantes');
             $table->longText('descricao');
+
+            $table->unsignedBigInteger('id_ocs');
+            $table->foreign('id_ocs')->references('id')->on('ocs');
         });
     }
 
