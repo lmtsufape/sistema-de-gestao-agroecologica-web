@@ -224,16 +224,29 @@ class CoordenadorController extends Controller {
 
     public function salvarCadastrarReuniao(Request $request){
         $entrada = $request->all();
-        $time = strtotime($entrada['data_reuniao']);
-        $entrada['data_reuniao'] = date('Y-m-d', $time);
+        $time = strtotime($entrada['data']);
+        $entrada['data'] = date('Y-m-d', $time);
+
+        $messages = [
+            'nome.*' => 'O campo Nome é obrigatório deve conter no mínimo 5 caracteres.',
+            'data.required' => 'O campo Data é obrigatório',
+            'participantes.*' => 'O campo Participantes é obrigatório',
+            'descricao.*' => 'O campo Descrição é obrigatório',
+        ];
+
+        $validator_reuniao = Validator::make($entrada, \App\Models\Reuniao::$rules, $messages);
+
+        if(!$validator_reuniao->errors()->isEmpty()){
+            return redirect()->back()->withErrors($validator_reuniao)->withInput();
+        }
 
         $coordenadorlogado = User::find(Auth::id());
 
         $reuniao = new Reuniao();
-        $reuniao->nome = $entrada['nome_reuniao'];
-        $reuniao->data = $entrada['data_reuniao'];
-        $reuniao->participantes = $entrada['nome_participantes'];
-        $reuniao->descricao = $entrada['descricao_reuniao'];
+        $reuniao->nome = $entrada['nome'];
+        $reuniao->data = $entrada['data'];
+        $reuniao->participantes = $entrada['participantes'];
+        $reuniao->descricao = $entrada['descricao'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
         //Falta a parte das fotos
         $reuniao->save();
