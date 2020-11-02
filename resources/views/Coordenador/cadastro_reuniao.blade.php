@@ -27,6 +27,12 @@
                 <textarea class="form-control" placeholder = "Digite a descrição da reunião" name='descricao_reuniao' id='descricao_reuniao' rows = "6"></textarea>   
             </div>
         </div>
+        <div>
+            <label for='nome' class="col-md-6 col-form-label">Fotos</label>
+            <div class="col-md-6">
+                <input class="btn btn-primary" type="file" name="arquivo[]" multiple="multiple" accept="image/*" id="fotos" name="fotos"/><br><br>
+            </div>
+        </div>
         {{-- adicionar Upload de fotos --}}
         <div class="form-group">
             <div class="col-md-6">
