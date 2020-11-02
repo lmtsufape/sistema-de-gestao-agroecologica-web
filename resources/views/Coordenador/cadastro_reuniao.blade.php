@@ -28,9 +28,9 @@
             </div>
         </div>
         <div>
-            <label for='nome' class="col-md-6 col-form-label">Fotos</label>
+            {{-- <label for='nome' class="col-md-6 col-form-label">Fotos</label> --}}
             <div class="col-md-6">
-                <input class="btn btn-primary" type="file" name="arquivo[]" multiple="multiple" accept="image/*" id="fotos" name="fotos"/><br><br>
+                {{-- <input class="btn btn-primary" type="file" name="arquivo[]" multiple="multiple" accept="image/*" id="fotos" name="fotos"/><br><br> --}}
             </div>
         </div>
         {{-- adicionar Upload de fotos --}}

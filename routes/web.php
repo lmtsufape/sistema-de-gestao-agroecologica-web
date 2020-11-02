@@ -42,7 +42,9 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
         
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs');
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
-        Route::get('/verReunioes', [CoordenadorController::class, 'verReunioes'])->name('.ver_reunioes');
+        Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes');
+        Route::get('/ver_Reuniao/{id_reuniao}', [CoordenadorController::class, 'verReuniao'])->name('.ver_reuniao');
+
     });
     Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil');
     Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');

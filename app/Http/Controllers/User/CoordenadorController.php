@@ -58,10 +58,18 @@ class CoordenadorController extends Controller {
         }
     }
 
-    public function verReunioes(){
-        return view('Coordenador.ver_reunioes');
+    public function verReuniao($id_reuniao){
+        $reuniao = Reuniao::find($id_reuniao);
+        if($reuniao){
+            return view('Coordenador.ver_reuniao', ['reuniao' => $reuniao]);
+        }else{
+            return redirect()->route('erro', ['msg_erro' => "Reunião inexistente"]);
+        }
     }
 
+    public function listarReunioes(){
+        return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
+    }
 
     public function salvarCadastrarProdutor(Request $request) {
         $entrada = $request->all();
@@ -227,9 +235,11 @@ class CoordenadorController extends Controller {
         $reuniao->participantes = $entrada['nome_participantes'];
         $reuniao->descricao = $entrada['descricao_reuniao'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
+        //Falta a parte das fotos
         $reuniao->save();
         
-        return view('Coordenador.ver_reunioes');
+        return redirect(route('user.coordenador.listar_reunioes'));
+        //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
 
 }
