@@ -161,8 +161,7 @@ class CoordenadorController extends Controller {
         $request->session()->forget('ocs');
 
 
-        //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
-        //return redirect()->route('Coordenador/home');
+        redirect()->route('home');
     }
 
     public function salvarCadastrarOcs(Request $request) {

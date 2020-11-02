@@ -60,7 +60,10 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
         Route::get('/{id_canteiro}/ver',  [PropriedadeController::class, 'verCanteiroDeProducao'])->name('.ver')->middleware('auth');
         Route::prefix('/producao')->name('.producao')->namespace('producao')->group(function(){
             Route::get('{id_canteiro}/cadastrar',  [PropriedadeController::class, 'cadastrarProducao'])->name('.cadastrar')->middleware('auth');
+            Route::get('{id_producao}/remover',  [PropriedadeController::class, 'removerProducao'])->name('.remover')->middleware('auth');
             Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarProducao'])->name('.salvar')->middleware('auth');
+            Route::get('{id_producao}/editar',  [PropriedadeController::class, 'editarProducao'])->name('.editar')->middleware('auth');
+            Route::post('editar/salvar',  [PropriedadeController::class, 'salvarEditarProducao'])->name('.salvarEditar')->middleware('auth');
         });
     });
 

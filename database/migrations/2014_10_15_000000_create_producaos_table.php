@@ -15,6 +15,7 @@ class CreateProducaosTable extends Migration
     {
         Schema::create('producaos', function (Blueprint $table) {
             $table->id();
+            $table->date('data_inicio');
             $table->string('tipo_producao');
             $table->longText('observacoes')->nullable();
             $table->longText('lista_produtos');

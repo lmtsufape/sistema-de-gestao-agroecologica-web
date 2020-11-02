@@ -15,7 +15,7 @@ class CreateCanteirodeproducaosTable extends Migration
     {
         Schema::create('canteirodeproducaos', function (Blueprint $table) {
             $table->id();
-            $table->string('tamanho');
+            $table->integer('tamanho');
             $table->string('localizacao');
             $table->unsignedBigInteger('id_propriedade');
             $table->foreign('id_propriedade')->references('id')->on('propriedades');
