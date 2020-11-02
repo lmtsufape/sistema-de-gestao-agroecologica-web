@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="upper-div">
-    <h1 class="titles">Informações sobre a propriedade</h1>
+    <h1 class="marker">Informações sobre a propriedade</h1>
 </div>
 <br>
 <br>
@@ -12,7 +12,7 @@
     <br>
     <div class="row">
         <div class="col-md-6">
-            <h4 class="label-static-2">Tamanho total (HA)</h4>
+            <h4 class="label-static-2">Tamanho total (Metros)</h4>
             <h5 class="label-ntstatic-2">{{$propriedade->tamanho_total}}</h5>
         </div>
         <div class="col-md-6">
@@ -56,7 +56,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h4 class="label-static-2">Descricao</h4>
+            <h4 class="label-static-2">Descrição</h4>
             <h5 class="label-ntstatic-2">{{$propriedade->endereco->descricao}}</h5>
         </div>
         <div class="col-md-6">

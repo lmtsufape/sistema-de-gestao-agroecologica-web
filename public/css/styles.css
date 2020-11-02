@@ -88,6 +88,15 @@ footer .container .row{
     background-color: rgba(255, 255, 255, 0.95)
 }
 
+.upper-div-2{
+    box-shadow: 0.5px 1px 0.5px 1px #B8B8B8;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95)
+}
+
 .titles {
     font-size: 60px;
     font-weight: bold;
@@ -96,20 +105,20 @@ footer .container .row{
 }
 
 .label-static {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     color: #008080;
 }
 
 .label-static-2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #008080;
     text-align: center;
 }
 
 .label-ntstatic {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -134,11 +143,29 @@ body{
     background-size: cover;
 }
 
+.img-left{
+    background-image: url('../images/orange-5143042_1920.jpg');
+    background-size: cover;
+    border-radius: 20px;
+}
+
 .input-stl{
-    background-color: #D3D3D3;
+    background-color: #f0eded;
     color: black;
+    border-radius: 0px;
+    border: none;
+    border-bottom: solid 2px #787575;
 }
 
 .container-main{
     min-height: 480px;
+}
+
+.bt-canteiro{
+    width: 300px;
+    padding: 5px;
+    background-color: white;
+    border-style: solid;
+    border-color: #3CB371;
+    border-width: 3px;
 }

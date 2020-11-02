@@ -29,16 +29,12 @@ class PropriedadeController extends Controller {
         $produtos = Produto::all();
         $canteiroexiste = CanteiroDeProducao::find($id_canteiro);
         if ($canteiroexiste) {
-            if (count(Producao::where('id_canteirodeproducao', $id_canteiro)->get()) > 0) {
-                return redirect()->route('user.canteiroProducao.ver', ['id_canteiro' => $id_canteiro]);
-            } else {
-                return view('Produtor/cadastro_producao', [
-                    'canteiro' => $id_canteiro,
-                    'produtos' => $produtos,
-                ]);
-            }
+            return view('Produtor/cadastro_producao', [
+                'canteiro' => $id_canteiro,
+                'produtos' => $produtos,
+            ]);
         }
-        return cadastrarCanteiroDeProducao();
+        return redirect()->route('user.canteiroProducao.cadastrar');
 
     }
 
@@ -56,7 +52,53 @@ class PropriedadeController extends Controller {
         $producao->fill($entrada);
         $producao->save();
 
-        return view('home');
+        return redirect()->route('user.canteiroProducao.ver', $producao->id_canteirodeproducao);
+
+    }
+
+    public function removerProducao($id_producao){
+        $producao = Producao::find($id_producao);
+        if($producao){
+            $producao->delete();
+        }
+        return redirect()->back();
+
+    }
+
+    public function editarProducao($id_producao){
+        $producao = Producao::find($id_producao);
+        if($producao){
+            $produtor = $producao->canteirodeproducaos->propriedade->produtor;
+            if(Auth::id() == $produtor->id){
+                $produtos = Produto::all();
+                return view('Produtor/editar_producao', [
+                    'producao' => $producao,
+                    'produtos' => $produtos,
+                ]);
+            } else {
+                return redirect()->back()->withErrors();
+            }
+        }
+        return redirect()->back();
+    }
+
+    public function salvarEditarProducao(Request $request){
+        $entrada = $request->all();
+
+        $producao = Producao::find($entrada['id_producao']);
+
+        $ids_prods = "";
+        foreach ($entrada['idsman'] as $id) {
+            $ids_prods .= $id . ",";
+        }
+
+        $producao = new Producao;
+        $producao->lista_produtos = $ids_prods;
+        $producao->id_canteirodeproducao = $entrada['id_canteirodeproducao'];
+        $producao->fill($entrada);
+        $producao->save();
+
+        return redirect()->route('user.canteiroProducao.ver', $producao->id_canteirodeproducao);
 
     }
 
@@ -128,7 +170,7 @@ class PropriedadeController extends Controller {
         $canteiro->id_propriedade = $entrada['id_propriedade'];
         $canteiro->save();
 
-        return view('home');
+        return redirect()->route('user.canteiroProducao.ver', $canteiro->id);
 
     }
 
@@ -180,7 +222,7 @@ class PropriedadeController extends Controller {
         $propriedade->id_produtor = Auth::id();
         $propriedade->save();
 
-        return view('Produtor/propriedade_ver', ['propriedade' => $propriedade]);
+        return redirect()->route('user.verPropriedade');
     }
 
     public function verPropriedade(){

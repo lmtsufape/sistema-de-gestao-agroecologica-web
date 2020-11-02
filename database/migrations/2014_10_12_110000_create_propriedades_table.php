@@ -15,7 +15,7 @@ class CreatePropriedadesTable extends Migration
     {
         Schema::create('propriedades', function (Blueprint $table) {
             $table->id();
-            $table->string('tamanho_total');
+            $table->integer('tamanho_total');
             $table->string('fonte_de_agua');
             $table->unsignedBigInteger('id_produtor');
             $table->foreign('id_produtor')->references('id')->on('users');

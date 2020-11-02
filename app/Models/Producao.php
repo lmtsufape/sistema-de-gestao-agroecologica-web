@@ -18,15 +18,22 @@ class Producao extends Model
         'tipo_producao',
         'lista_produtos',
         'lista_produtos_exteriores_beneficiado',
+        'data_inicio',
     ];
 
     public static $regras_validacao_criar = [
         'lista_produtos' => 'required',
+        'data_inicio' => 'required',
     ];
 
 
     public function canteirodeproducaos() {
         return $this->belongsTo('App\Models\CanteiroDeProducao', 'id');
+    }
+
+    public function dataInicioFormatada(){
+        $time = strtotime($this->data_inicio);
+        return date('d / m / Y', $time);
     }
 
     public function lista_produtos(){

@@ -24,7 +24,7 @@ class Propriedade extends Model
 
 
 	public function produtor() {
-		return $this->belongsTo('App\Models\User', 'id', 'id_produtor');
+		return $this->belongsTo('App\Models\User', 'id_produtor', 'id');
 	}
 
     public function canteirodeproducaos() {
