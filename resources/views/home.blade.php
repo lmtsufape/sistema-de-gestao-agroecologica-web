@@ -33,6 +33,15 @@
                     </a>
                 </button>
             </div>
+
+            <div class="col-md-4 ">
+                <button>
+                    <a href="{{route('user.coordenador.listar_reunioes')}}">
+                        <img class="imagem-home" src="{{ asset('images/meeting.png') }}" alt="">
+                        <span class="label-ntstatic">Reuniões</span>
+                    </a>
+                </button>
+            </div>
         </div>
         <br>
         <div class="row">

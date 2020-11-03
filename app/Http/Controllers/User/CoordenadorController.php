@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Endereco;
 use App\Models\Ocs;
+use App\Models\Reuniao;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,28 +22,31 @@ class CoordenadorController extends Controller {
     ];
 
     public function coordenadorHome() {
-        return view('Coordenador\home');
+        return view('Coordenador.home');
     }
 
     public function cadastroProdutor() {
-        return view('Coordenador\criar_produtor');
+        return view('Coordenador.criar_produtor');
     }
 
     public function cadastroCoordenador() {
-        return view('Coordenador\cadastro_coordenador');
+        return view('Coordenador.cadastro_coordenador');
     }
 
     public function cadastroOcs() {
-        return view('Coordenador\cadastro_ocs');
+        return view('Coordenador.cadastro_ocs');
+    }
+
+    public function cadastroReuniao(){
+        return view('Coordenador.cadastro_reuniao');
     }
 
     public function verOcs(){
         $coordenadorlogado = User::find(Auth::id());
-        return view('Coordenador\ver_ocs', [
+        return view('Coordenador.ver_ocs', [
             'ocs' => $coordenadorlogado->ocs,
         ]);
     }
-
 
     //Todo, isso aqui tem que ser todo revisto...
     public function verProdutor($id) {
@@ -54,6 +58,18 @@ class CoordenadorController extends Controller {
         }
     }
 
+    public function verReuniao($id_reuniao){
+        $reuniao = Reuniao::find($id_reuniao);
+        if($reuniao){
+            return view('Coordenador.ver_reuniao', ['reuniao' => $reuniao]);
+        }else{
+            return redirect()->route('erro', ['msg_erro' => "Reunião inexistente"]);
+        }
+    }
+
+    public function listarReunioes(){
+        return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
+    }
 
     public function salvarCadastrarProdutor(Request $request) {
         $entrada = $request->all();
@@ -202,7 +218,40 @@ class CoordenadorController extends Controller {
         $ocs->unidade_federacao = $endereco->estado;
         $request->session()->put('ocs', $ocs);
 
-        return view('Coordenador\cadastro_coordenador');
+        return view('Coordenador.cadastro_coordenador');
+    }
+
+    public function salvarCadastrarReuniao(Request $request){
+        $entrada = $request->all();
+        $time = strtotime($entrada['data']);
+        $entrada['data'] = date('Y-m-d', $time);
+
+        $messages = [
+            'nome.*' => 'O campo Nome é obrigatório deve conter no mínimo 5 caracteres.',
+            'data.required' => 'O campo Data é obrigatório',
+            'participantes.*' => 'O campo Participantes é obrigatório',
+            'descricao.*' => 'O campo Descrição é obrigatório',
+        ];
+
+        $validator_reuniao = Validator::make($entrada, \App\Models\Reuniao::$rules, $messages);
+
+        if(!$validator_reuniao->errors()->isEmpty()){
+            return redirect()->back()->withErrors($validator_reuniao)->withInput();
+        }
+
+        $coordenadorlogado = User::find(Auth::id());
+
+        $reuniao = new Reuniao();
+        $reuniao->nome = $entrada['nome'];
+        $reuniao->data = $entrada['data'];
+        $reuniao->participantes = $entrada['participantes'];
+        $reuniao->descricao = $entrada['descricao'];
+        $reuniao->id_ocs = $coordenadorlogado->id_ocs;
+        //Falta a parte das fotos
+        $reuniao->save();
+        
+        return redirect(route('user.coordenador.listar_reunioes'));
+        //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
 
 }
