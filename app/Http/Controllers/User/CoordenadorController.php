@@ -52,7 +52,7 @@ class CoordenadorController extends Controller {
     public function verProdutor($id) {
         $produtor = User::find($id);
         if($produtor){
-            return view('Coordenador/ver_produtor', ['produtor' => $produtor]);
+            return view('Coordenador.ver_produtor', ['produtor' => $produtor]);
         } else {
             return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
         }
@@ -109,10 +109,14 @@ class CoordenadorController extends Controller {
         $produtor->id_endereco = $endereco->id;
 
         $produtor->password = Hash::make($entrada['password']);
+
+        $coordenadorlogado = User::find(Auth::id());
+        $produtor->id_ocs = $coordenadorlogado->id_ocs;
+
         $produtor->save();
 
         //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
-        redirect()->route('user/coordenador/ver_produtor/{id}', $produtor->id);
+        return redirect(route('user.coordenador.ver_produtor', $produtor->id));
     }
 
 
