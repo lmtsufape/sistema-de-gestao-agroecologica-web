@@ -19,12 +19,18 @@
         <div class="form-group">
             <label for='nome' class="col-md-6 col-form-label">Nome da reunião</label>
             <div class="col-md-6">
-            <input type='text' class="form-control" placeholder = "Digite o nome da reunião" name='nome' id='nome' value="{{old('nome')}}"/>    
+                <input type='text' class="form-control" placeholder = "Digite o nome da reunião" name='nome' id='nome' value="{{old('nome')}}"/>    
             </div>
         </div>
         <div class="col-md-4 mb-4">
             <label for="data_reuniao">Data da reunião</label>
             <input type="date" class="form-control" name="data" id="data" value="{{old('data')}}">
+        </div>
+        <div class="form-group">
+            <label for='nome' class="col-md-6 col-form-label">Local</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control" placeholder = "Digite o local da reunião" name='local' id='local' value="{{old('local')}}"/>    
+            </div>
         </div>
         <div class="form-group">
             <label for='nome' class="col-md-6 col-form-label">Participantes</label>
@@ -33,9 +39,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label">Descrição</label>
+            <label for='nome' class="col-md-6 col-form-label">Ata</label>
             <div class="col-md-6">
-                <textarea class="form-control" placeholder = "Digite a descrição da reunião" name='descricao' id='descricao' rows = "6"></textarea>   
+                <textarea class="form-control" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "6"></textarea>   
             </div>
         </div>
         <div>

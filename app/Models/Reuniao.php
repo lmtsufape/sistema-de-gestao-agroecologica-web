@@ -10,14 +10,16 @@ class Reuniao extends Model
     protected $fillable = [
         'nome',
         'data',
+        'local',
         'participantes',
-        'descricao',
+        'ata',
     ];
 
     public static $rules = [
         'nome' => 'required|min:5',
-        //'data' => 'required',
+        'data' => 'required',
+        'local' => 'required',
         'participantes' => 'required',
-        'descricao' => 'required',
+        'ata' => 'required',
     ];
 }

@@ -12,6 +12,11 @@
             <h4>Data</h4>
             <label for="">{{$reuniao->data}}</label>
         </div>
+
+        <div class="col-md-4">
+            <h4>Local</h4>
+            <label for="">{{$reuniao->local}}</label>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4"> <br>
@@ -19,8 +24,8 @@
             <label for="">{{$reuniao->participantes}}</label>
         </div>
         <div class="col-md-4"> <br>
-            <h4>Descrição</h4>
-            <label for="">{{$reuniao->descricao}}</label>
+            <h4>Ata</h4>
+            <label for="">{{$reuniao->ata}}</label>
         </div>
     </div>
 </div>

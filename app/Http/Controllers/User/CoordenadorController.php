@@ -229,8 +229,9 @@ class CoordenadorController extends Controller {
         $messages = [
             'nome.*' => 'O campo Nome é obrigatório deve conter no mínimo 5 caracteres.',
             'data.required' => 'O campo Data é obrigatório',
+            'local.required' => 'O campo Local é obrigatório',
             'participantes.*' => 'O campo Participantes é obrigatório',
-            'descricao.*' => 'O campo Descrição é obrigatório',
+            'ata.*' => 'O campo Ata é obrigatório',
         ];
 
         $validator_reuniao = Validator::make($entrada, \App\Models\Reuniao::$rules, $messages);
@@ -244,8 +245,9 @@ class CoordenadorController extends Controller {
         $reuniao = new Reuniao();
         $reuniao->nome = $entrada['nome'];
         $reuniao->data = $entrada['data'];
+        $reuniao->local = $entrada['local'];
         $reuniao->participantes = $entrada['participantes'];
-        $reuniao->descricao = $entrada['descricao'];
+        $reuniao->ata = $entrada['ata'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
         //Falta a parte das fotos
         $reuniao->save();
