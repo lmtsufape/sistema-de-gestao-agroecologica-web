@@ -2,9 +2,10 @@
 
 @section('content')
 
-<a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
-
 <div class = 'jumbotron' id='jumbotron'>
+    <a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
+
+
     <h2 class="display-5">Reuniões</h2>
     <table class="table">
         <thead class="black white-text">
