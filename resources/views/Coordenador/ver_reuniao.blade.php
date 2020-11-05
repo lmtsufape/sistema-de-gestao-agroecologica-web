@@ -21,7 +21,14 @@
     <div class="row">
         <div class="col-md-4"> <br>
             <h4>Partcipantes</h4>
-            <label for="">{{$reuniao->participantes}}</label>
+            @php
+                $nomeParticipantes = explode('/', $reuniao->participantes);
+            @endphp
+            @foreach ($nomeParticipantes as $nome)
+                @if ($nome != "")
+                    <label for="">{{$nome}}</label><br>
+                @endif
+            @endforeach
         </div>
         <div class="col-md-4"> <br>
             <h4>Ata</h4>

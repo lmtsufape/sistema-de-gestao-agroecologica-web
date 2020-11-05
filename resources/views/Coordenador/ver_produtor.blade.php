@@ -1,1 +1,7 @@
-<h1>Deu bom</h1>
+@extends('layouts.app')
+
+@section('content')
+
+<h1>Colocar informações do produtor</h1>
+
+@endsection

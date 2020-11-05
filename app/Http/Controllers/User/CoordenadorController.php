@@ -38,7 +38,7 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroReuniao(){
-        return view('Coordenador.cadastro_reuniao');
+        return view('Coordenador.cadastro_reuniao')->with('produtores', User::all()); //User::where('tipo_perfil', '=', 'Produtor')
     }
 
     public function verOcs(){
@@ -227,6 +227,7 @@ class CoordenadorController extends Controller {
 
     public function salvarCadastrarReuniao(Request $request){
         $entrada = $request->all();
+
         $time = strtotime($entrada['data']);
         $entrada['data'] = date('Y-m-d', $time);
 
@@ -250,7 +251,15 @@ class CoordenadorController extends Controller {
         $reuniao->nome = $entrada['nome'];
         $reuniao->data = $entrada['data'];
         $reuniao->local = $entrada['local'];
-        $reuniao->participantes = $entrada['participantes'];
+
+        $participantesFormatados = "";
+        $participantes = $request->participantes;
+
+        foreach ($participantes as $nome) {
+            $participantesFormatados = $participantesFormatados . $nome . "/";
+        }
+
+        $reuniao->participantes = $participantesFormatados;
         $reuniao->ata = $entrada['ata'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
         //Falta a parte das fotos

@@ -34,8 +34,14 @@
         </div>
         <div class="form-group">
             <label for='nome' class="col-md-6 col-form-label">Participantes</label>
-            <div class="col-md-6">
-                <textarea class="form-control" placeholder = "Digite o nome dos participantes" name='participantes' id='participantes' rows = "3"></textarea>   
+            <div class="col-md-10">
+                @foreach ($produtores as $produtor)
+                    @if ($produtor->tipo_perfil == 'Produtor')
+                        <input class="form-check-input" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
+                        <label class="form-check-label">&nbsp &nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
+                        <br>
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="form-group">
