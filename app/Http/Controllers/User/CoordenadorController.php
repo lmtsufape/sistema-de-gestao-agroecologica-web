@@ -259,6 +259,8 @@ class CoordenadorController extends Controller {
             $participantesFormatados = $participantesFormatados . $nome . "/";
         }
 
+        $participantesFormatados = $participantesFormatados . $request->outrosParticipantes;
+
         $reuniao->participantes = $participantesFormatados;
         $reuniao->ata = $entrada['ata'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;

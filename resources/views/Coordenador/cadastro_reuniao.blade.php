@@ -37,11 +37,20 @@
             <div class="col-md-10">
                 @foreach ($produtores as $produtor)
                     @if ($produtor->tipo_perfil == 'Produtor')
-                        <input class="form-check-input" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
-                        <label class="form-check-label">&nbsp &nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
-                        <br>
+                        <div class="col-md-6">
+                            <input class="form-check-input" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
+                            <label class="form-check-label">&nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
+                            <br>
+                        </div>
                     @endif
                 @endforeach
+                <div class="col-md-6">
+                    <input class="form-check-input" type="checkbox" id="outros" name="outros" onchange="habilitar()">
+                    <label class="form-check-label">&nbspOutros</label>
+                    <br>
+                    <textarea class="form-control" name="outrosParticipantes" id="outrosParticipantes" type="text" rows = "3" disabled></textarea>
+                </div>
+
             </div>
         </div>
         <div class="form-group">
@@ -64,5 +73,16 @@
         </div>
     </form>
 </div>
+
+<script>
+    function habilitar(){
+        if(document.getElementById('outros').checked){
+            document.getElementById('outrosParticipantes').removeAttribute("disabled");
+        }else{
+            document.getElementById('onoff').value='';
+            document.getElementById('outrosParticipantes').setAttribute("disabled", "disabled");
+        }
+    }
+</script>
 
 @endsection
