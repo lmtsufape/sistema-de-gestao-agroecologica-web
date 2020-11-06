@@ -38,19 +38,18 @@
                 @foreach ($produtores as $produtor)
                     @if ($produtor->tipo_perfil == 'Produtor')
                         <div class="col-md-6">
-                            <input class="form-check-input" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
-                            <label class="form-check-label">&nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
+                            <input class="form-check-input col-md-1" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
+                            <label class="form-check-label">&nbsp &nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
                             <br>
                         </div>
                     @endif
                 @endforeach
                 <div class="col-md-6">
-                    <input class="form-check-input" type="checkbox" id="outros" name="outros" onchange="habilitar()">
-                    <label class="form-check-label">&nbspOutros</label>
+                    <input class="form-check-input col-md-1" type="checkbox" id="outros" name="outros" onchange="habilitar()">
+                    <label class="form-check-label">&nbsp &nbspOutros</label>
                     <br>
                     <textarea class="form-control" name="outrosParticipantes" id="outrosParticipantes" type="text" rows = "3" disabled></textarea>
                 </div>
-
             </div>
         </div>
         <div class="form-group">
