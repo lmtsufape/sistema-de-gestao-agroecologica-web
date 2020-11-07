@@ -12,28 +12,28 @@
     </div>
 @endif
 
-<div class = 'jumbotron' id='jumbotron'>
-    <h3 class="display-5">Registrar reunião</h3>
+<div class = 'jumbotron bg-white'>
+    <h1 class="marker">Registrar reunião</h1>
     <form method="POST" action="{{route('user.coordenador.cadastrarReuniao.salvar')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label">Nome da reunião</label>
+            <label for='nome' class="col-md-6 col-form-label label-static">Nome da reunião</label>
             <div class="col-md-6">
-                <input type='text' class="form-control" placeholder = "Digite o nome da reunião" name='nome' id='nome' value="{{old('nome')}}"/>    
+                <input type='text' class="form-control input-stl" placeholder = "Digite o nome da reunião" name='nome' id='nome' value="{{old('nome')}}"/>    
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <label for="data_reuniao">Data da reunião</label>
-            <input type="date" class="form-control" name="data" id="data" value="{{old('data')}}">
+            <label for="data_reuniao" class="label-static">Data da reunião</label>
+            <input type="date" class="form-control input-stl" name="data" id="data" value="{{old('data')}}">
         </div>
         <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label">Local</label>
+            <label for='nome' class="col-md-6 col-form-label label-static">Local</label>
             <div class="col-md-6">
-                <input type='text' class="form-control" placeholder = "Digite o local da reunião" name='local' id='local' value="{{old('local')}}"/>    
+                <input type='text' class="form-control input-stl" placeholder = "Digite o local da reunião" name='local' id='local' value="{{old('local')}}"/>    
             </div>
         </div>
         <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label">Participantes</label>
+            <label for='nome' class="col-md-6 col-form-label label-static">Participantes</label>
             <div class="col-md-10">
                 @foreach ($produtores as $produtor)
                     @if ($produtor->tipo_perfil == 'Produtor')
@@ -49,22 +49,22 @@
                     <label class="form-check-label">&nbsp &nbspOutros</label>
                     <br>
                     <div class="col-md-12">
-                        <textarea class="form-control" name="outrosParticipantes" id="outrosParticipantes" type="text" rows = "3" disabled></textarea>
+                        <textarea class="form-control input-stl" name="outrosParticipantes" id="outrosParticipantes" type="text" rows = "3" disabled></textarea>
                     </div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label">Ata</label>
+            <label for='nome' class="col-md-6 col-form-label label-static">Ata</label>
             <div class="col-md-6">
-                <textarea class="form-control" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "6"></textarea>   
+                <textarea class="form-control input-stl" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "6"></textarea>   
             </div>
         </div>
 
         <div class="col-md-6">
-            <label for='nome' class="col-form-label">Fotos</label>
+            <label for='nome' class="col-form-label label-static">Fotos</label>
             <div class="col-md-6">
-                <input type="file" name="fotos[]" class="custom-file-input" id="fotos" multiple="multiple" accept="image/*">
+                <input type="file" name="fotos[]" class="custom-file-input input-stl" id="fotos" multiple="multiple" accept="image/*">
                 <label class="custom-file-label" for="fotos">Escolha as fotos</label>
             </div>
         </div>
