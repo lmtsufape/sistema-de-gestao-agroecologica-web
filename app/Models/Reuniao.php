@@ -22,4 +22,8 @@ class Reuniao extends Model
         'participantes' => 'required',
         'ata' => 'required',
     ];
+
+    public function fotosReuniao(){
+        return $this->hasMany('App.Models.FotosReuniao', 'reuniao_id', 'id');
+    }
 }

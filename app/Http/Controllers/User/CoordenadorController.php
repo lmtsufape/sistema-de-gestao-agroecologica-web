@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\Endereco;
+use App\Models\FotosReuniao;
 use App\Models\Ocs;
 use App\Models\Reuniao;
 use Illuminate\Support\Facades\Hash;
@@ -264,8 +265,20 @@ class CoordenadorController extends Controller {
         $reuniao->participantes = $participantesFormatados;
         $reuniao->ata = $entrada['ata'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
-        //Falta a parte das fotos
         $reuniao->save();
+
+        //Persistindo as fotos
+
+        for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
+            $file = $request->allFiles()['fotos'][$i];
+
+            $fotosReuniao = new FotosReuniao();
+            $fotosReuniao->reuniao_id = $reuniao->id;
+            $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+            $fotosReuniao->save();
+
+            unset($fotosReuniao);
+        }
         
         return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
