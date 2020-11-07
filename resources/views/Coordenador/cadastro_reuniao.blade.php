@@ -14,7 +14,7 @@
 
 <div class = 'jumbotron' id='jumbotron'>
     <h3 class="display-5">Registrar reunião</h3>
-    <form method="POST" action="{{route('user.coordenador.cadastrarReuniao.salvar')}}">
+    <form method="POST" action="{{route('user.coordenador.cadastrarReuniao.salvar')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for='nome' class="col-md-6 col-form-label">Nome da reunião</label>
@@ -48,7 +48,9 @@
                     <input class="form-check-input col-md-1" type="checkbox" id="outros" name="outros" onchange="habilitar()">
                     <label class="form-check-label">&nbsp &nbspOutros</label>
                     <br>
-                    <textarea class="form-control" name="outrosParticipantes" id="outrosParticipantes" type="text" rows = "3" disabled></textarea>
+                    <div class="col-md-12">
+                        <textarea class="form-control" name="outrosParticipantes" id="outrosParticipantes" type="text" rows = "3" disabled></textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,13 +60,17 @@
                 <textarea class="form-control" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "6"></textarea>   
             </div>
         </div>
-        <div>
-            {{-- <label for='nome' class="col-md-6 col-form-label">Fotos</label> --}}
+
+        <div class="col-md-6">
+            <label for='nome' class="col-form-label">Fotos</label>
             <div class="col-md-6">
-                {{-- <input class="btn btn-primary" type="file" name="arquivo[]" multiple="multiple" accept="image/*" id="fotos" name="fotos"/><br><br> --}}
+                <input type="file" name="fotos[]" class="custom-file-input" id="fotos" multiple="multiple" accept="image/*">
+                <label class="custom-file-label" for="fotos">Escolha as fotos</label>
             </div>
         </div>
-        {{-- adicionar Upload de fotos --}}
+
+        <br>
+
         <div class="form-group">
             <div class="col-md-6">
                 <button class="btn botao-submit" type="submit">Registrar</button>            
