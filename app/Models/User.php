@@ -58,6 +58,14 @@ class User extends Authenticatable
         'password' => 'required|max:255|min:6',
     ];
 
+    public static $regras_validacao_editar = [
+        'nome' => 'required|max:255',
+        'data_nascimento' => 'required',
+        'telefone' => 'required',
+        'nome_conjugue' => 'nullable|max:255',
+        'nome_filhos'=> 'nullable',
+    ];
+
 
 	// Ocs que o produtor participa
 	public function ocs() {
