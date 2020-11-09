@@ -5,6 +5,7 @@
 <div class="container-main">
     <div class="upper-div">
         <h1 class="marker">Informações da OCS</h1>
+        <center> <a href="{{ route('user.coordenador.editarOcs') }}"> <h4> Editar Ocs <h4> </a> </center>
         <div class="formulario">
             <div class="row">
                 <div class="col-md-4">
@@ -50,6 +51,62 @@
                 </div>
             </div>
             <br>
+            <h4 class="marker" style="text-align: center">Endereço</h4>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Rua</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->nome_rua}}</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Bairro</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->bairro}}</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Nº</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->numero_casa}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Cidade</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->cidade}}</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Estado</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->estado}}</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <h4 class="label-static">CEP</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->cep}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Descricao</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->descricao}}</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <h4 class="label-static">Ponto de Referência</h4>
+                        <label class="label-ntstatic">{{$ocs->endereco->ponto_referencia}}</label>
+                    </div>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="col-md-6 d-flex justify-content-center">
                     <a href="{{route('home')}}">
