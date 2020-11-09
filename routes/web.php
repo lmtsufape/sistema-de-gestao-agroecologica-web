@@ -37,32 +37,32 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
         });
         Route::prefix('/editar_ocs')->name('.editarOcs')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'editarOcs']);
-            Route::post('/salvar', [CoordenadorController::class, 'salvarEditarOcs'])->name('.salvar');
+            Route::get('/', [CoordenadorController::class, 'editarOcs']);->middleware('auth');
+            Route::post('/salvar', [CoordenadorController::class, 'salvarEditarOcs'])->name('.salvar');->middleware('auth');
         });
 
         Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'cadastroReuniao']);
-            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar');
+            Route::get('/', [CoordenadorController::class, 'cadastroReuniao']);->middleware('auth');
+            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar');->middleware('auth');
         });
 
-        Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs');
-        Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
-        Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes');
-        Route::get('/ver_Reuniao/{id_reuniao}', [CoordenadorController::class, 'verReuniao'])->name('.ver_reuniao');
+        Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs');->middleware('auth');
+        Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');->middleware('auth');
+        Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes');->middleware('auth');
+        Route::get('/ver_Reuniao/{id_reuniao}', [CoordenadorController::class, 'verReuniao'])->name('.ver_reuniao');->middleware('auth');
 
     });
-    Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil');
-    Route::get('/ver_perfil/editar',  [UserController::class, 'editarPerfil'])->name('.editar_perfil');
-    Route::post('/ver_perfil/editar/salvar',  [UserController::class, 'salvarEditarPerfil'])->name('.salvar_editar_perfil');
+    Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil');->middleware('auth');
+    Route::get('/ver_perfil/editar',  [UserController::class, 'editarPerfil'])->name('.editar_perfil');->middleware('auth');
+    Route::post('/ver_perfil/editar/salvar',  [UserController::class, 'salvarEditarPerfil'])->name('.salvar_editar_perfil');->middleware('auth');
 
     Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
     Route::get('/ver_propriedade',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
-    Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade');
+    Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade');->middleware('auth');
 
     Route::prefix('/editar_propriedade')->name('.editarPropriedade')->group(function () {
-        Route::get('/', [PropriedadeController::class, 'editarPropriedade']);
-        Route::post('/salvar', [PropriedadeController::class, 'salvarEditarPropriedade'])->name('.salvar');
+        Route::get('/', [PropriedadeController::class, 'editarPropriedade']);->middleware('auth');
+        Route::post('/salvar', [PropriedadeController::class, 'salvarEditarPropriedade'])->name('.salvar');->middleware('auth');
     });
 
     Route::prefix('/manejo')->name('.manejo')->namespace('manejo')->group(function(){
