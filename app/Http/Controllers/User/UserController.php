@@ -13,16 +13,59 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
 
-    private $mensagens = [
-        'required' => 'O campo :attribute é obrigatório.',
-        'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
-        'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
-        'password.required' => 'A senha é obrigatória.',
-    ];
-
     public function verPerfil() {
         $produtor = User::find(Auth::id());
-        return view('Produtor/ver_perfil', ['produtor' => $produtor]);
+        return view('Produtor.ver_perfil', [
+            'produtor' => $produtor
+        ]);
+    }
+
+    public function editarPerfil(){
+        $produtor = User::find(Auth::id());
+        return view('Produtor.editar_perfil', [
+            'produtor' => $produtor
+        ]);
+    }
+
+    public function salvarEditarPerfil(Request $request){
+        $entrada = $request->all();
+
+        $produtor = User::find(Auth::id());
+
+        $messages = [
+            'required' => 'O campo :attribute é obrigatório.',
+            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+            'password.required' => 'A senha é obrigatória.',
+        ];
+
+
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+        $validator_produtor = Validator::make($entrada, User::$regras_validacao_editar, $messages);
+        if ($validator_produtor->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_produtor)
+                             ->withInput();
+        }
+
+
+
+        $endereco = new Endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
+        $produtor->fill($entrada);
+        $produtor->id_endereco = $endereco->id;
+
+        $produtor->save();
+
+        return redirect()->route('user.ver_perfil');
     }
 
 
