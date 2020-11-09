@@ -129,7 +129,7 @@ class CoordenadorController extends Controller {
     }
 
     public function listarReunioes(){
-        return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
+        return view('Coordenador.listar_reunioes')->with('reunioes', $this->getReunioesDaOcs());
     }
 
     public function salvarCadastrarProdutor(Request $request) {
@@ -358,6 +358,12 @@ class CoordenadorController extends Controller {
         }
 
         return $produtoresDaOcs;
+    }
+
+    public function getReunioesDaOcs(){
+        $coordenadorLogado = User::find(Auth::id());
+        
+        return $coordenadorLogado->ocs->reunioes;
     }
 
 }
