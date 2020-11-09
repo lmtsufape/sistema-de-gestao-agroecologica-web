@@ -60,6 +60,11 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
     Route::get('/ver_propriedade',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
     Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade');
 
+    Route::prefix('/editar_propriedade')->name('.editarPropriedade')->group(function () {
+        Route::get('/', [PropriedadeController::class, 'editarPropriedade']);
+        Route::post('/salvar', [PropriedadeController::class, 'salvarEditarPropriedade'])->name('.salvar');
+    });
+
     Route::prefix('/manejo')->name('.manejo')->namespace('manejo')->group(function(){
         Route::get('/cadastrar',  [PropriedadeController::class, 'cadastrarManejo'])->name('.cadastrar')->middleware('auth');
         Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarManejo'])->name('.salvar')->middleware('auth');
