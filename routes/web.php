@@ -28,6 +28,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::get('/', [CoordenadorController::class, 'cadastroProdutor'])->middleware('auth');
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
         });
+
         Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarCoordenador'])->name('.salvar');
         });
@@ -39,7 +40,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::get('/', [CoordenadorController::class, 'cadastroReuniao']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar');
         });
-        
+
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs');
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor');
         Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes');
@@ -47,6 +48,9 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
 
     });
     Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil');
+    Route::get('/ver_perfil/editar',  [UserController::class, 'editarPerfil'])->name('.editar_perfil');
+    Route::post('/ver_perfil/editar/salvar',  [UserController::class, 'salvarEditarPerfil'])->name('.salvar_editar_perfil');
+
     Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
     Route::get('/ver_propriedade',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
     Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade');
