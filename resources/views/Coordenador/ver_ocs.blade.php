@@ -99,6 +99,7 @@
                         <h4 class="label-static">Descricao</h4>
                         <label class="label-ntstatic">{{$ocs->endereco->descricao}}</label>
                     </div>
+                    <br>
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-12">
@@ -108,16 +109,22 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-6 d-flex justify-content-center">
+                <div class="col-md-4 d-flex justify-content-center">
                     <a href="{{route('home')}}">
-                        <img class="imagem-menor" src="{{ asset('images/rounded-add-button.png') }}" alt="">
+                        <img class="imagem-menor" src="{{ asset('images/meeting.png') }}" alt="">
                         <span class="marker-link">Reuniões</span>
                     </a>
                 </div>
-                <div class="col-md-6 d-flex justify-content-center">
-                    <a href="{{route('home')}}">
-                        <img class="imagem-menor" src="{{ asset('images/rounded-add-button.png') }}" alt="">
+                <div style="margin-top: 10px;" class="col-md-4 d-flex justify-content-center">
+                    <a href="{{route('user.coordenador.listar_produtores')}}">
+                        <img class="imagem-menor" src="{{ asset('images/eye.png') }}" alt="">
                         <span class="marker-link">Produtores</span>
+                    </a>
+                </div>
+                <div style="margin-top: 10px;" class="col-md-4 d-flex justify-content-center">
+                    <a href="{{route('user.coordenador.cadastrarProdutor')}}">
+                        <img class="imagem-menor" src="{{ asset('images/rounded-add-button.png') }}" alt="">
+                        <span class="marker-link">Cadastrar Produtor</span>
                     </a>
                 </div>
             </div>
