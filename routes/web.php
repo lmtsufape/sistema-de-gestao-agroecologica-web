@@ -36,6 +36,11 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::get('/', [CoordenadorController::class, 'cadastroOcs']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
         });
+        Route::prefix('/editar_ocs')->name('.editarOcs')->group(function () {
+            Route::get('/', [CoordenadorController::class, 'editarOcs']);
+            Route::post('/salvar', [CoordenadorController::class, 'salvarEditarOcs'])->name('.salvar');
+        });
+
         Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
             Route::get('/', [CoordenadorController::class, 'cadastroReuniao']);
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar');
