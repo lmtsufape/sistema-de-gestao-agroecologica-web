@@ -19,9 +19,9 @@
             </div>
             <div class="col-md-4">
                 <button>
-                    <a href="{{route('user.coordenador.ver_ocs')}}">
-                        <img class="imagem-home" src="{{ asset('images/group.png') }}" alt="">
-                        <span class="label-ntstatic">Ocs</span>
+                    <a href="{{route('user.coordenador.listar_reunioes')}}">
+                        <img class="imagem-home" src="{{ asset('images/meeting.png') }}" alt="">
+                        <span class="label-ntstatic">Reuniões</span>
                     </a>
                 </button>
             </div>
@@ -33,21 +33,21 @@
                     </a>
                 </button>
             </div>
-            
+        </div>
+        <br>
+        @if($perfil == "Coordenador")
+        <div class="row">
             <div class="col-md-4 ">
                 <br>
                 <button>
-                    <a href="{{route('user.coordenador.listar_reunioes')}}">
-                        <img class="imagem-home" src="{{ asset('images/meeting.png') }}" alt="">
-                        <span class="label-ntstatic">Reuniões</span>
+                    <a href="{{route('user.coordenador.ver_ocs')}}">
+                        <img class="imagem-home" src="{{ asset('images/group.png') }}" alt="">
+                        <span class="label-ntstatic">Ocs</span>
                     </a>
                 </button>
             </div>
         </div>
-        <br>
-        <div class="row">
-
-        </div>
+        @endif
     </div>
 </div>
 @endsection

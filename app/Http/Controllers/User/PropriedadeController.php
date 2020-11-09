@@ -141,6 +141,52 @@ class PropriedadeController extends Controller {
         }
     }
 
+    public function editarPropriedade(){
+        $produtor = User::find(Auth::id());
+        return view('Produtor.editar_propriedade', [
+            'propriedade' => $produtor->propriedade,
+        ]);
+
+    }
+
+    public function salvarEditarPropriedade(Request $request){
+        $entrada = $request->all();
+        $produtor = User::find(Auth::id());
+        $propriedade =  $produtor->propriedade;
+
+        $mensagens = [
+            'required' => 'O campo :attribute é obrigatório.',
+            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+        ];
+
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $mensagens);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+        $validator_propriedade = Validator::make($entrada, Propriedade::$regras_validacao_criar, $mensagens);
+        if ($validator_propriedade->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_propriedade)
+                             ->withInput();
+        }
+
+        $endereco = new Endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
+        $propriedade->fill($entrada);
+        $propriedade->id_endereco = $endereco->id;
+        $propriedade->id_produtor = Auth::id();
+        $propriedade->save();
+
+        return redirect()->route('user.verPropriedade');
+
+    }
+
     public function cadastrarCanteiroDeProducao(){
         $propriedade = Propriedade::where('id_produtor', Auth::id())->get();
         if($propriedade){

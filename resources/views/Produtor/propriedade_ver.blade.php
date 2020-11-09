@@ -9,6 +9,13 @@
 <br>
 <div class="formulario upper-div">
     <h3 class="marker" style="text-align: center">Informações Básicas</h3>
+    <center> <a href="{{ route('user.editarPropriedade') }}"> <h4> Editar Propriedade <h4> </a> </center>
+    <center> <button class="bt-canteiro">
+        <a href="">
+            <img class="imagem-menor" src="{{ asset('images/clock.png') }}" alt="">
+            <span style="color: red">Histórico da Propriedade</span>
+        </a>
+    </button> </center>
     <br>
     <div class="row">
         <div class="col-md-6">

@@ -148,7 +148,7 @@
                 </div>
                 <br>
                 <div class="form-row">
-                    <div class="col-md-4 d-flex justify-content-center">
+                    <div class="col-md-6 d-flex justify-content-center">
                         <button class="bt-canteiro">
                             <a href="{{route('user.canteiroProducao.producao.editar', ['id_producao' => $prod->id])}}">
                                 <img class="imagem-menor" src="{{ asset('images/register (1).png') }}" alt="">
@@ -156,19 +156,11 @@
                             </a>
                         </button>
                     </div>
-                    <div class="col-md-4 d-flex justify-content-center">
+                    <div class="col-md-6 d-flex justify-content-center">
                         <button class="bt-canteiro">
                             <a href="{{route('user.canteiroProducao.producao.remover', ['id_producao' => $prod->id])}}">
                                 <img class="imagem-menor" src="{{ asset('images/food.png') }}" alt="">
                                 <span style="color: #3CB371">Colher Producao</span>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-center">
-                        <button class="bt-canteiro">
-                            <a href="{{route('user.canteiroProducao.producao.remover', ['id_producao' => $prod->id])}}">
-                                <img class="imagem-menor" src="{{ asset('images/minus-round-line.png') }}" alt="">
-                                <span style="color: #3CB371">Remover Producao</span>
                             </a>
                         </button>
                     </div>

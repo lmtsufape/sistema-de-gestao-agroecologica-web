@@ -27,7 +27,11 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroProdutor() {
-        return view('Coordenador.criar_produtor');
+        $logado = User::find(Auth::id());
+        if ($logado->tipo_perfil == "Coordenador") {
+            return view('Coordenador.criar_produtor');
+        }
+        return redirect()->back();
     }
 
     public function cadastroCoordenador() {
@@ -44,9 +48,65 @@ class CoordenadorController extends Controller {
 
     public function verOcs(){
         $coordenadorlogado = User::find(Auth::id());
-        return view('Coordenador.ver_ocs', [
-            'ocs' => $coordenadorlogado->ocs,
-        ]);
+        if ($coordenadorlogado->tipo_perfil == "Coordenador") {
+            return view('Coordenador.ver_ocs', [
+                'ocs' => $coordenadorlogado->ocs,
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function editarOcs(){
+        $coordenadorlogado = User::find(Auth::id());
+        if ($coordenadorlogado->tipo_perfil == "Coordenador") {
+            return view('Coordenador.editar_ocs', [
+                'ocs' => $coordenadorlogado->ocs,
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function salvarEditarOcs(Request $request){
+        $entrada = $request->all();
+        $coordenadorlogado = User::find(Auth::id());
+        $ocs =  $coordenadorlogado->ocs;
+
+        $messages = [
+            'required' => 'O campo :attribute é obrigatório.',
+            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+            'password.required' => 'A senha é obrigatória.',
+            'unique' => 'O :attribute já existe',
+        ];
+
+
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+        $validator_ocs = Validator::make($entrada, Ocs::$regras_validacao_editar, $messages);
+        if ($validator_ocs->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_ocs)
+                             ->withInput();
+        }
+
+
+
+        $endereco = new Endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
+        $ocs->fill($entrada);
+        $ocs->id_endereco = $endereco->id;
+        $ocs->unidade_federacao = $endereco->estado;
+
+        $ocs->save();
+
+        return redirect()->route('user.coordenador.ver_ocs');
     }
 
     //Todo, isso aqui tem que ser todo revisto...

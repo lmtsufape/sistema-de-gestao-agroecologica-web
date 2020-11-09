@@ -7,18 +7,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Endereco;
 use App\Models\Ocs;
 use Illuminate\Support\Facades\Hash;
 
-class OcsController extends BaseController
+class OcsController extends Controller
 {
-    private $mensagens = [
-        'required' => 'O campo :attribute é obrigatório.',
-        'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
-        'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
-        'password.required' => 'A senha é obrigatória.',
-    ];
+    public function listarProdutores(){
+        $coordenador = User::find(Auth::id());
+        if($coordenador->tipo_perfil == "Coordenador"){
+            return view('Coordenador.listar_produtores', [
+                'produtores' => $coordenador->ocs->produtor,
+            ]);
+        }
+
+    }
 
 
 }
