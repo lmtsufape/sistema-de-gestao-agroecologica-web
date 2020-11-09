@@ -33,7 +33,9 @@
                     </a>
                 </button>
             </div>
-
+        </div>
+        <br>
+        <div class="row">
             <div class="col-md-4 ">
                 <button>
                     <a href="{{route('user.coordenador.listar_reunioes')}}">
@@ -42,10 +44,6 @@
                     </a>
                 </button>
             </div>
-        </div>
-        <br>
-        <div class="row">
-
         </div>
     </div>
 </div>
