@@ -329,15 +329,21 @@ class CoordenadorController extends Controller {
 
         //Persistindo as fotos
 
-        for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
-            $file = $request->allFiles()['fotos'][$i];
+        $request->validate([
+            'fotos'	=> 'required', //'required|image|mimes:jpg,jpeg,png'
+        ]);
 
-            $fotosReuniao = new FotosReuniao();
-            $fotosReuniao->reuniao_id = $reuniao->id;
-            $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
-            $fotosReuniao->save();
-
-            unset($fotosReuniao);
+        if($request->hasFile('fotos')){
+            for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
+                $file = $request->allFiles()['fotos'][$i];
+    
+                $fotosReuniao = new FotosReuniao();
+                $fotosReuniao->reuniao_id = $reuniao->id;
+                $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+                $fotosReuniao->save();
+    
+                unset($fotosReuniao);
+            }
         }
         
         return redirect(route('user.coordenador.listar_reunioes'));
