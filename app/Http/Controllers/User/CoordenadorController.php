@@ -26,7 +26,11 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroProdutor() {
-        return view('Coordenador.criar_produtor');
+        $logado = User::find(Auth::id());
+        if ($logado->tipo_perfil == "Coordenador") {
+            return view('Coordenador.criar_produtor');
+        }
+        return redirect()->back();
     }
 
     public function cadastroCoordenador() {
@@ -249,7 +253,7 @@ class CoordenadorController extends Controller {
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
         //Falta a parte das fotos
         $reuniao->save();
-        
+
         return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
