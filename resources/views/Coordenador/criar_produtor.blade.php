@@ -62,7 +62,7 @@
                 <div class="form-row">
                     <div class="col-md-7 mb-3">
                         <label class="label-static">Nome do Conjuge</label>
-                        <input type="text" class="form-control input-stl" id="nome_conjuge" name="nome_conjuge" placeholder="Nome do Conjuge">
+                        <input type="text" class="form-control input-stl" id="nome_conjuge" name="nome_conjugue" placeholder="Nome do Conjuge">
                     </div>
                     <div class="col-md-5 mb-3">
                         <label class="label-static">Telefone</label>
@@ -72,7 +72,7 @@
 
                 <div class="form-group">
                     <label class="label-static">Nome dos Filhos</label>
-                    <textarea class="form-control input-stl" id="nome-filhos" name="nome-filhos" placeholder="Nome dos Filhos" rows="2"></textarea>
+                    <textarea class="form-control input-stl" id="nome-filhos" name="nome_filhos" placeholder="Nome dos Filhos" rows="2"></textarea>
                 </div>
 
                 <div class="form-row">
