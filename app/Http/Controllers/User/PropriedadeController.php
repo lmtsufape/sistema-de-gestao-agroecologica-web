@@ -137,7 +137,7 @@ class PropriedadeController extends Controller {
                 'canteiros' => $canteiros,
             ]);
         } else {
-            return view('Produtor\cadastro_propriedade');
+            return view('Produtor.cadastro_propriedade');
         }
     }
 
@@ -146,7 +146,7 @@ class PropriedadeController extends Controller {
         if($propriedade){
             return view('Produtor/cadastro_canteiroDeProducao', ['propriedade' => $propriedade[0]->id]);
         } else {
-            return view('Produtor\cadastro_propriedade');
+            return view('Produtor.cadastro_propriedade');
         }
     }
 
@@ -183,7 +183,7 @@ class PropriedadeController extends Controller {
                 'producao' => $producao,
             ]);
         } else {
-            return view('Produtor\cadastro_canteiroDeProducao');
+            return view('Produtor.cadastro_canteiroDeProducao');
         }
     }
 
@@ -234,7 +234,7 @@ class PropriedadeController extends Controller {
                 'canteiros' => $canteiros,
             ]);
         } else {
-            return view('Produtor\cadastro_propriedade');
+            return view('Produtor.cadastro_propriedade');
         }
     }
 

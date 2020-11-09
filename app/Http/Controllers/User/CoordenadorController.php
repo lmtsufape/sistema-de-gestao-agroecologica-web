@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\Endereco;
+use App\Models\FotosReuniao;
 use App\Models\Ocs;
 use App\Models\Reuniao;
 use Illuminate\Support\Facades\Hash;
@@ -38,7 +39,7 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroReuniao(){
-        return view('Coordenador.cadastro_reuniao');
+        return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
     }
 
     public function verOcs(){
@@ -52,7 +53,7 @@ class CoordenadorController extends Controller {
     public function verProdutor($id) {
         $produtor = User::find($id);
         if($produtor){
-            return view('Coordenador/ver_produtor', ['produtor' => $produtor]);
+            return view('Coordenador.ver_produtor', ['produtor' => $produtor]);
         } else {
             return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
         }
@@ -109,10 +110,14 @@ class CoordenadorController extends Controller {
         $produtor->id_endereco = $endereco->id;
 
         $produtor->password = Hash::make($entrada['password']);
+
+        $coordenadorlogado = User::find(Auth::id());
+        $produtor->id_ocs = $coordenadorlogado->id_ocs;
+
         $produtor->save();
 
         //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
-        redirect()->route('user/coordenador/ver_produtor/{id}', $produtor->id);
+        return redirect(route('user.coordenador.ver_produtor', $produtor->id));
     }
 
 
@@ -223,14 +228,16 @@ class CoordenadorController extends Controller {
 
     public function salvarCadastrarReuniao(Request $request){
         $entrada = $request->all();
+
         $time = strtotime($entrada['data']);
         $entrada['data'] = date('Y-m-d', $time);
 
         $messages = [
             'nome.*' => 'O campo Nome é obrigatório deve conter no mínimo 5 caracteres.',
             'data.required' => 'O campo Data é obrigatório',
+            'local.required' => 'O campo Local é obrigatório',
             'participantes.*' => 'O campo Participantes é obrigatório',
-            'descricao.*' => 'O campo Descrição é obrigatório',
+            'ata.*' => 'O campo Ata é obrigatório',
         ];
 
         $validator_reuniao = Validator::make($entrada, \App\Models\Reuniao::$rules, $messages);
@@ -244,14 +251,53 @@ class CoordenadorController extends Controller {
         $reuniao = new Reuniao();
         $reuniao->nome = $entrada['nome'];
         $reuniao->data = $entrada['data'];
-        $reuniao->participantes = $entrada['participantes'];
-        $reuniao->descricao = $entrada['descricao'];
+        $reuniao->local = $entrada['local'];
+
+        $participantesFormatados = "";
+        $participantes = $request->participantes;
+
+        foreach ($participantes as $nome) {
+            $participantesFormatados = $participantesFormatados . $nome . "/";
+        }
+
+        $participantesFormatados = $participantesFormatados . $request->outrosParticipantes;
+
+        $reuniao->participantes = $participantesFormatados;
+        $reuniao->ata = $entrada['ata'];
         $reuniao->id_ocs = $coordenadorlogado->id_ocs;
-        //Falta a parte das fotos
         $reuniao->save();
+
+        //Persistindo as fotos
+
+        for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
+            $file = $request->allFiles()['fotos'][$i];
+
+            $fotosReuniao = new FotosReuniao();
+            $fotosReuniao->reuniao_id = $reuniao->id;
+            $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+            $fotosReuniao->save();
+
+            unset($fotosReuniao);
+        }
         
         return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
+    }
+
+    public function getProdutoresDaOcs(){
+        $produtores = User::where('tipo_perfil', '=', 'Produtor')->get();
+        $produtoresDaOcs = array();
+
+        $coordenadorLogado = User::find(Auth::id());
+        $id_ocs = $coordenadorLogado->id_ocs;
+
+        foreach ($produtores as $produtor) {
+            if($produtor->id_ocs == $id_ocs){
+                array_push($produtoresDaOcs, $produtor);
+            }
+        }
+
+        return $produtoresDaOcs;
     }
 
 }

@@ -2,15 +2,16 @@
 
 @section('content')
 
-<a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
+<div class = 'jumbotron bg-white'>
+    <a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
 
-<div class = 'jumbotron' id='jumbotron'>
-    <h2 class="display-5">Reuniões</h2>
+
+    <h2 class="marker">Reuniões</h2>
     <table class="table">
         <thead class="black white-text">
           <tr>
-            <th scope="col">Nome da reunião</th>
-            <th scope="col">Data</th>
+            <th scope="col" class="label-static">Nome da reunião</th>
+            <th scope="col" class="label-static">Data</th>
           </tr>
         </thead>
         <tbody>
