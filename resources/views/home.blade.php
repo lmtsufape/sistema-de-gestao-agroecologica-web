@@ -38,6 +38,7 @@
         @if($perfil == "Coordenador")
         <div class="row">
             <div class="col-md-4 ">
+                <br>
                 <button>
                     <a href="{{route('user.coordenador.ver_ocs')}}">
                         <img class="imagem-home" src="{{ asset('images/group.png') }}" alt="">
