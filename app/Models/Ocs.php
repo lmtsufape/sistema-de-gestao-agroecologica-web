@@ -34,6 +34,14 @@ class Ocs extends Authenticatable
         'orgao_fiscalizador' => 'required|max:255',
     ];
 
+    public static $regras_validacao_editar = [
+        'nome_entidade' => 'required|max:255',
+        'telefone' => 'required|numeric|min:10',
+        'fax' => 'max:255',
+        'email' => 'max:255',
+        'orgao_fiscalizador' => 'required|max:255',
+    ];
+
     public function endereco() {
         return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
     }
