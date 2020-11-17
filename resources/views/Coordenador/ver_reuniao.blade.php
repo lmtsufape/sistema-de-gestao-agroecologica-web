@@ -35,5 +35,13 @@
             <label for="">{{$reuniao->ata}}</label>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4"> <br>
+            <h4 class="label-static">Fotos</h4>
+            @foreach ($reuniao->fotosReuniao as $fotoReuniao)
+                <img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="1000px" height="600px"> <br> <br>
+            @endforeach
+        </div>
+    </div>
 </div>
 @endsection

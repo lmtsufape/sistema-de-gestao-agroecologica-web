@@ -36,13 +36,11 @@
             <label for='nome' class="col-md-6 col-form-label label-static">Participantes</label>
             <div class="col-md-10">
                 @foreach ($produtores as $produtor)
-                    @if ($produtor->tipo_perfil == 'Produtor')
-                        <div class="col-md-6">
-                            <input class="form-check-input col-md-1" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
-                            <label class="form-check-label">&nbsp &nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
-                            <br>
-                        </div>
-                    @endif
+                    <div class="col-md-6">
+                        <input class="form-check-input col-md-1" type="checkbox" value="{{$produtor->nome}}" name="participantes[]">
+                        <label class="form-check-label">&nbsp &nbsp{{$produtor->nome}} &nbsp &nbsp | &nbsp &nbsp {{$produtor->cpf}}</label>
+                        <br>
+                    </div>
                 @endforeach
                 <div class="col-md-6">
                     <input class="form-check-input col-md-1" type="checkbox" id="outros" name="outros" onchange="habilitar()">
