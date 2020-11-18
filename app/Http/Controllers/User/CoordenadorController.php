@@ -43,7 +43,11 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroReuniao(){
-        return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+        $logado = User::find(Auth::id());
+        if($logado->tipo_perfil == "Coordenador"){
+            return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+        }
+        return redirect()->back();
     }
 
     public function verOcs(){
@@ -129,7 +133,8 @@ class CoordenadorController extends Controller {
     }
 
     public function listarReunioes(){
-        return view('Coordenador.listar_reunioes')->with('reunioes', $this->getReunioesDaOcs());
+        $logado = User::find(Auth::id());
+        return view('Coordenador.listar_reunioes')->with(['reunioes' => $this->getReunioesDaOcs(), 'usuario' => $logado]);
     }
 
     public function salvarCadastrarProdutor(Request $request) {
