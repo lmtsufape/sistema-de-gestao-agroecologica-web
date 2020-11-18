@@ -3,8 +3,9 @@
 @section('content')
 
 <div class = 'jumbotron bg-white'>
-    <a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
-
+    @if($usuario->tipo_perfil == "Coordenador")
+        <a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
+    @endif
 
     <h2 class="marker">Reuniões</h2>
     <table class="table">
