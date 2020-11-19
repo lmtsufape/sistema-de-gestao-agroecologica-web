@@ -42,6 +42,11 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarEditarOcs'])->name('.salvar')->middleware('auth');
         });
 
+        Route::prefix('/agendar_reuniao')->name('.agendarReuniao')->group(function(){
+            Route::get('/', [CoordenadorController::class, 'agendamentoReuniao'])->middleware('auth');
+            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarAgendamentoReuniao'])->name('.salvar')->middleware('auth');
+        });
+
         Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
             Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');

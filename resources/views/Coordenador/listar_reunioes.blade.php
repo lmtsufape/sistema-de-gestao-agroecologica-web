@@ -4,10 +4,10 @@
 
 <div class = 'jumbotron bg-white'>
     @if($usuario->tipo_perfil == "Coordenador")
-        <a type="button" class="btn btn-success" href="{{route('user.coordenador.cadastrarReuniao')}}" >Registrar uma nova reunião</a>
+        <a type="button" class="btn btn-success" href="{{route('user.coordenador.agendarReuniao')}}" >Agendar reunião</a>
     @endif
 
-    <h2 class="marker">Reuniões</h2>
+    <h2 class="marker">Reuniões Agendadas</h2>
     <table class="table">
         <thead class="black white-text">
           <tr>
@@ -16,13 +16,13 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($reunioes as $reuniao)
+            {{-- @foreach ($reunioes as $reuniao)
                 <tr class='reuniao'>
                 <td class='nome_reuniao'><a href="{{route('user.coordenador.ver_reuniao', ['id_reuniao' => $reuniao->id])}}">{{$reuniao->nome}}</a></td>
                     <td class='data_reunião'>{{$reuniao->data}}</td>
                 </tr>    
             @endforeach
-            
+             --}}
         </tbody>
     </table>
 </div>

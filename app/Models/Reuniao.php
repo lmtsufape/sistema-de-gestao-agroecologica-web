@@ -8,17 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Reuniao extends Model
 {
     protected $fillable = [
-        'nome',
-        'data',
-        'local',
         'participantes',
         'ata',
     ];
 
     public static $rules = [
-        'nome' => 'required|min:5',
-        'data' => 'required',
-        'local' => 'required',
         'participantes' => 'required',
         'ata' => 'required',
     ];
