@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReunioesTable extends Migration
+class CreateAgendamentoReunioesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreateReunioesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reuniaos', function (Blueprint $table) {
+        Schema::create('agendamento_reuniaos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
             $table->string('nome');
             $table->date('data');
             $table->text('local');
-            $table->text('participantes');
-            $table->longText('ata');
-
             $table->unsignedBigInteger('id_ocs');
             $table->foreign('id_ocs')->references('id')->on('ocs');
+            $table->timestamps();
         });
     }
 
@@ -35,6 +31,6 @@ class CreateReunioesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reunioes');
+        Schema::dropIfExists('agendamento_reunioes');
     }
 }

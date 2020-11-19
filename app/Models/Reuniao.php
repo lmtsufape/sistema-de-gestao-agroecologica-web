@@ -23,6 +23,10 @@ class Reuniao extends Model
         'ata' => 'required',
     ];
 
+    public function agendamentoReuniao(){
+        return $this->belongsTo('App.Models.AgendamentoReuniao');
+    }
+
     public function fotosReuniao(){
         return $this->hasMany('\App\Models\FotosReuniao', 'reuniao_id', 'id');
     }
