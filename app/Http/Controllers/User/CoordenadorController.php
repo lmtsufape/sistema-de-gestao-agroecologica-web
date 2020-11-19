@@ -51,10 +51,14 @@ class CoordenadorController extends Controller {
     }
 
     public function verOcs(){
-        $coordenadorlogado = User::find(Auth::id());
-        if ($coordenadorlogado->tipo_perfil == "Coordenador") {
+        $userLogado = User::find(Auth::id());
+        if ($userLogado->tipo_perfil == "Coordenador") {
             return view('Coordenador.ver_ocs', [
-                'ocs' => $coordenadorlogado->ocs,
+                'ocs' => $userLogado->ocs,
+            ]);
+        }else{
+            return view('Produtor.ver_ocs', [
+                'ocs' => $userLogado->ocs,
             ]);
         }
         return redirect()->back();
