@@ -404,6 +404,7 @@ class CoordenadorController extends Controller {
         $agendamentoReuniao->nome = $entrada['nome'];
         $agendamentoReuniao->data = $entrada['data'];
         $agendamentoReuniao->local = $entrada['local'];
+        $agendamentoReuniao->registrada = false;
 
         $agendamentoReuniao->id_ocs = $coordenadorlogado->id_ocs;
         $agendamentoReuniao->save();

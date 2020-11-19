@@ -18,6 +18,7 @@ class CreateAgendamentoReunioesTable extends Migration
             $table->string('nome');
             $table->date('data');
             $table->text('local');
+            $table->boolean('registrada');
             $table->unsignedBigInteger('id_ocs');
             $table->foreign('id_ocs')->references('id')->on('ocs');
             $table->timestamps();
