@@ -16,13 +16,9 @@ class OcsController extends Controller
 {
     public function listarProdutores(){
         $coordenador = User::find(Auth::id());
-        if($coordenador->tipo_perfil == "Coordenador"){
-            return view('Coordenador.listar_produtores', [
+        
+        return view('Coordenador.listar_produtores', [
                 'produtores' => $coordenador->ocs->produtor,
-            ]);
-        }
-
+        ]);
     }
-
-
 }

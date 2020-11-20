@@ -43,14 +43,22 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroReuniao(){
-        return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+        $logado = User::find(Auth::id());
+        if($logado->tipo_perfil == "Coordenador"){
+            return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+        }
+        return redirect()->back();
     }
 
     public function verOcs(){
-        $coordenadorlogado = User::find(Auth::id());
-        if ($coordenadorlogado->tipo_perfil == "Coordenador") {
+        $userLogado = User::find(Auth::id());
+        if ($userLogado->tipo_perfil == "Coordenador") {
             return view('Coordenador.ver_ocs', [
-                'ocs' => $coordenadorlogado->ocs,
+                'ocs' => $userLogado->ocs,
+            ]);
+        }else{
+            return view('Produtor.ver_ocs', [
+                'ocs' => $userLogado->ocs,
             ]);
         }
         return redirect()->back();
@@ -129,7 +137,8 @@ class CoordenadorController extends Controller {
     }
 
     public function listarReunioes(){
-        return view('Coordenador.listar_reunioes')->with('reunioes', $this->getReunioesDaOcs());
+        $logado = User::find(Auth::id());
+        return view('Coordenador.listar_reunioes')->with(['reunioes' => $this->getReunioesDaOcs(), 'usuario' => $logado]);
     }
 
     public function salvarCadastrarProdutor(Request $request) {
