@@ -47,15 +47,22 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarAgendamentoReuniao'])->name('.salvar')->middleware('auth');
         });
 
-        Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
-            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
-        });
+        Route::prefix('/ver_reuniao/{id_reuniao}')->name('.verReuniao')->group(function(){
+            Route::get('/', [CoordenadorController::class, 'verReuniao'])->middleware('auth');
+            Route::prefix('/criar_reuniao')->name('.criarReuniao')->group(function (){
+                Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
+                Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
+            });
+        }); 
+
+        // Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
+        //     Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
+        //     Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
+        // });
 
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs')->middleware('auth');
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor')->middleware('auth');
         Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes')->middleware('auth');
-        Route::get('/ver_Reuniao/{id_reuniao}', [CoordenadorController::class, 'verReuniao'])->name('.ver_reuniao')->middleware('auth');
         Route::get('/listar_produtores',  [OcsController::class, 'listarProdutores'])->name('.listar_produtores')->middleware('auth');
 
     });

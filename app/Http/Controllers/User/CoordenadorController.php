@@ -43,10 +43,11 @@ class CoordenadorController extends Controller {
         return view('Coordenador.cadastro_ocs');
     }
 
-    public function cadastroReuniao(){
+    public function cadastroReuniao($id_reuniao){
         $logado = User::find(Auth::id());
+        $reuniaoAgendada = AgendamentoReuniao::find($id_reuniao);
         if($logado->tipo_perfil == "Coordenador"){
-            return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+            return view('Coordenador.cadastro_reuniao')->with(['produtores' => $this->getProdutoresDaOcs(), 'reuniao' => $reuniaoAgendada]);
         }
         return redirect()->back();
     }
@@ -137,9 +138,11 @@ class CoordenadorController extends Controller {
     }
 
     public function verReuniao($id_reuniao){
-        $reuniao = Reuniao::find($id_reuniao);
-        if($reuniao){
-            return view('Coordenador.ver_reuniao', ['reuniao' => $reuniao]);
+        $reuniaoAgendada = AgendamentoReuniao::find($id_reuniao);
+        $userLogado = User::find(Auth::id());
+
+        if($reuniaoAgendada){
+            return view('Coordenador.ver_reuniao', ['reuniao' => $reuniaoAgendada, 'usuario' => $userLogado]);
         }else{
             return redirect()->route('erro', ['msg_erro' => "Reunião inexistente"]);
         }
@@ -318,8 +321,6 @@ class CoordenadorController extends Controller {
             return redirect()->back()->withErrors($validator_reuniao)->withInput();
         }
 
-        $coordenadorlogado = User::find(Auth::id());
-
         $participantesFormatados = "";
         $participantes = $request->participantes;
 
@@ -332,7 +333,7 @@ class CoordenadorController extends Controller {
         $reuniao = new Reuniao();
         $reuniao->participantes = $participantesFormatados;
         $reuniao->ata = $entrada['ata'];
-        $reuniao->id_ocs = $coordenadorlogado->id_ocs;
+        $reuniao->id_agendamento = 1;
         $reuniao->save();
 
         //Persistindo as fotos
@@ -354,7 +355,8 @@ class CoordenadorController extends Controller {
             }
         }
         
-        return redirect(route('user.coordenador.listar_reunioes'));
+        return $this->listarReunioes();
+        //return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
 

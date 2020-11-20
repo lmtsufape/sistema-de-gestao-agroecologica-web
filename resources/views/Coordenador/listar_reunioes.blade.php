@@ -19,7 +19,7 @@
         <tbody>
             @foreach ($reunioes_agendadas as $reuniao_agendada)
                 <tr class='reuniao'>
-                    <td class='nome_reuniao'><a href="{{route('user.coordenador.ver_reuniao', ['id_reuniao' => $reuniao_agendada->id])}}">{{$reuniao_agendada->nome}}</a></td>
+                    <td class='nome_reuniao'><a href="{{route('user.coordenador.verReuniao', ['id_reuniao' => $reuniao_agendada->id])}}">{{$reuniao_agendada->nome}}</a></td>
                     <td class='data_reunião'>{{$reuniao_agendada->data}}</td>
                     <td>
                         @if($reuniao_agendada->registrada == false)

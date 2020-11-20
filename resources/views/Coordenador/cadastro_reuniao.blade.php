@@ -14,24 +14,8 @@
 
 <div class = 'jumbotron bg-white'>
     <h1 class="marker">Registrar reunião</h1>
-    <form method="POST" action="{{route('user.coordenador.cadastrarReuniao.salvar')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('user.coordenador.verReuniao.criarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label label-static">Nome da reunião</label>
-            <div class="col-md-6">
-                <input type='text' class="form-control input-stl" placeholder = "Digite o nome da reunião" name='nome' id='nome' value="{{old('nome')}}"/>    
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <label for="data_reuniao" class="label-static">Data da reunião</label>
-            <input type="date" class="form-control input-stl" name="data" id="data" value="{{old('data')}}">
-        </div>
-        <div class="form-group">
-            <label for='nome' class="col-md-6 col-form-label label-static">Local</label>
-            <div class="col-md-6">
-                <input type='text' class="form-control input-stl" placeholder = "Digite o local da reunião" name='local' id='local' value="{{old('local')}}"/>    
-            </div>
-        </div>
         <div class="form-group">
             <label for='nome' class="col-md-6 col-form-label label-static">Participantes</label>
             <div class="col-md-10">
