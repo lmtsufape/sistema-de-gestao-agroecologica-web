@@ -355,8 +355,7 @@ class CoordenadorController extends Controller {
             }
         }
         
-        return $this->listarReunioes();
-        //return redirect(route('user.coordenador.listar_reunioes'));
+        return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
 
