@@ -307,7 +307,7 @@ class CoordenadorController extends Controller {
         return view('Coordenador.cadastro_coordenador');
     }
 
-    public function salvarCadastrarReuniao(Request $request){
+    public function salvarCadastrarReuniao(Request $request, $reuniao_agendada_id){
         $entrada = $request->all();
 
         $messages = [
@@ -333,7 +333,7 @@ class CoordenadorController extends Controller {
         $reuniao = new Reuniao();
         $reuniao->participantes = $participantesFormatados;
         $reuniao->ata = $entrada['ata'];
-        $reuniao->id_agendamento = 1;
+        $reuniao->id_agendamento = $reuniao_agendada_id;
         $reuniao->save();
 
         //Persistindo as fotos
@@ -356,7 +356,6 @@ class CoordenadorController extends Controller {
         }
         
         return redirect(route('user.coordenador.listar_reunioes'));
-        //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
 
     public function getProdutoresDaOcs(){
