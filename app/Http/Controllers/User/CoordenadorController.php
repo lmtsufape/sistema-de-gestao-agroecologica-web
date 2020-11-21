@@ -336,6 +336,10 @@ class CoordenadorController extends Controller {
         $reuniao->id_agendamento = $reuniao_agendada_id;
         $reuniao->save();
 
+        $reuniaoAgendada = AgendamentoReuniao::find($reuniao_agendada_id);
+        $reuniaoAgendada->registrada = true;
+        $reuniaoAgendada->save();
+
         //Persistindo as fotos
 
         $request->validate([
