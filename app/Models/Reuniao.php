@@ -18,7 +18,7 @@ class Reuniao extends Model
     ];
 
     public function agendamentoReuniao(){
-        return $this->belongsTo('App.Models.AgendamentoReuniao');
+        return $this->belongsTo('App\Models\AgendamentoReuniao');
     }
 
     public function fotosReuniao(){

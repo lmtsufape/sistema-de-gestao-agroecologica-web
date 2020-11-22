@@ -13,7 +13,7 @@ class AgendamentoReuniao extends Model
         'local' => 'required',
     ];
 
-    public function reuniao(){
-        return $this->hasOne('App.Models.Reuniao');
+    public function reuniaoRegistrada(){
+        return $this->hasOne('App\Models\Reuniao', 'id_agendamento' , 'id');
     }
 }
