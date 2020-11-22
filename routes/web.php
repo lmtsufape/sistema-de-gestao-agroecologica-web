@@ -53,6 +53,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
                 Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
                 Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
             });
+            Route::get('/cancelarReuniao', [CoordenadorController::class, 'cancelarReuniaoAgendada'])->name('.cancelarReuniao')->middleware('auth');
         }); 
 
         // Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {

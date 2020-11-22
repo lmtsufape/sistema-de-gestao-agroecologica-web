@@ -415,4 +415,14 @@ class CoordenadorController extends Controller {
 
         return redirect(route('user.coordenador.listar_reunioes'));
     }
+
+    public function cancelarReuniaoAgendada($reuniao_agendada_id){
+        $reuniaoAgendada = AgendamentoReuniao::find($reuniao_agendada_id);
+        
+        if($reuniaoAgendada->registrada == false){
+            $reuniaoAgendada->delete();
+        }
+
+        return redirect(route('user.coordenador.listar_reunioes'));
+    }
 }

@@ -2,9 +2,11 @@
 
 @section('content')
 <div class = 'jumbotron bg-white'>
-
     @if($usuario->tipo_perfil == "Coordenador")
-            <a type="button" class="btn btn-success" href="{{route('user.coordenador.verReuniao.criarReuniao', ['id_reuniao' => $reuniao->id])}}" >Registrar reunião</a>
+            @if ($reuniao->registrada == false)
+                <a type="button" class="btn btn-success" href="{{route('user.coordenador.verReuniao.criarReuniao', ['id_reuniao' => $reuniao->id])}}" >Registrar reunião</a>
+                <a type="button" class="btn btn-danger" href="{{route('user.coordenador.verReuniao.cancelarReuniao', ['id_reuniao' => $reuniao->id])}}" >Cancelar reunião</a>
+            @endif
     @endif
 
     <h3 class="marker">Informações da reunião</h3>
