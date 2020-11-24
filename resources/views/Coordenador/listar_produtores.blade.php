@@ -18,7 +18,7 @@
                 <tr class='reuniao'>
                 <td>{{$produtor->nome}}</td>
                 <td>{{$produtor->cpf}}</td>
-                <td><a href="{{route('user.coordenador.ver_produtor', ['id_produtor' => $produtor->id])}}">
+                <td><a href="{{route('user.ver_produtor', ['id_produtor' => $produtor->id])}}">
                     <span class="label-ntstatic"><img class="imagem-menor" src="{{ asset('images/eye.png') }}" alt=""></span>
                 </a></td>
                 </tr>

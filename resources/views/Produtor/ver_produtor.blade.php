@@ -125,7 +125,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center">
-              <a href="{{route('user.ver_propriedade_produtor', ['id_produtor' => $produtor->id])}}">
+              <a href="{{route('user.ver_produtor.propriedade', ['id_produtor' => $produtor->id])}}">
                   <img class="imagem-menor" src="{{ asset('images/farm.png') }}" alt="">
                   <span class="marker-link">Informações da propriedade do produtor</span>
               </a>

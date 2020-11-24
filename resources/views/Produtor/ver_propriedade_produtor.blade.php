@@ -9,7 +9,6 @@
 <br>
 <div class="formulario upper-div">
     <h3 class="marker" style="text-align: center">Informações Básicas</h3>
-    <center> <a href="{{ route('user.editarPropriedade') }}"> <h4> Editar Propriedade <h4> </a> </center>
     <center> <button class="bt-canteiro">
         <a href="">
             <img class="imagem-menor" src="{{ asset('images/clock.png') }}" alt="">
@@ -76,10 +75,10 @@
 
     <h3 class="marker" style="text-align: center">Canteiros de Produção:</h3>
     <div class="row">
-        @iF(count($canteiros) > 0)
-        @foreach($canteiros as $cant)
+        @if(count($propriedade->canteirodeproducaos) > 0)
+        @foreach($propriedade->canteirodeproducaos as $cant)
         <div class="col-md-12 d-flex justify-content-center">
-            <a href="{{route('user.canteiroProducao.ver', ['id_canteiro' => $cant->id])}}">
+            <a href="{{route('user.ver_produtor.canteiro', ['id_canteiro' => $cant->id])}}">
                 <img class="imagem-menor" src="{{ asset('images/agriculture.png') }}" alt="">
                 <span class="label-ntstatic" >{{$cant->localizacao}}</span>
             </a>
@@ -89,12 +88,6 @@
         @endforeach
         @endif
         <br>
-        <div class="col-md-12 d-flex justify-content-center">
-            <a href="{{route('user.canteiroProducao.cadastrar')}}">
-                <img class="imagem-menor" src="{{ asset('images/rounded-add-button.png') }}" alt="">
-                <span class="marker-link">Cadastrar canteiro de produção</span>
-            </a>
-        </div>
     </div>
 </div>
 <br>
