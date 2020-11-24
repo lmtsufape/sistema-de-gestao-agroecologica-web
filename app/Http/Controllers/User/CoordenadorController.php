@@ -113,10 +113,23 @@ class CoordenadorController extends Controller {
     public function verProdutor($id) {
         $produtor = User::find($id);
         if($produtor){
-            return view('Coordenador.ver_produtor', ['produtor' => $produtor]);
+            return view('Produtor.ver_produtor', ['produtor' => $produtor]);
         } else {
             return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
         }
+    }
+
+    public function verPropriedadeProdutor($id){
+      $produtor = User::find($id);
+      if($produtor){
+        if($produtor->propriedade){
+            return view('Produtor.ver_propriedade_produtor', ['produtor' => $produtor]);
+        } else {
+          return redirect()->route('erro', ['msg_erro' => "Produtor sem propriedade cadastrada"]);
+        }
+      } else {
+          return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
+      }
     }
 
     public function verReuniao($id_reuniao){
@@ -339,7 +352,7 @@ class CoordenadorController extends Controller {
 
             unset($fotosReuniao);
         }
-        
+
         return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }

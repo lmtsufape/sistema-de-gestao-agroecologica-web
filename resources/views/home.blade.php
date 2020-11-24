@@ -35,7 +35,6 @@
             </div>
         </div>
         <br>
-        @if($perfil == "Coordenador")
         <div class="row">
             <div class="col-md-4 ">
                 <br>
@@ -47,7 +46,6 @@
                 </button>
             </div>
         </div>
-        @endif
     </div>
 </div>
 @endsection

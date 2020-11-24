@@ -49,6 +49,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
 
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs')->middleware('auth');
         Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor')->middleware('auth');
+        Route::get('/ver_produtor/{id_produtor}/propriedade',  [CoordenadorController::class, 'verPropriedadeProdutor'])->name('.ver_propriedade_produtor')->middleware('auth');
         Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes')->middleware('auth');
         Route::get('/ver_Reuniao/{id_reuniao}', [CoordenadorController::class, 'verReuniao'])->name('.ver_reuniao')->middleware('auth');
         Route::get('/listar_produtores',  [OcsController::class, 'listarProdutores'])->name('.listar_produtores')->middleware('auth');
