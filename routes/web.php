@@ -62,11 +62,17 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
         // });
 
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs')->middleware('auth');
-        Route::get('/ver_produtor/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->name('.ver_produtor')->middleware('auth');
         Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes')->middleware('auth');
-        Route::get('/listar_produtores',  [OcsController::class, 'listarProdutores'])->name('.listar_produtores')->middleware('auth');
+        Route::get('/ver_Reuniao/{id_reuniao}', [CoordenadorController::class, 'verReuniao'])->name('.ver_reuniao')->middleware('auth');
+        Route::get('/listar_produtores/{id_ocs}',  [OcsController::class, 'listarProdutores'])->name('.listar_produtores')->middleware('auth');
 
     });
+
+Route::prefix('/ver_produtor')->name('.ver_produtor')->namespace('ver_produtor')->group(function(){
+    Route::get('/{id_produtor}',  [CoordenadorController::class, 'verProdutor'])->middleware('auth');
+    Route::get('/{id_produtor}/propriedade',  [CoordenadorController::class, 'verPropriedadeProdutor'])->name('.propriedade')->middleware('auth');
+    Route::get('/canteiroDeProducao/{id_canteiro}',  [CoordenadorController::class, 'verCanteiroProdutor'])->name('.canteiro')->middleware('auth');
+  });
 
     Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil')->middleware('auth');
 
@@ -112,3 +118,4 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/erro/{msg_erro}', [App\Http\Controllers\Controller::class, 'erro'])->name('erro');

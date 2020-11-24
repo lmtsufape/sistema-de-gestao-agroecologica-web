@@ -11,4 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function erro($msg_erro){
+      return view('erro', ['erro' => $msg_erro]);
+    }
 }

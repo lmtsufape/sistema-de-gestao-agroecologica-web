@@ -116,7 +116,7 @@
                     </a>
                 </div>
                 <div style="margin-top: 10px;" class="col-md-4 d-flex justify-content-center">
-                    <a href="{{route('user.coordenador.listar_produtores')}}">
+                    <a href="{{route('user.coordenador.listar_produtores', ['id_ocs' => $ocs->id])}}">
                         <img class="imagem-menor" src="{{ asset('images/eye.png') }}" alt="">
                         <span class="marker-link">Produtores</span>
                     </a>

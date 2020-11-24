@@ -47,7 +47,7 @@ class Ocs extends Authenticatable
     }
 
     public function produtor(){
-        return $this->hasMany('App\Models\User', 'id');
+        return $this->hasMany('App\Models\User', 'id_ocs', 'id');
     }
 
     public function agendamentoReuniao(){
