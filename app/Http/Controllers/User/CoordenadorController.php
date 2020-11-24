@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\Endereco;
+use App\Models\CanteiroDeProducao;
+use App\Models\Producao;
 use App\Models\FotosReuniao;
 use App\Models\Ocs;
 use App\Models\Reuniao;
@@ -121,10 +123,36 @@ class CoordenadorController extends Controller {
     public function verProdutor($id) {
         $produtor = User::find($id);
         if($produtor){
-            return view('Coordenador.ver_produtor', ['produtor' => $produtor]);
+            return view('Produtor.ver_produtor', ['produtor' => $produtor]);
         } else {
             return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
         }
+    }
+
+    public function verPropriedadeProdutor($id){
+      $produtor = User::find($id);
+      if($produtor){
+        if($produtor->propriedade){
+            return view('Produtor.ver_propriedade_produtor', ['propriedade' => $produtor->propriedade]);
+        } else {
+          return redirect()->route('erro', ['msg_erro' => "Produtor sem propriedade cadastrada"]);
+        }
+      } else {
+          return redirect()->route('erro', ['msg_erro' => "Produtor inexistente"]);
+      }
+    }
+
+    public function verCanteiroProdutor($id_canteiro){
+      $canteiro = CanteiroDeProducao::find($id_canteiro);
+      $producao = Producao::where('id_canteirodeproducao', $id_canteiro)->get();
+      if($canteiro){
+          return view('Produtor/ver_canteiro_produtor', [
+              'canteiro' => $canteiro,
+              'producao' => $producao,
+          ]);
+      } else {
+          return redirect()->route('erro', ['msg_erro' => "Canteiro não existe!"]);
+      }
     }
 
     public function verReuniao($id_reuniao){
@@ -186,7 +214,7 @@ class CoordenadorController extends Controller {
         $produtor->save();
 
         //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
-        return redirect(route('user.coordenador.ver_produtor', $produtor->id));
+        return redirect(route('user.ver_produtor', $produtor->id));
     }
 
 
@@ -345,16 +373,16 @@ class CoordenadorController extends Controller {
         if($request->hasFile('fotos')){
             for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
                 $file = $request->allFiles()['fotos'][$i];
-    
+
                 $fotosReuniao = new FotosReuniao();
                 $fotosReuniao->reuniao_id = $reuniao->id;
                 $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
                 $fotosReuniao->save();
-    
+
                 unset($fotosReuniao);
             }
         }
-        
+
         return redirect(route('user.coordenador.listar_reunioes'));
         //return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
     }
@@ -377,7 +405,7 @@ class CoordenadorController extends Controller {
 
     public function getReunioesDaOcs(){
         $coordenadorLogado = User::find(Auth::id());
-        
+
         return $coordenadorLogado->ocs->reunioes;
     }
 
