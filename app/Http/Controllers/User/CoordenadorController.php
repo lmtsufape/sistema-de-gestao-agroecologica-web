@@ -43,14 +43,22 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroReuniao(){
-        return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+        $logado = User::find(Auth::id());
+        if($logado->tipo_perfil == "Coordenador"){
+            return view('Coordenador.cadastro_reuniao')->with('produtores', $this->getProdutoresDaOcs()); //User::where('tipo_perfil', '=', 'Produtor')
+        }
+        return redirect()->back();
     }
 
     public function verOcs(){
-        $coordenadorlogado = User::find(Auth::id());
-        if ($coordenadorlogado->tipo_perfil == "Coordenador") {
+        $userLogado = User::find(Auth::id());
+        if ($userLogado->tipo_perfil == "Coordenador") {
             return view('Coordenador.ver_ocs', [
-                'ocs' => $coordenadorlogado->ocs,
+                'ocs' => $userLogado->ocs,
+            ]);
+        }else{
+            return view('Produtor.ver_ocs', [
+                'ocs' => $userLogado->ocs,
             ]);
         }
         return redirect()->back();
@@ -142,7 +150,8 @@ class CoordenadorController extends Controller {
     }
 
     public function listarReunioes(){
-        return view('Coordenador.listar_reunioes')->with('reunioes', Reuniao::all());
+        $logado = User::find(Auth::id());
+        return view('Coordenador.listar_reunioes')->with(['reunioes' => $this->getReunioesDaOcs(), 'usuario' => $logado]);
     }
 
     public function salvarCadastrarProdutor(Request $request) {
@@ -342,15 +351,21 @@ class CoordenadorController extends Controller {
 
         //Persistindo as fotos
 
-        for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
-            $file = $request->allFiles()['fotos'][$i];
+        $request->validate([
+            'fotos'	=> 'required', //'required|image|mimes:jpg,jpeg,png'
+        ]);
 
-            $fotosReuniao = new FotosReuniao();
-            $fotosReuniao->reuniao_id = $reuniao->id;
-            $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
-            $fotosReuniao->save();
-
-            unset($fotosReuniao);
+        if($request->hasFile('fotos')){
+            for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
+                $file = $request->allFiles()['fotos'][$i];
+    
+                $fotosReuniao = new FotosReuniao();
+                $fotosReuniao->reuniao_id = $reuniao->id;
+                $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+                $fotosReuniao->save();
+    
+                unset($fotosReuniao);
+            }
         }
 
         return redirect(route('user.coordenador.listar_reunioes'));
@@ -371,6 +386,12 @@ class CoordenadorController extends Controller {
         }
 
         return $produtoresDaOcs;
+    }
+
+    public function getReunioesDaOcs(){
+        $coordenadorLogado = User::find(Auth::id());
+        
+        return $coordenadorLogado->ocs->reunioes;
     }
 
 }

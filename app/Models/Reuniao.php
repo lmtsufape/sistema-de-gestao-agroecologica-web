@@ -24,6 +24,6 @@ class Reuniao extends Model
     ];
 
     public function fotosReuniao(){
-        return $this->hasMany('App.Models.FotosReuniao', 'reuniao_id', 'id');
+        return $this->hasMany('\App\Models\FotosReuniao', 'reuniao_id', 'id');
     }
 }
