@@ -50,8 +50,8 @@ class Ocs extends Authenticatable
         return $this->hasMany('App\Models\User', 'id_ocs', 'id');
     }
 
-    public function reunioes(){
-        return $this->hasMany('App\Models\Reuniao', 'id_ocs', 'id'); // foreign_key e local_key
+    public function agendamentoReuniao(){
+        return $this->hasMany('App\Models\AgendamentoReuniao', 'id_ocs', 'id'); // foreign_key e local_key
     }
 
 }

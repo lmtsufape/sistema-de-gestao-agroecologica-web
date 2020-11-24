@@ -15,16 +15,11 @@ class CreateReunioesTable extends Migration
     {
         Schema::create('reuniaos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
-            $table->string('nome');
-            $table->date('data');
-            $table->text('local');
             $table->text('participantes');
             $table->longText('ata');
-
-            $table->unsignedBigInteger('id_ocs');
-            $table->foreign('id_ocs')->references('id')->on('ocs');
+            $table->unsignedBigInteger('id_agendamento');
+            $table->foreign('id_agendamento')->references('id')->on('agendamento_reuniaos');
+            $table->timestamps();
         });
     }
 
@@ -35,6 +30,6 @@ class CreateReunioesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reunioes');
+        Schema::dropIfExists('reuniaos');
     }
 }
