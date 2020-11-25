@@ -20,7 +20,7 @@
 
             @auth
             <li>
-                <a id ="inicio" href="{{route('/home')}}" class="nav-link" role="button">Início</a>
+                <a id ="inicio" href="{{route('home')}}" class="nav-link" role="button">Início</a>
             </li>
         
             <li class="nav-item dropdown">
