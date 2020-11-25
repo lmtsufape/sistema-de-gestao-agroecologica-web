@@ -16,7 +16,7 @@ h2{
 }
 
 .navegação{
-    background: #167F14;
+    background: #07846d;
 }
 
 .navegação > img{
@@ -38,7 +38,7 @@ h2{
 }
 
 footer{
-    background: #167F14;
+    background: #07846d;
     color: white;
 }
 
@@ -136,11 +136,6 @@ footer .container .row{
 .marker-link{
     text-align: center;
     color: red;
-}
-
-body{
-    background-image: url('../images/background_web.jpg');
-    background-size: cover;
 }
 
 .img-left{
