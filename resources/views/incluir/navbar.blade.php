@@ -7,12 +7,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             @guest
-            <li class="nav-item">
-                @if(Route::currentRouteName() == 'register')
+                <li class="nav-item row">
+                    <a class="nav-link" href=""><button type="button" class="btn btn-outline-light botão">Início</button></a>
+                    <a class="nav-link" href=""><button type="button" class="btn btn-outline-light botão">Sobre</button></a>
+                {{-- @if(Route::currentRouteName() == 'register')
                     <a class="nav-link" href="{{ route('login') }}"><button type="button" class="btn btn-outline-light botão">Login</button></a>
                 @else
                     <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-outline-light botão">Cadastrar</button></a>
-                @endif
+                @endif --}}
                 </li>
             @endauth
 
