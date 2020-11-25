@@ -408,7 +408,7 @@ class CoordenadorController extends Controller {
 
     public function getReunioesAgendadasDaOcs(){
         $coordenadorLogado = User::find(Auth::id());
-        return $coordenadorLogado->ocs->agendamentoReuniao;
+        return $coordenadorLogado->ocs->agendamentoReuniao->reverse();
     }
 
     public function salvarCadastrarAgendamentoReuniao(Request $request){
