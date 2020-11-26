@@ -21,7 +21,6 @@ h2{
 
 .navegação > img{
     background: transparent;
-
 }
 
 .formulario{
@@ -153,7 +152,10 @@ footer .container .row{
 }
 
 .container-main{
-    min-height: 480px;
+    min-height: 1000px;
+    width: 100%;
+    background-color: #07A287;
+    margin-inline-start: 139px;
 }
 
 .bt-canteiro{
@@ -163,4 +165,91 @@ footer .container .row{
     border-style: solid;
     border-color: #3CB371;
     border-width: 3px;
+}
+
+/* Sidebar */
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    position: absolute;
+    min-width: 260px;
+    max-width: 260px;
+    min-height: 1000px;
+    height: fit-content;
+    background: #05856F;
+    color: #fff;
+}
+
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+}
+
+#sidebar ul li a {
+    text-align: left;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #05856F;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.botao-menu{
+    color: #fff;
+    background-color: #07A287 !important;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 6px;
+}
+
+a:hover,a:visited:hover { 
+    color: #c9f7f0; 
+}
+
+.imagem-botao-menu{
+    margin-bottom: 5px;
+    color: #fff;
+    width:23px;
+    height:23px;
+}
+
+.reuniao{
+    height:18px;
+    width:25px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle-menu::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+li:hover ul { 
+    display: block; 
+}
+
+li{
+    content: "\2022";
+    color: #fff
 }
