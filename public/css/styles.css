@@ -253,3 +253,55 @@ li{
     content: "\2022";
     color: #fff
 }
+
+/* Login */
+
+.labelLogin{
+    font-size: 20px;
+    color: #186615;
+}
+
+.botao{
+    width: 295px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.entrar{
+    background-color: #32aa2a !important;
+}
+
+.cadastrese{
+    background-color: #1593E7 !important;
+}
+
+.card{
+    margin: 30px;
+    width:345px;
+    border-radius: 10px;
+    left: 780px;
+    padding: 10px;
+}
+
+.container-inicial{
+    height: 525px;
+}
+
+#entrarLogin{
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 140px;
+    color: rgb(51, 167, 51);
+}
+
+.esqueceuSenha{
+    margin-top: 15px;
+    margin-left: 90px;
+    text-decoration: underline;
+    color: #1593E7 !important;
+}
+
+#lembrarUsuario{
+    opacity: 50%;
+    font-size: 15px;
+}
