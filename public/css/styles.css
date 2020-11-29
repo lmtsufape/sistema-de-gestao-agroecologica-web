@@ -412,3 +412,60 @@ li{
     width: 25px;
     margin-right: 5px;
 }
+
+/* Agendar reunião modal */
+
+#contentModal{
+    border-radius: 20px !important;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+#titulo{
+    margin-top: 10px;
+    font-size: 30px;
+    color: rgb(25, 150, 25);
+}
+
+.corLabelReuniao{
+    color: rgb(31, 143, 31);
+
+}
+
+#linhaCabecalhoReuniao{
+    background-color: #CCB378;
+}
+
+#labelInformacoes{
+    padding: 10px;
+    background-color: #CCB378;
+    color: #fff;
+    width: 728px;
+}
+
+.asterisco{
+    color: red;
+}
+
+.fonteFooter{
+    font-size: 16px;
+}
+
+#botao-agendar-reuniao{
+    background-color: #43CB75;
+    width: 250px;
+    margin-top: -8px;
+    height: 40px;
+    margin-left: 108px;
+}
+
+#divCamposObrigatorios{
+    margin-left: 5px;
+}
+
+#labelCancelar{
+    margin-left: 170px;
+    color: black;
+    opacity: 70%;
+    margin-right: 50px;
+}

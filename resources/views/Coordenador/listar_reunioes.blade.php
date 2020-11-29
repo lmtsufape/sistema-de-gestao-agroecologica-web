@@ -7,8 +7,61 @@
         <div id = 'cabecalho'>
             <label id="cabecalho-reuniao" for="botao-agendar">Reuniões</label>
             @if($usuario->tipo_perfil == "Coordenador")
-            <a id="botao-agendar" type="button" class="btn btn-success" href="{{route('user.coordenador.agendarReuniao')}}" >Agendar reunião</a>
-        @endif
+                <a id="botao-agendar" type="button" class="btn btn-success" data-toggle = "modal" data-target="#agendarReuniao" href="{{route('user.coordenador.agendarReuniao')}}" >Agendar reunião</a>
+
+                {{-- Agendar reunião modal --}}
+
+                <div id="agendarReuniao" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div id="contentModal" class="modal-content">
+                            <div class="col-md-12">
+                                <h5 class="modal-title corLabelReuniao" id="titulo">Agendar reunião</h5>
+                            </div>
+                            <div class="col-md-12">
+                                <hr id="linhaCabecalhoReuniao">
+                            </div>
+                            <div class="col-md-12">
+                                <label id= "labelInformacoes" for="">Informações</label>
+                            </div>
+                            <div class="modal-body">
+                                <form id="" action="" method="POST">
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="col-md-8 mb-4">
+                                            <label class="corLabelReuniao">Nome da reunião <label class="asterisco">*</label></label>
+                                            <input type="text" class="form-control" name='nome' id='nome' placeholder="Digite o nome da reunião" value="{{old('nome')}}">
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="corLabelReuniao">Data da reunião <label class="asterisco">*</label></label>
+                                            <input type="date" class="form-control" name="data" id="data" value="{{old('data')}}">
+                                          </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12 mb-4">
+                                            <label class="corLabelReuniao">Local da reunião <label class="asterisco">*</label></label>
+                                            <input type="text" class="form-control" name="local" id="local" placeholder="Digite o local da reunião" value="{{old('local')}}">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <hr>
+                                    </div>
+                                    <div>
+                                        <div class="form-row">
+                                            <div id="divCamposObrigatorios" class="col-md-3 mb-4">
+                                                <label class="asterisco">* <label class="fonteFooter">Campos obrigatórios</label></label>
+                                            </div>
+                                            <div class="col-md-3 mb-4">
+                                                <a id="labelCancelar" class="fonteFooter" data-dismiss="modal" href="">Cancelar</a>
+                                            </div>
+                                            <button id="botao-agendar-reuniao" type="submit" class="btn btn-success fonteFooter">Agendar reunião</button>
+                                        </div>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     
         <hr class="linha-cabecalho">
