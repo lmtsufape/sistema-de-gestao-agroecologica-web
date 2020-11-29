@@ -305,3 +305,110 @@ li{
     opacity: 50%;
     font-size: 15px;
 }
+
+/* Tela listar reuniões */
+
+.container-conteudo{
+    height: 1000px;
+    width: 1091px;
+    background-color: #07A287;
+    margin-inline-start: 139px;
+    padding-top: 40px;
+}
+
+#jumbotron{
+    margin-inline-start: 40px;
+    height: 920px;
+    width: 1010px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+#botao-agendar{
+    margin-top: -50px;
+    margin-left: 800px;
+    background-color:  rgb(51, 167, 51);
+}
+
+#cabecalho-reuniao{
+    text-align: left;
+    color:  rgb(51, 167, 51);
+}
+
+.linha-cabecalho{
+    margin-top: -5px;
+    background-color: #CCB378;
+}
+
+#cabecalho{
+    display: inline;
+}
+
+#cabecalho-reuniao{
+    font-size: 30px;
+}
+
+#nome-tabela-reuniao{
+    padding: 10px;
+    background-color:#CCB378;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.nome-col{
+    background-color:#CCB378;
+    color: #fff;
+    font-weight: normal;
+}
+
+#tabela{
+    border-collapse: collapse;
+    background-color: #F5F5F5;
+    border-width: 1px;
+    border-color: #CCB378;
+}
+
+#coluna-images{
+    padding: 8px;
+}
+
+.imagens-acoes{
+    position: relative;
+    width: 30px;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+#botao-registrar{
+    background-color: #F5BB1C;
+}
+
+#botao-editar{
+    background-color: #1593E7;
+}
+
+#botao-cancelar{
+    height: 30px;
+    background-color: #FF0000;
+}
+
+#linha-legenda{
+    margin-top: 150px;
+}
+
+.div-lado{
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.cor-texto{
+    color:black !important;
+}
+
+.imagem-registro{
+    position: relative;
+    width: 25px;
+    margin-right: 5px;
+}
