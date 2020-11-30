@@ -1,0 +1,53 @@
+.botoes-conjunto{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 896px;
+    height: 100%;
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+}
+
+.botoes-conjunto .botao{
+    display: flex;
+    flex-direction: column;
+
+    width: 220px;
+    height: 214px;
+    margin: 53px;
+    padding: 10px;
+
+    text-align: center;
+    cursor: pointer;
+
+    background: #FFCC56;
+    border-radius: 8px;
+}
+
+.botoes-conjunto .botao button{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.botoes-conjunto .botao button a:link, a:visited,  a:hover, a:active{
+    text-decoration: none;
+    color: black;
+}
+
+.botoes-conjunto .botao button img{
+    width: 130px;
+    height: 130px;
+    margin: 20px;
+}
+
+.botao button span{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
