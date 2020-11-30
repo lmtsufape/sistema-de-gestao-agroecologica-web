@@ -16,12 +16,11 @@ h2{
 }
 
 .navegação{
-    background: #167F14;
+    background: #05856F;
 }
 
 .navegação > img{
     background: transparent;
-
 }
 
 .formulario{
@@ -38,7 +37,7 @@ h2{
 }
 
 footer{
-    background: #167F14;
+    background: #05856F;
     color: white;
 }
 
@@ -138,11 +137,6 @@ footer .container .row{
     color: red;
 }
 
-body{
-    background-image: url('../images/background_web.jpg');
-    background-size: cover;
-}
-
 .img-left{
     background-image: url('../images/orange-5143042_1920.jpg');
     background-size: cover;
@@ -158,7 +152,10 @@ body{
 }
 
 .container-main{
-    min-height: 480px;
+    min-height: 1000px;
+    width: 100%;
+    background-color: #07A287;
+    margin-inline-start: 139px;
 }
 
 .bt-canteiro{
@@ -168,4 +165,307 @@ body{
     border-style: solid;
     border-color: #3CB371;
     border-width: 3px;
+}
+
+/* Sidebar */
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    position: absolute;
+    min-width: 260px;
+    max-width: 260px;
+    min-height: 1000px;
+    height: fit-content;
+    background: #05856F;
+    color: #fff;
+}
+
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+}
+
+#sidebar ul li a {
+    text-align: left;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #05856F;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.botao-menu{
+    color: #fff;
+    background-color: #07A287 !important;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 6px;
+}
+
+a:hover,a:visited:hover { 
+    color: #c9f7f0; 
+}
+
+.imagem-botao-menu{
+    margin-bottom: 5px;
+    color: #fff;
+    width:23px;
+    height:23px;
+}
+
+.reuniao{
+    height:18px;
+    width:25px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle-menu::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+li:hover ul { 
+    display: block; 
+}
+
+li{
+    content: "\2022";
+    color: #fff
+}
+
+/* Login */
+
+.labelLogin{
+    font-size: 20px;
+    color: #186615;
+}
+
+.botao{
+    width: 295px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.entrar{
+    background-color: #32aa2a !important;
+}
+
+.cadastrese{
+    background-color: #1593E7 !important;
+}
+
+.card{
+    margin: 30px;
+    width:345px;
+    border-radius: 10px;
+    left: 780px;
+    padding: 10px;
+}
+
+.container-inicial{
+    height: 525px;
+}
+
+#entrarLogin{
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 140px;
+    color: rgb(51, 167, 51);
+}
+
+.esqueceuSenha{
+    margin-top: 15px;
+    margin-left: 90px;
+    text-decoration: underline;
+    color: #1593E7 !important;
+}
+
+#lembrarUsuario{
+    opacity: 50%;
+    font-size: 15px;
+}
+
+/* Tela listar reuniões */
+
+.container-conteudo{
+    height: 1000px;
+    width: 1091px;
+    background-color: #07A287;
+    margin-inline-start: 139px;
+    padding-top: 40px;
+}
+
+#jumbotron{
+    margin-inline-start: 40px;
+    height: 920px;
+    width: 1010px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+#botao-agendar{
+    margin-top: -50px;
+    margin-left: 800px;
+    background-color:  rgb(51, 167, 51);
+}
+
+#cabecalho-reuniao{
+    text-align: left;
+    color:  rgb(51, 167, 51);
+}
+
+.linha-cabecalho{
+    margin-top: -5px;
+    background-color: #CCB378;
+}
+
+#cabecalho{
+    display: inline;
+}
+
+#cabecalho-reuniao{
+    font-size: 30px;
+}
+
+#nome-tabela-reuniao{
+    padding: 10px;
+    background-color:#CCB378;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.nome-col{
+    background-color:#CCB378;
+    color: #fff;
+    font-weight: normal;
+}
+
+#tabela{
+    border-collapse: collapse;
+    background-color: #F5F5F5;
+    border-width: 1px;
+    border-color: #CCB378;
+}
+
+#coluna-images{
+    padding: 8px;
+}
+
+.imagens-acoes{
+    position: relative;
+    width: 30px;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+#botao-registrar{
+    background-color: #F5BB1C;
+}
+
+#botao-editar{
+    background-color: #1593E7;
+}
+
+#botao-cancelar{
+    height: 30px;
+    background-color: #FF0000;
+}
+
+#linha-legenda{
+    margin-top: 150px;
+}
+
+.div-lado{
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.cor-texto{
+    color:black !important;
+}
+
+.imagem-registro{
+    position: relative;
+    width: 25px;
+    margin-right: 5px;
+}
+
+/* Agendar reunião modal */
+
+#contentModal{
+    border-radius: 20px !important;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+#titulo{
+    margin-top: 10px;
+    font-size: 30px;
+    color: rgb(25, 150, 25);
+}
+
+.corLabelReuniao{
+    color: rgb(31, 143, 31);
+
+}
+
+#linhaCabecalhoReuniao{
+    background-color: #CCB378;
+}
+
+#labelInformacoes{
+    padding: 10px;
+    background-color: #CCB378;
+    color: #fff;
+    width: 728px;
+}
+
+.asterisco{
+    color: red;
+}
+
+.fonteFooter{
+    font-size: 16px;
+}
+
+#botao-agendar-reuniao{
+    background-color: #43CB75;
+    width: 250px;
+    margin-top: -8px;
+    height: 40px;
+    margin-left: 108px;
+}
+
+#divCamposObrigatorios{
+    margin-left: 5px;
+}
+
+#labelCancelar{
+    margin-left: 170px;
+    color: black;
+    opacity: 70%;
+    margin-right: 50px;
 }

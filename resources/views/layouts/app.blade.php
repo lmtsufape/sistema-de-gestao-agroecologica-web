@@ -16,6 +16,7 @@
     </head>
     <body>
         @include('incluir.navbar')
+        @include('incluir.menu_lateral')
 
         <div class="container">
             @yield('content')
@@ -29,7 +30,7 @@
     </body>
 
     <footer>
-        <div style="margin-top: 100px;"class="container-fluid rodape" aling="center">
+        <div class="container-fluid rodape" aling="center">
             <div class="pt-5">
                 <p class="texto-footer">
                   Ínicio • SGA • Sobre
