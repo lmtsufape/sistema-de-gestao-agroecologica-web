@@ -1,16 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-main">
-    <div class="row upper-div-2">
-        <div class="col-md-3 img-left">
-
-        </div>
-        <div class="col-md-9">
+<div class="row">
+    <div class="col-md-12 upper-div">
+        <div class="especifies">
             <br>
 
-            <h1 class="marker">Cadastro da OCS</h1>
-            <br>
+            <h1 class="marker">Cadastro da OCS</h1>s
+            <hr class="divider"></hr>
 
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -25,24 +22,49 @@
             <div class="formulario">
                 <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
                     @csrf
+                    <div class="form-row inner-div">
+                        <label class="">OCS</label>
+                    </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-9 mb-3">
+                            <label class="label-static required">Nome da OCS</label>
+                            <input class="form-control input-stl" type="text" class="form-control" id="nome_entidade" name="nome_entidade" placeholder="Nome completo">
+                        </div>
+                        <div class="col-md-3 mb-3">
                             <label class="label-static">CNPJ</label>
                             <input class="form-control input-stl" type="number" class="form-control" id="cpnj" name="cnpj" placeholder="CNPJ">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="label-static">Nome</label>
-                            <input class="form-control input-stl" type="text" class="form-control" id="nome_entidade" name="nome_entidade" placeholder="Nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-static required">Órgão fiscalizador</label>
+                        <input class="form-control input-stl" type="text" class="form-control" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="Órgão fiscalizador">
+                    </div>
+
+                    <div class="form-row inner-div">
+                        <label class="">Contato</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-static required">Email</label>
+                        <input class="form-control input-stl" type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-4 mb-4">
+                            <label class="label-static required">Telefone</label>
+                            <input class="form-control input-stl" type="number" class="form-control" name="telefone" placeholder="Telefone">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="label-static">Celular</label>
+                            <input class="form-control input-stl" type="number" class="form-control" name="celular" placeholder="Celular">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="label-static">Fax</label>
+                            <input class="form-control input-stl" type="number" class="form-control" name="fax" placeholder="FAX">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="label-static">Email</label>
-                        <input class="form-control input-stl" type="email" class="form-control" id="email" name="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label class="label-static">Órgão fiscalizador</label>
-                        <input class="form-control input-stl" type="text" class="form-control" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="Órgão fiscalizador">
+                    <div class="form-row inner-div">
+                        <label class="">Endereço</label>
                     </div>
 
                     <div class="form-row">
@@ -62,11 +84,11 @@
 
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label class="label-static">Cidade</label>
+                            <label class="label-static required">Cidade</label>
                             <input class="form-control input-stl" type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="label-static">Estado</label>
+                            <label class="label-static required">Estado</label>
                             <select class="custom-select input-stl" id="estado" name="estado" placeholder="Estado">
                                 <option selected disabled value="">Selecionar Estado</option>
                                 <option value="AC">Acre</option>
@@ -99,28 +121,13 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="label-static" for="cep">CEP</label>
+                            <label class="label-static required" for="cep">CEP</label>
                             <input class="form-control input-stl" type="text" class="form-control" id="cep" name="cep" placeholder="">
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="col-md-4 mb-4">
-                            <label class="label-static" for="data de nascimento">Telefone</label>
-                            <input class="form-control input-stl" type="number" class="form-control" name="telefone" placeholder="Telefone">
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label class="label-static">Celular</label>
-                            <input class="form-control input-stl" type="number" class="form-control" name="celular" placeholder="Celular">
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label class="label-static">Fax</label>
-                            <input class="form-control input-stl" type="number" class="form-control" name="fax" placeholder="FAX">
-                        </div>
-                    </div>
-
                     <div class="form-group">
-                        <label class="label-static">Ponto de Referencia</label>
+                        <label class="label-static required">Ponto de Referência</label>
                         <textarea class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
                     </div>
 
@@ -129,12 +136,18 @@
                         <textarea class="form-control input-stl" id="descricao" name="descricao" rows="3"></textarea>
                     </div>
 
-                    <button class="btn botao-submit" type="submit">Cadastrar</button>
-                    <br>
-                    <br>
+                    <hr class="outliner"></hr>
+
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label style="color: red" class="label-static required">Campos obrigatórios</label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn botao-submit" type="submit">Cadastrar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

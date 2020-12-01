@@ -54,7 +54,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
                 Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
             });
             Route::get('/cancelarReuniao', [CoordenadorController::class, 'cancelarReuniaoAgendada'])->name('.cancelarReuniao')->middleware('auth');
-        }); 
+        });
 
         // Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
         //     Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
@@ -102,6 +102,7 @@ Route::prefix('/ver_produtor')->name('.ver_produtor')->namespace('ver_produtor')
         Route::get('/cadastrar',  [PropriedadeController::class, 'cadastrarCanteiroDeProducao'])->name('.cadastrar')->middleware('auth');
         Route::post('/salvar',  [PropriedadeController::class, 'salvarCadastrarCanteiroDeProducao'])->name('.salvar')->middleware('auth');
         Route::get('/{id_canteiro}/ver',  [PropriedadeController::class, 'verCanteiroDeProducao'])->name('.ver')->middleware('auth');
+        Route::get('/listar',  [PropriedadeController::class, 'listarCanteiroDeProducao'])->name('.listar')->middleware('auth');
         Route::prefix('/producao')->name('.producao')->namespace('producao')->group(function(){
             Route::get('{id_canteiro}/cadastrar',  [PropriedadeController::class, 'cadastrarProducao'])->name('.cadastrar')->middleware('auth');
             Route::get('{id_producao}/remover',  [PropriedadeController::class, 'removerProducao'])->name('.remover')->middleware('auth');
