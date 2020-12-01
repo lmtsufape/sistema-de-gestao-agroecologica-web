@@ -25,7 +25,7 @@
                         <a class= "btn botao-menu subButton" href="{{route('user.verPropriedade')}}">&nbsp &nbsp &nbsp &nbsp &nbsp● Informações</a>
                     </li>
                     <li>
-                        <a class= "btn botao-menu subButton" href="#listarCanteiros">&nbsp &nbsp &nbsp &nbsp &nbsp● Canteiros</a>
+                        <a class= "btn botao-menu subButton" href="{{route('user.canteiroProducao.listar')}}">&nbsp &nbsp &nbsp &nbsp &nbsp● Canteiros</a>
                     </li>
                 </ul>
             </li>
