@@ -55,7 +55,6 @@ class UserController extends Controller {
         }
 
 
-
         $endereco = new Endereco;
         $endereco->fill($entrada);
         $endereco->save();

@@ -233,6 +233,18 @@ class PropriedadeController extends Controller {
         }
     }
 
+    public function listarCanteiroDeProducao(){
+        $produtor = User::find(Auth::id());
+        if($produtor->propriedade){
+            return view('Produtor/listar_canteiros', [
+                'canteiro' => $produtor->propriedade->canteirodeproducaos,
+                'propriedade' => $produtor->propriedade->id,
+            ]);
+        } else {
+            return redirect()->route('user.cadastrarPropriedade');
+        }
+    }
+
 
 
     public function salvarCadastrarPropriedade(Request $request){
