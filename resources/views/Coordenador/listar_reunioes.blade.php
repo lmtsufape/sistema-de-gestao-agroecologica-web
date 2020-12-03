@@ -24,7 +24,7 @@
                                 <label id= "labelInformacoes" for="">Informações</label>
                             </div>
                             <div class="modal-body">
-                                <form id="formAgendarReuniao" method="POST">
+                                <form id="formAgendarReuniao">
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-md-8 mb-4">
@@ -127,7 +127,7 @@
 @section('javascript')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
-<script>
+<script type="text/javascript">
     $('#formAgendarReuniao').on('submit',function(event){
         event.preventDefault();
 
