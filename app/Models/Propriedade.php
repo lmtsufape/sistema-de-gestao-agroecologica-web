@@ -28,7 +28,7 @@ class Propriedade extends Model
 	}
 
     public function canteirodeproducaos() {
-        return $this->hasMany('App\Models\CanteiroDeProducao', 'id');
+        return $this->hasMany('App\Models\CanteiroDeProducao', 'id_propriedade');
     }
 
     public function endereco(){

@@ -72,7 +72,6 @@ class User extends Authenticatable
 		return $this->belongsTo('App\Models\Ocs', 'id_ocs');
 	}
 
-
     public function endereco() {
         return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
     }
