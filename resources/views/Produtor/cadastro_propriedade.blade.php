@@ -3,45 +3,45 @@
 <script>
 
 function toggleFormElements() {
-    var inputs = document.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
+var inputs = document.getElementsByTagName("input");
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].disabled = false;
+}
+
+var inputs = document.getElementsByTagName("input");
+for (var i = 0; i < inputs.length; i++) {
+    if(inputs[i].type === "text"){
         inputs[i].disabled = false;
     }
-
-    var inputs = document.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
-        if(inputs[i].type === "text"){
-            inputs[i].disabled = false;
-        }
-        if(inputs[i].type === "date"){
-            inputs[i].disabled = false;
-        }
-        if(inputs[i].type === "number"){
-            inputs[i].disabled = false;
-        }
-        if(inputs[i].type === "tel"){
-            inputs[i].disabled = false;
-        }
-        if(inputs[i].type === "email"){
-            inputs[i].disabled = false;
-        }
+    if(inputs[i].type === "date"){
+        inputs[i].disabled = false;
     }
-    var selects = document.getElementsByTagName("select");
-    for (var i = 0; i < selects.length; i++) {
-        selects[i].disabled = false;
+    if(inputs[i].type === "number"){
+        inputs[i].disabled = false;
     }
-    var textareas = document.getElementsByTagName("textarea");
-    for (var i = 0; i < textareas.length; i++) {
-        textareas[i].disabled = false;
+    if(inputs[i].type === "tel"){
+        inputs[i].disabled = false;
     }
-    var buttons = document.getElementsByTagName("button");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = false;
+    if(inputs[i].type === "email"){
+        inputs[i].disabled = false;
     }
+}
+var selects = document.getElementsByTagName("select");
+for (var i = 0; i < selects.length; i++) {
+    selects[i].disabled = false;
+}
+var textareas = document.getElementsByTagName("textarea");
+for (var i = 0; i < textareas.length; i++) {
+    textareas[i].disabled = false;
+}
+var buttons = document.getElementsByTagName("button");
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = false;
+}
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("enable-bt").addEventListener('click', toggleFormElements, false);
+document.getElementById("enable-bt").addEventListener('click', toggleFormElements, false);
 });
 
 
@@ -49,31 +49,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12 upper-div extra-space">
-        <div class="especifies">
+<div class="row container-conteudo">
+    <div class="col-md-12">
+        <div class="especifies upper-div">
             <br>
 
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="marker">Minhas informações</h1>
                 </div>
+            </div>
+            <div class="row esp">
+                <div class="col-md-12">
+                    <hr class="divider"></hr>
                 </div>
-                <div class="row esp">
-                    <div class="col-md-12">
-                        <hr class="divider"></hr>
-                    </div>
-                </div>
-                <br>
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul style="padding: 0px;">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+            </div>
+            <br>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul style="padding: 0px;">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <div class="formulario">
                 <form method="post" action="{{ route('user.salvarCadastrarPropriedade') }}">
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <label style="color: red" class="label-static required">Campos obrigatórios</label>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <button disabled="true" class="btn botao-submit" type="submit">Cadastrar</button>
+                            <button class="btn botao-submit" type="submit">Cadastrar</button>
                         </div>
                     </div>
                 </form>
@@ -177,8 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 </div>
-</div>
-</div>
+
 
 
 @endsection
