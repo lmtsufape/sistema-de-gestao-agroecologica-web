@@ -24,7 +24,7 @@
                                 <label id= "labelInformacoes" for="">Informações</label>
                             </div>
                             <div class="modal-body">
-                                <form id="" action="" method="POST">
+                                <form id="formAgendarReuniao" method="POST">
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-md-8 mb-4">
@@ -122,4 +122,32 @@
     </div>
 </div>
 
+@endsection
+
+@section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<script>
+    $('#formAgendarReuniao').on('submit',function(event){
+        event.preventDefault();
+
+        let nome = $('#nome').val();
+        let data = $('#data').val();
+        let local = $('#local').val();
+
+        $.ajax({
+            url: 'http://localhost:8000/user/coordenador/agendar_reuniao/salvar',
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                nome:nome,
+                data:data,
+                local:local,
+            },
+            sucess: function(response){
+                console.log(response);
+            },
+        });
+    });
+</script>
 @endsection
