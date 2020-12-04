@@ -129,12 +129,10 @@ class PropriedadeController extends Controller {
     }
 
     public function cadastrarPropriedade(){
-        $propriedade = Propriedade::where('id_produtor', Auth::id())->get();
-        if($propriedade){
-            $canteiros = CanteiroDeProducao::where('id_propriedade', $propriedade[0]->id)->get();
+        $produtor = User::find(Auth::id());
+        if($produtor->propriedade){
             return view('Produtor/propriedade_ver', [
-                'propriedade' => $propriedade[0],
-                'canteiros' => $canteiros,
+                'propriedade' => $produtor->propriedade,
             ]);
         } else {
             return view('Produtor.cadastro_propriedade');
@@ -224,7 +222,7 @@ class PropriedadeController extends Controller {
         $canteiro = CanteiroDeProducao::find($id_canteiro);
         $producao = Producao::where('id_canteirodeproducao', $id_canteiro)->get();
         if($canteiro){
-            return view('Produtor/ver_canteiroDeProducao', [
+            return view('Produtor.ver_canteiroDeProducao', [
                 'canteiro' => $canteiro,
                 'producao' => $producao,
             ]);
@@ -232,12 +230,24 @@ class PropriedadeController extends Controller {
             return view('Produtor.cadastro_canteiroDeProducao');
         }
     }
+    public function verProducao($id_producao){
+        $producao = Producao::find($id_producao);
+        if($producao){
+            return view('Produtor.ver_producao',[
+                'producao' => $producao,
+            ]);
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
 
     public function listarCanteiroDeProducao(){
         $produtor = User::find(Auth::id());
         if($produtor->propriedade){
+            $canteiros = CanteiroDeProducao::where('id_propriedade', $produtor->propriedade->id)->get();
             return view('Produtor/listar_canteiros', [
-                'canteiro' => $produtor->propriedade->canteirodeproducaos,
+                'canteiro' => $canteiros,
                 'propriedade' => $produtor->propriedade->id,
             ]);
         } else {

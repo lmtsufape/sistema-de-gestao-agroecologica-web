@@ -6,7 +6,7 @@
         <div class="especifies">
             <br>
 
-            <h1 class="marker">Cadastro da OCS</h1>s
+            <h1 class="marker">Cadastro da OCS</h1>
             <hr class="divider"></hr>
 
             @if ($errors->any())

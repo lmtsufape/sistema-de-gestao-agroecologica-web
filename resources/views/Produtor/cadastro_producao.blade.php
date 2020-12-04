@@ -9,15 +9,19 @@ function showDiv(id, id1, id2) {
 </script>
 @extends('layouts.app')
 @section('content')
-<div class="container-main">
-    <div class="row upper-div-2">
-        <div class="col-md-3 img-left">
+<div class="row extra-space">
+    <div class="col-md-12 upper-div">
+        <div class="especifies">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="marker">Nova produção</h1>
+                </div>
+            </div>
+            <hr class="divider"></hr>
 
-        </div>
-        <div class="col-md-9">
-            <br>
-            <br>
-            <h1 class="marker">Cadastrar produção para o canteiro</h1>
+            {{-- Novo canteiro modal --}}
+
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul style="padding: 0px;">
@@ -31,17 +35,11 @@ function showDiv(id, id1, id2) {
             <br>
 
             <div class="formulario">
-
+                <div class="inner-div">
+                    <label class="">Produção</label>
+                </div>
                 <form class="formulario" method="post" id="testForm" action="{{ route('user.canteiroProducao.producao.salvar') }}">
                     @csrf
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div style="text-align: center" class="col-md-12">
-                                <h3 class="marker">Produção:</h3>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="label-static">Animal:</label>
@@ -63,20 +61,20 @@ function showDiv(id, id1, id2) {
                             <input type="text" class="form-control input-stl" id="observacoes" name="observacoes">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label class="label-static">Data de inicio da produção:</label>
+                            <label class="label-static required">Data de inicio da produção:</label>
                             <input type="date" class="form-control input-stl" id="data_inicio" name="data_inicio">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="hidden" id="animais">
-                                <label class="label-static">Produtos da produção:</label>
+                                <label class="label-static required">Produtos da produção:</label>
                                 <br>
                                 <br>
                                 @foreach($produtos as $an)
                                 @if($an->tipo == "Animal")
-                                <label class="label-static-2">{{$an->nome}}</label>
                                 <input value="{{$an->id}}" class="checkbox" type="checkbox" name="idsman[]">
+                                <label class="label-static">{{$an->nome}}</label>
                                 <br>
                                 @endif
                                 @endforeach
@@ -86,13 +84,13 @@ function showDiv(id, id1, id2) {
                     <div class="hidden" id="Vegetais">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label class="label-static">Produtos da produção:</label>
+                                <label class="label-static required">Produtos da produção:</label>
                                 <br>
                                 <br>
                                 @foreach($produtos as $an)
                                 @if($an->tipo == "Vegetal")
-                                <label class="label-static-2">{{$an->nome}}</label>
                                 <input value="{{$an->id}}" class="checkbox" type="checkbox" name="idsman[]">
+                                <label class="label-static">{{$an->nome}}</label>
                                 <br>
                                 <br>
                                 @endif
@@ -107,13 +105,13 @@ function showDiv(id, id1, id2) {
                                 <input type="text" class="form-control input-stl" id="lista_produtos_exteriores_beneficiado" name="lista_produtos_exteriores_beneficiado" placeholder="Produtos que não vem diretamente da propriedade. Ex:. Ovos, Mel">
                                 <br>
                                 <br>
-                                <label class="label-static">Produtos da produção:</label>
+                                <label class="label-static required">Produtos da produção:</label>
                                 <br>
                                 <br>
                                 @foreach($produtos as $an)
                                 @if($an->tipo == "Beneficiamento")
-                                <label class="label-static">{{$an->nome}}</label>
                                 <input value="{{$an->id}}" class="checkbox" type="checkbox" name="idsman[]">
+                                <label class="label-static">{{$an->nome}}</label>
                                 <br>
                                 @endif
                                 @endforeach
@@ -121,7 +119,15 @@ function showDiv(id, id1, id2) {
                         </div>
                     </div>
                     <br>
-                    <button class="btn botao-submit" type="submit">Cadastrar</button>
+                    <hr class="outliner"></hr>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label style="color: red" class="label-static required">Campos obrigatórios</label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn botao-submit" type="submit">Cadastrar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
