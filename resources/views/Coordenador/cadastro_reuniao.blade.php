@@ -14,7 +14,7 @@
 
 <div class = 'jumbotron bg-white'>
     <h1 class="marker">Registrar reunião</h1>
-    <form method="POST" action="{{route('user.coordenador.verReuniao.criarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('user.coordenador.registrarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for='nome' class="col-md-6 col-form-label label-static">Participantes</label>

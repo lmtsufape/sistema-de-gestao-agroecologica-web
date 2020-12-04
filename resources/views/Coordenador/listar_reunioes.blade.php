@@ -92,9 +92,9 @@
                                 @endif
                             </td>
                             <td id="coluna-images">
-                                <img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt="">
-                                <img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt="">
-                                <img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt="">
+                                <a href="{{route('user.coordenador.registrarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt=""></a>
+                                <a href=""><img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt=""></a>
+                                <a href=""><img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt=""></a>
                             </td>
                         </tr>
                     @endforeach
