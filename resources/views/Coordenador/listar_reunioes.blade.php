@@ -67,7 +67,7 @@
         <hr class="linha-cabecalho">
         <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reuniões Agendadas</label>
 
-        <div style="overflow: auto;">
+        <div style="overflow: auto; height: 450px">
             <table class="table">
                 <thead>
                   <tr>
