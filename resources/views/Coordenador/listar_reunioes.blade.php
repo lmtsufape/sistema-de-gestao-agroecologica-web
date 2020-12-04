@@ -24,7 +24,7 @@
                                 <label id= "labelInformacoes" for="">Informações</label>
                             </div>
                             <div class="modal-body">
-                                <form id="formAgendarReuniao">
+                                <form id="formAgendarReuniao" method="post" action="{{route('user.coordenador.agendarReuniao.salvar')}}">
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-md-8 mb-4">
@@ -124,7 +124,7 @@
 
 @endsection
 
-@section('javascript')
+{{-- @section('javascript')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
 <script type="text/javascript">
@@ -150,4 +150,4 @@
         });
     });
 </script>
-@endsection
+@endsection --}}
