@@ -497,6 +497,12 @@ li{
     margin-right: 5px;
 }
 
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 50%;
+}
+
 /* Agendar reunião modal */
 
 #contentModal{
