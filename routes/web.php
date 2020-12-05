@@ -52,9 +52,10 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
         });
 
+        Route::get('/cancelarReuniao/{reuniao_agendada_id}', [CoordenadorController::class, 'cancelarReuniaoAgendada'])->name('.cancelarReuniao')->middleware('auth');
+
         Route::prefix('/ver_reuniao/{id_reuniao}')->name('.verReuniao')->group(function(){
             Route::get('/', [CoordenadorController::class, 'verReuniao'])->middleware('auth');
-            Route::get('/cancelarReuniao', [CoordenadorController::class, 'cancelarReuniaoAgendada'])->name('.cancelarReuniao')->middleware('auth');
         });
 
         // Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
