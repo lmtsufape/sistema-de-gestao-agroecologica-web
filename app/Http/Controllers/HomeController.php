@@ -30,4 +30,8 @@ class HomeController extends Controller
             'perfil' => $produtor->tipo_perfil,
         ]);
     }
+
+    public function log(){
+        return redirect()->route('login');
+    }
 }

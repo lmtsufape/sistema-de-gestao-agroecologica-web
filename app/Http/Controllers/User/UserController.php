@@ -20,13 +20,6 @@ class UserController extends Controller {
         ]);
     }
 
-    public function editarPerfil(){
-        $produtor = User::find(Auth::id());
-        return view('Produtor.editar_perfil', [
-            'produtor' => $produtor
-        ]);
-    }
-
     public function salvarEditarPerfil(Request $request){
         $entrada = $request->all();
 

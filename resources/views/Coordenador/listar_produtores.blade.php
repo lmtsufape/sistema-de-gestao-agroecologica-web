@@ -85,7 +85,7 @@ function showDiv(id, id1, id2) {
                                     </div>
                                     @endif
                                 </div>
-                                <div id="prod{{$produtor->id}}">
+                                <div style="display:none" id="prod{{$produtor->id}}">
                                     <div class="borda-terra">
                                         <div style="margin-left: 15px; margin-top: 10px;">
                                             <div class="inner-aba">
@@ -182,7 +182,7 @@ function showDiv(id, id1, id2) {
                                     </div>
                                 </div>
                                 @if($produtor->propriedade)
-                                <div id="prop{{$produtor->id}}">
+                                <div id="prop{{$produtor->id}}" style="display:none">
                                     <div class="borda-terra">
                                         <div style="margin-left: 15px; margin-top: 10px;">
                                             <div class="inner-aba">
@@ -245,7 +245,7 @@ function showDiv(id, id1, id2) {
                                         </div>
                                     </div>
                                 </div>
-                                <div id="produ{{$produtor->id}}">
+                                <div id="produ{{$produtor->id}}" style="display:none">
                                     <div class="borda-terra">
                                         <div style="margin-left: 15px; margin-top: 10px;">
                                             <div class="inner-aba">

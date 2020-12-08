@@ -17,9 +17,7 @@ use App\Http\Controllers\OcsController;
 |
 */
 
-Route::get('/', function () {
-    return view('/layouts/app');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'log'])->name('home');
 
 
 
@@ -108,6 +106,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
 //Route::get('/erro', 'HomeController@mostrarErro')->name('erro');
 
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/erro/{msg_erro}', [App\Http\Controllers\Controller::class, 'erro'])->name('erro');
