@@ -2,117 +2,132 @@
 
 @section('content')
 
-<div class="container-main">
-    <div class="upper-div">
-        <h1 class="marker">Informações da OCS</h1>
-        <div class="formulario">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Nome da entidade</h4>
-                        <label>{{$ocs->nome_entidade}}</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">CNPJ</h4>
-                        <label>{{$ocs->cnpj}}</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Telefone</h4>
-                        <label>{{$ocs->telefone}}</label>
-                    </div>
-                </div>
-            </div>
+<div class="row extra-space">
+    <div class="col-md-12 upper-div">
+        <div class="especifies">
             <br>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Produtores</h4>
-                        @foreach($ocs->produtor as $pro)
-                            <label>{{$pro->nome}}</label>
+                <div class="col-md-7">
+                    <h1 class="marker">Ocs</h1>
+                </div>
+            </div>
+
+            <div class="formulario">
+                <hr class="divider"></hr>
+
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul style="padding: 0px;">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
                         @endforeach
+                    </ul>
+                </div>
+                @endif
+                <div class="form-row inner-div">
+                    <label class="">Informações</label>
+                </div>
+                @csrf
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-static required">Nome da entidade</label><br>
+                        <label class="label-ntstatic">{{$ocs->nome_entidade}}</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="label-static required">CNPJ</label><br>
+                        <label class="label-ntstatic">{{$ocs->cnpj}}</label>
+                        <br>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="label-static required">Telefone</label><br>
+                        <label class="label-ntstatic">{{$ocs->telefone}}</label>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Coordenador responsável</h4>
-                        <label>{{$ocs->nome_para_contato}}</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-static required">Email</label><br>
+                        <label class="label-ntstatic">{{$ocs->email}}</label>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="label-static">Celular</label><br>
+                        <label class="label-ntstatic">{{$ocs->celular}}</label>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="label-static">Fax</label><br>
+                        <label class="label-ntstatic">{{$ocs->fax}}</label>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="row">
                     <div class="col-md-12">
-                        <h4 class="label-static">Órgão fiscalizador</h4>
-                        <label>{{$ocs->orgao_fiscalizador}}</label>
+                        <label class="label-static">Coordenador responsável</label><br>
+                        <label class="label-ntstatic"><b>{{$ocs->nome_para_contato}}</b></label>
+                    </div>
+                    <div class="col-md-7">
+                        <br>
+                        <label class="label-static required">Órgão fiscalizador</label><br>
+                        <label class="label-ntstatic">{{$ocs->orgao_fiscalizador}}</label>
+                    </div>
+
+                    <div class="col-md-5 repos">
+                        <br>
+                        <label class="label-static">Produtores</label>
+                            <table class="table">
+                                <tbody class="wrp">
+                                    @foreach($ocs->produtor as $pro)
+                                    <tr>
+                                        <td class="cor-texto basic-space">{{$pro->nome}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+
+                            </table>
                     </div>
                 </div>
-            </div>
-            <br>
-            <h4 class="marker" style="text-align: center">Endereço</h4>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Rua</h4>
+                <br>
+                <div class="form-row inner-div">
+                    <label class="">Endereço</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-static">Rua</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->nome_rua}}</label>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Bairro</h4>
+                    <div class="col-md-4">
+                        <label class="label-static">Bairro</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->bairro}}</label>
+                        <br>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Nº</h4>
+                    <div class="col-md-4">
+                        <label class="label-static">Nº</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->numero_casa}}</label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Cidade</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-static required">Cidade</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->cidade}}</label>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">Estado</h4>
+                    <div class="col-md-4">
+                        <label class="label-static required">Estado</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->estado}}</label>
+                        <br>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12">
-                        <h4 class="label-static">CEP</h4>
+                    <div class="col-md-4">
+                        <label class="label-static required">CEP</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->cep}}</label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="row">
                     <div class="col-md-12">
-                        <h4 class="label-static">Descricao</h4>
+                        <label class="label-static">Descricao</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->descricao}}</label>
+                        <br>
                     </div>
-                    <br>
-                </div>
-                <div class="col-md-6">
                     <div class="col-md-12">
-                        <h4 class="label-static">Ponto de Referência</h4>
+                        <label class="label-static required">Ponto de Referência</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->ponto_referencia}}</label>
+                        <br>
                     </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div style="margin-top: 10px;" class="col-md-12 d-flex justify-content-center">
-                    <a href="{{route('user.coordenador.listar_produtores', ['id_ocs' => $ocs->id])}}">
-                        <img class="imagem-menor" src="{{ asset('images/eye.png') }}" alt="">
-                        <span class="marker-link">Produtores</span>
-                    </a>
                 </div>
             </div>
         </div>

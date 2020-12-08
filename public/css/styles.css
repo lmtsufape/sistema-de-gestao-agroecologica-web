@@ -158,6 +158,7 @@ footer .container .row{
     font-size: 16px;
     color: #808080;
     margin-left: 5px;
+    font-weight: bold;
 }
 
 .label-ntstatic-2 {
@@ -599,4 +600,72 @@ li{
 .small-bt{
     margin-left: -100px;
     width: 150px;
+}
+
+.wrp{
+    width: 100%;
+    height: 130px;
+    display: block;
+    overflow-y: scroll;
+}
+
+.wrp-bigger{
+    width: 100% !important;
+    height: 400px;
+    display: block;
+    overflow-y: scroll;
+}
+
+.repos{
+    margin-top: -75px;
+}
+
+.borda-terra{
+    border-color: #ccb378;
+    border-style: solid;;
+}
+
+.inner-aba{
+    background-color: #ccb378;
+    padding-top: 10px;
+    height: 40px;
+    color: white;
+    padding-left: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 3px;
+    width: 98%;
+
+}
+
+.bt-aba{
+    background-color: white;
+    color: #6aab42;
+    width: 180px;
+    height: 40px;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.extra-margin-bt{
+    margin-top: -20px;
+}
+
+.bt-aba:focus{
+    background-color: #ccb378;
+    color: white;
+    outline: none;
+}
+
+#prod{
+    display: none;
+}
+
+#prop{
+    display: none;
+}
+
+#produ{
+    display: none;
 }

@@ -10,6 +10,7 @@
                     <h1 class="marker">Detalhes da produção</h1>
                 </div>
             </div>
+            @if($id_p == Auth::id())
             <div class="row">
                 <div class="col-md-10">
                 </div>
@@ -18,6 +19,7 @@
                     <img id="botao-colher" class="imagens-acoes" src="{{asset('images/save-plant.png')}}" alt="">
                 </div>
             </div>
+            @endif
             <hr class="divider"></hr>
 
 
@@ -123,6 +125,7 @@
             <br>
             <br>
             @endforeach
+            @if($id_p == Auth::id())
             <hr class="outliner"></hr>
             <div>
                 <label class= "cor-texto" for="">Legenda:</label>
@@ -135,7 +138,7 @@
                 <img id="botao-colher" class="imagens-acoes" src="{{asset('images/save-plant.png')}}" alt="">
                 <label class= "cor-texto" for="">Colher produção</label>
             </div>
-
+            @endif
         </div>
     </div>
 </div>

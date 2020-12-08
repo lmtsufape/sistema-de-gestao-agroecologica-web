@@ -47,7 +47,7 @@
                         <a class= "btn botao-menu" href="{{route('user.coordenador.ver_ocs')}}">&nbsp &nbsp &nbsp &nbsp &nbsp● Informações</a>
                     </li>
                     <li>
-                        <a class= "btn botao-menu" href="#listarProdutores">&nbsp &nbsp &nbsp &nbsp &nbsp● Produtores</a>
+                        <a class= "btn botao-menu" href="{{route('user.coordenador.listar_produtores')}}">&nbsp &nbsp &nbsp &nbsp &nbsp● Produtores</a>
                     </li>
                 </ul>
             </li>

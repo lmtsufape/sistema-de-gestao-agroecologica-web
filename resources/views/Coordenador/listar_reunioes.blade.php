@@ -24,7 +24,7 @@
                                 <label id= "labelInformacoes" for="">Informações</label>
                             </div>
                             <div class="modal-body">
-                                <form id="" action="" method="POST">
+                                <form id="" action="{{route('user.coordenador.agendarReuniao.salvar')}}" method="post">
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-md-8 mb-4">
@@ -56,14 +56,14 @@
                                             <button id="botao-agendar-reuniao" type="submit" class="btn btn-success fonteFooter">Agendar reunião</button>
                                         </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
         </div>
-    
+
         <hr class="linha-cabecalho">
         <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reuniões Agendadas</label>
 

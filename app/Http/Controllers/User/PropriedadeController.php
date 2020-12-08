@@ -34,7 +34,7 @@ class PropriedadeController extends Controller {
                 'produtos' => $produtos,
             ]);
         }
-        return redirect()->route('user.canteiroProducao.cadastrar');
+        return redirect()->route('user.canteiroProducao.listar');
 
     }
 
@@ -52,7 +52,7 @@ class PropriedadeController extends Controller {
         $producao->fill($entrada);
         $producao->save();
 
-        return redirect()->route('user.canteiroProducao.ver', $producao->id_canteirodeproducao);
+        return redirect()->route('user.canteiroProducao.producao.ver', $producao->id);
 
     }
 
@@ -98,7 +98,7 @@ class PropriedadeController extends Controller {
         $producao->fill($entrada);
         $producao->save();
 
-        return redirect()->route('user.canteiroProducao.ver', $producao->id_canteirodeproducao);
+        return redirect()->route('user.canteiroProducao.producao.ver', $producao->id);
 
     }
 
@@ -139,14 +139,6 @@ class PropriedadeController extends Controller {
         }
     }
 
-    public function editarPropriedade(){
-        $produtor = User::find(Auth::id());
-        return view('Produtor.editar_propriedade', [
-            'propriedade' => $produtor->propriedade,
-        ]);
-
-    }
-
     public function salvarEditarPropriedade(Request $request){
         $entrada = $request->all();
         $produtor = User::find(Auth::id());
@@ -185,15 +177,6 @@ class PropriedadeController extends Controller {
 
     }
 
-    public function cadastrarCanteiroDeProducao(){
-        $propriedade = Propriedade::where('id_produtor', Auth::id())->get();
-        if($propriedade){
-            return view('Produtor/cadastro_canteiroDeProducao', ['propriedade' => $propriedade[0]->id]);
-        } else {
-            return view('Produtor.cadastro_propriedade');
-        }
-    }
-
     public function salvarCadastrarCanteiroDeProducao(Request $request){
         $entrada = $request->all();
         $mensagens = [
@@ -214,27 +197,17 @@ class PropriedadeController extends Controller {
         $canteiro->id_propriedade = $entrada['id_propriedade'];
         $canteiro->save();
 
-        return redirect()->route('user.canteiroProducao.ver', $canteiro->id);
+        return redirect()->route('user.canteiroProducao.listar');
 
     }
 
-    public function verCanteiroDeProducao($id_canteiro){
-        $canteiro = CanteiroDeProducao::find($id_canteiro);
-        $producao = Producao::where('id_canteirodeproducao', $id_canteiro)->get();
-        if($canteiro){
-            return view('Produtor.ver_canteiroDeProducao', [
-                'canteiro' => $canteiro,
-                'producao' => $producao,
-            ]);
-        } else {
-            return view('Produtor.cadastro_canteiroDeProducao');
-        }
-    }
     public function verProducao($id_producao){
         $producao = Producao::find($id_producao);
         if($producao){
+            $id_produtor = $producao->canteirodeproducaos->propriedade->produtor->id;
             return view('Produtor.ver_producao',[
                 'producao' => $producao,
+                'id_p' => $id_produtor,
             ]);
         } else {
             return redirect()->route('home');

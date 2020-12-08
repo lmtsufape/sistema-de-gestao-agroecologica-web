@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Hash;
 
 class OcsController extends Controller
 {
-    public function listarProdutores($id_ocs){
-        $ocs = Ocs::find($id_ocs);
+    public function listarProdutores(){
+        $produtor = user::find(Auth::id());
+        $ocs = Ocs::find($produtor->id_ocs);
 
         return view('Coordenador.listar_produtores', [
                 'produtores' => $ocs->produtor,
+                'perfil' => $produtor->tipo_perfil,
         ]);
     }
 }
