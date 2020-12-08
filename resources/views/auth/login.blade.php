@@ -66,9 +66,9 @@
                             </div>
                             <div class="col-md"><hr></div>
                             <div class="col-md">
-                                <button type="submit" class="btn btn-primary botao cadastrese">
+                                <a type="submit" href="{{route('user.coordenador.cadastrarOcs')}}" class="btn btn-primary botao cadastrese">
                                     {{ __('Cadastre-se') }}
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>
