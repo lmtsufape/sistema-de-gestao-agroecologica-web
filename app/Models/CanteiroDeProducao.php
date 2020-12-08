@@ -31,7 +31,7 @@ class CanteiroDeProducao extends Model
 
 
     public function producoes() {
-        return $this->hasMany('App\Models\Producao', 'id', 'id_propriedade');
+        return $this->hasMany('App\Models\Producao', 'id_canteirodeproducao');
     }
 
 

@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12 upper-div extra-space">
+<div class="row extra-space">
+    <div class="col-md-12 upper-div">
         <div class="especifies">
             <br>
 

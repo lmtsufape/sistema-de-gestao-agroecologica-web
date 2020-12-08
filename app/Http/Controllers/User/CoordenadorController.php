@@ -233,6 +233,7 @@ class CoordenadorController extends Controller {
     public function salvarCadastrarCoordenador(Request $request) {
         $entrada = $request->all();
         $ocs = $request->session()->get('ocs');
+        $end_ocs = $request->session()->get('end_ocs');
 
 
         $messages = [
@@ -264,13 +265,13 @@ class CoordenadorController extends Controller {
 
         $endereco = new Endereco;
         $endereco->fill($entrada);
-        $endereco->save();
+
 
 
         $coordenador = new User;
         $coordenador->fill($entrada);
         $coordenador->tipo_perfil = 'Coordenador';
-        $coordenador->id_endereco = $endereco->id;
+
 
 
         $coordenador->password = Hash::make($entrada['password']);
@@ -284,14 +285,20 @@ class CoordenadorController extends Controller {
         }
 
         if(!$cad){
+            $end_ocs->save();
+            $ocs->id_endereco = $end_ocs->id;
             $ocs->save();
         }
+
+        $endereco->save();
         $coordenador->id_ocs = $ocs->id;
+        $coordenador->id_endereco = $endereco->id;
         $coordenador->save();
         $request->session()->forget('ocs');
+        $request->session()->forget('end_ocs');
 
 
-        redirect()->route('home');
+        return redirect()->route('home');
     }
 
     public function salvarCadastrarOcs(Request $request) {
@@ -324,13 +331,12 @@ class CoordenadorController extends Controller {
 
         $endereco = new Endereco;
         $endereco->fill($entrada);
-        $endereco->save();
 
         $ocs = new Ocs;
         $ocs->fill($entrada);
-        $ocs->id_endereco = $endereco->id;
         $ocs->unidade_federacao = $endereco->estado;
         $request->session()->put('ocs', $ocs);
+        $request->session()->put('end_ocs', $endereco);
 
         return view('Coordenador.cadastro_coordenador');
     }
@@ -446,7 +452,7 @@ class CoordenadorController extends Controller {
 
     public function cancelarReuniaoAgendada($reuniao_agendada_id){
         $reuniaoAgendada = AgendamentoReuniao::find($reuniao_agendada_id);
-        
+
         if($reuniaoAgendada->registrada == false){
             $reuniaoAgendada->delete();
         }
