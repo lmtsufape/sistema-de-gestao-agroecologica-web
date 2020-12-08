@@ -242,8 +242,7 @@ footer .container .row{
 #sidebar {
     position: absolute;
     max-width: 260px;
-    height: 100%;
-    min-height: 1000px;
+    min-height: 1320px;
     height: fit-content;
     background: #05856F;
     color: #fff;
@@ -531,6 +530,12 @@ li{
     margin-right: 5px;
 }
 
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 50%;
+}
+
 /* Agendar reunião modal */
 
 #contentModal{
@@ -596,7 +601,88 @@ li{
     width: 250px;
 }
 
+
+/* Tela - Registrar reunião */
+
+.container-registrar-reuniao{
+    height: 1400px;
+    width: 1091px;
+    background-color: #07A287;
+    margin-inline-start: 139px;
+    padding-top: 40px;
+}
+
+#jumbotron-registrar-reuniao{
+    margin-inline-start: 40px;
+    height: 1320px;
+    width: 1010px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+#linha-registrar-reuniao{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#ata{
+    margin-bottom: 15px;
+}
+
+#imagemPresente{
+    width: 25px;
+    margin-right: 5px;
+}
+
+#botaoPresente{
+    background-color: #666666;
+    color: #F5F5F5;
+}
+
+#botaoProcurar{
+    background-color: #1593E7;
+    margin-left: 5px;
+}
+
+#botao-registrar-reuniao{
+    background-color: #43CB75;
+    width: 250px;
+    margin-top: -8px;
+    height: 40px;
+    margin-left: 237px;
+}
+
+#labelCancelar-registrar{
+    margin-left: 280px;
+    color: black;
+    opacity: 70%;
+    margin-right: 50px;
+}
+
+#searchbar{
+    margin-left: -80px;
+}
+
+#labelProdutor{
+    margin-top: 8px;
+}
+
+#botao-pesquisa{
+    background-color: #1593E7;
+    margin-left: -80px;
+    margin-top: 1px;
+    width: 35px;
+}
+
+#botao-adicionar-participante{
+    margin-left: -18px;
+    background-color: #E68414;
+    color: #F5F5F5;
+}
+
 .small-bt{
     margin-left: -100px;
     width: 150px;
 }
+

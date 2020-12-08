@@ -24,7 +24,7 @@
                                 <label id= "labelInformacoes" for="">Informações</label>
                             </div>
                             <div class="modal-body">
-                                <form id="" action="" method="POST">
+                                <form id="formAgendarReuniao" method="post" action="{{route('user.coordenador.agendarReuniao.salvar')}}">
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-md-8 mb-4">
@@ -67,7 +67,7 @@
         <hr class="linha-cabecalho">
         <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reuniões Agendadas</label>
 
-        <div style="overflow: auto;">
+        <div style="overflow: auto; height: 450px">
             <table class="table">
                 <thead>
                   <tr>
@@ -92,9 +92,15 @@
                                 @endif
                             </td>
                             <td id="coluna-images">
-                                <img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt="">
-                                <img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt="">
-                                <img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt="">
+                                @if ($reuniao_agendada->registrada == false)
+                                    <a href="{{route('user.coordenador.registrarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt=""></a>
+                                    <a href=""><img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt=""></a>
+                                    <a href="{{route('user.coordenador.cancelarReuniao', ['reuniao_agendada_id' => $reuniao_agendada->id])}}"><img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt=""></a>
+                                @else
+                                    <a class="disabled" href="{{route('user.coordenador.registrarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt=""></a>
+                                    <a class="disabled" href=""><img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}"></a>
+                                    <a class="disabled" href="{{route('user.coordenador.cancelarReuniao', ['reuniao_agendada_id' => $reuniao_agendada->id])}}"><img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt=""></a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -121,5 +127,35 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('javascript')
+
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<script type="text/javascript">
+    $('#formAgendarReuniao').on('submit',function(event){
+        event.preventDefault();
+
+        let nome = $('#nome').val();
+        let data = $('#data').val();
+        let local = $('#local').val();
+
+        $.ajax({
+            url: 'http://localhost:8000/user/coordenador/agendar_reuniao/salvar',
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                nome:nome,
+                data:data,
+                local:local,
+            },
+            sucess: function(response){
+                console.log(response);
+            },
+        });
+    });
+</script> --}}
 
 @endsection
