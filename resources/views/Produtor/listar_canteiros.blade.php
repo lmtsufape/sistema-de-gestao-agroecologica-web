@@ -24,7 +24,7 @@ $(document).on("click", "#ativarView", function () {
                     <h1 class="marker">Canteiros de produção</h1>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" class="btn edit-bt bigger-bt bg-verde" data-toggle = "modal" data-target="#novoCanteiro" href="{{route('user.canteiroProducao.cadastrar')}}" >Novo canteiro de produções</button>
+                    <button type="button" class="btn edit-bt bigger-bt bg-verde" data-toggle = "modal" data-target="#novoCanteiro" >Novo canteiro de produções</button>
                 </div>
             </div>
             <hr class="divider"></hr>
@@ -35,7 +35,7 @@ $(document).on("click", "#ativarView", function () {
                 <div class="modal-dialog modal-lg" role="document">
                     <div id="contentModal" class="modal-content">
                         <div class="col-md-12">
-                            <h5 class="modal-title corLabelReuniao" id="titulo">Agendar reunião</h5>
+                            <h5 class="modal-title corLabelReuniao" id="titulo">Novo canteiro</h5>
                         </div>
                         <div class="col-md-12">
                             <hr id="linhaCabecalhoReuniao">

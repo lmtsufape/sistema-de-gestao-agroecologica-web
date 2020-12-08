@@ -56,14 +56,14 @@
                                             <button id="botao-agendar-reuniao" type="submit" class="btn btn-success fonteFooter">Agendar reunião</button>
                                         </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
         </div>
-    
+
         <hr class="linha-cabecalho">
         <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reuniões Agendadas</label>
 
@@ -159,3 +159,4 @@
 </script> --}}
 
 @endsection
+
