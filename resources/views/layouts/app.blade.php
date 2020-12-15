@@ -18,7 +18,7 @@
         @include('incluir.navbar')
         @include('incluir.menu_lateral')
 
-        <div class="container">
+        <div style="min-height: 1250px !important"class="container">
             @yield('content')
         </div>
 

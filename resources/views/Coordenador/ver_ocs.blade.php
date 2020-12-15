@@ -57,8 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h1 class="marker">Ocs</h1>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{ route('user.coordenador.cadastrarProdutor') }}"><img id="botao-add" class="imagens-acoes" style="width:40px !important;"src="{{asset('images/rounded-add-button.png')}}" alt="">
-                    <label class= "cor-texto" for="">Novo produtor</label></a>
+                    <button class="btn botaoPresente bg-verde" type="button" href="{{ route('user.coordenador.cadastrarProdutor') }}"><img class="bg-verde" id="botao-add" style="width:27px !important;" src="{{asset('images/rounded-add-button.png')}}" alt=""> Novo Produtor</button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn edit-bt" id="enable-bt">Editar</button>

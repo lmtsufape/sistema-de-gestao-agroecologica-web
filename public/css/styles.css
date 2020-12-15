@@ -120,6 +120,7 @@ footer .container .row{
 
 .extra-space{
     margin-left: 100px;
+    min-height: 120px;
 }
 
 .inner-div{
@@ -218,7 +219,7 @@ footer .container .row{
 }
 
 .container-main{
-    min-height: 1000px;
+    height: 150%;
     width: 100%;
     background-color: #07A287;
     margin-inline-start: 139px;
@@ -236,19 +237,25 @@ footer .container .row{
 /* Sidebar */
 
 .wrapper {
-    display: flex;
     align-items: stretch;
+}
+
+.chk-img{
+    opacity: 10;
+}
+
+#btn-green{
 }
 
 #sidebar {
     position: absolute;
     max-width: 260px;
-    min-height: 1320px;
-    height: fit-content;
+    height: 100%;
+    min-height: 1250px;
     background: #05856F;
     color: #fff;
-}
 
+}
 
 #sidebar.active {
     min-width: 80px;
@@ -265,6 +272,7 @@ footer .container .row{
     background: #05856F;
 }
 
+
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
@@ -274,6 +282,7 @@ footer .container .row{
 #sidebar ul li a i {
     margin-right: 10px;
 }
+
 
 @media screen and (max-width: 1420px) {
   #sidebar {
@@ -636,7 +645,7 @@ a.disabled {
     margin-right: 5px;
 }
 
-#botaoPresente{
+.botaoPresente{
     background-color: #666666;
     color: #F5F5F5;
 }

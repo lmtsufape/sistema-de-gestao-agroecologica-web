@@ -13,6 +13,7 @@ use App\Models\FotosReuniao;
 use App\Models\Ocs;
 use App\Models\AgendamentoReuniao;
 use App\Models\Reuniao;
+use App\Models\Retificacao;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -320,17 +321,11 @@ class CoordenadorController extends Controller {
             return redirect()->back()->withErrors($validator_reuniao)->withInput();
         }
 
-        $participantesFormatados = "";
-        $participantes = $request->participantes;
+        $participantes = $entrada['participantes'];
 
-        foreach ($participantes as $nome) {
-            $participantesFormatados = $participantesFormatados . $nome . "/";
-        }
-
-        $participantesFormatados = $participantesFormatados . $request->outrosParticipantes;
 
         $reuniao = new Reuniao();
-        $reuniao->participantes = $participantesFormatados;
+        $reuniao->participantes = $participantes;
         $reuniao->ata = $entrada['ata'];
         $reuniao->id_agendamento = $reuniao_agendada_id;
         $reuniao->save();
@@ -351,7 +346,9 @@ class CoordenadorController extends Controller {
 
                 $fotosReuniao = new FotosReuniao();
                 $fotosReuniao->reuniao_id = $reuniao->id;
-                $fotosReuniao->path = $file->store('fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+                $fotosReuniao->path = $file->store('public/fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+
+                echo $fotosReuniao->path;
                 $fotosReuniao->save();
 
                 unset($fotosReuniao);
@@ -421,6 +418,43 @@ class CoordenadorController extends Controller {
         if($reuniaoAgendada->registrada == false){
             $reuniaoAgendada->delete();
         }
+
+        return redirect(route('user.coordenador.listar_reunioes'));
+    }
+
+    public function editarReuniao($id_reuniao){
+        $reuniao = AgendamentoReuniao::find($id_reuniao);
+        if ($reuniao) {
+            return view('Coordenador.editar_reuniao', [
+                'reuniao' => $reuniao,
+            ]);
+        } else {
+            return redirect(route('user.coordenador.listar_reunioes'));
+        }
+    }
+
+    public function salvarEditarReuniao(Request $request){
+        $entrada = $request->all();
+
+        $data = date('Y-m-d');
+
+        $messages = [
+            'required' => 'O campo :attribute é obrigatório.',
+        ];
+
+        $validator_retificacao = Validator::make($entrada, Retificacao::$regras_validacao, $messages);
+        if ($validator_retificacao->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_retificacao)
+                             ->withInput();
+        }
+
+
+        $retificacao = new Retificacao;
+        $retificacao->fill($entrada);
+        $retificacao->data = $data;
+        $retificacao->reuniao_id = $entrada['id_reuniao'];
+        $retificacao->save();
 
         return redirect(route('user.coordenador.listar_reunioes'));
     }

@@ -24,4 +24,8 @@ class Reuniao extends Model
     public function fotosReuniao(){
         return $this->hasMany('\App\Models\FotosReuniao', 'reuniao_id', 'id');
     }
+
+    public function retificacao(){
+        return $this->hasMany('\App\Models\Retificacao', 'reuniao_id', 'id');
+    }
 }
