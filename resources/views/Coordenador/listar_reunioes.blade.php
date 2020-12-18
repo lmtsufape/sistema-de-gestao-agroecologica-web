@@ -2,12 +2,21 @@
 
 @section('content')
 
-<div class="container-conteudo">
-    <div class = 'jumbotron' id="jumbotron">
-        <div id = 'cabecalho'>
-            <label id="cabecalho-reuniao" for="botao-agendar">Reuniões</label>
+<div class="row extra-space">
+    <div class="col-md-12 upper-div">
+        <div class="especifies">
+            <br>
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 class="marker">Reuniões</h1>
+                </div>
+                @if($usuario->tipo_perfil == "Coordenador")
+                <div class="col-md-2">
+                    <button type="button" class="btn edit-bt bigger-bt bg-verde" data-toggle = "modal" data-target="#agendarReuniao" href="{{route('user.coordenador.agendarReuniao')}}">Agendar reunião</button>
+                </div>
+                @endif
+            </div>
             @if($usuario->tipo_perfil == "Coordenador")
-                <a id="botao-agendar" type="button" class="btn btn-success" data-toggle = "modal" data-target="#agendarReuniao" href="{{route('user.coordenador.agendarReuniao')}}" >Agendar reunião</a>
 
                 {{-- Agendar reunião modal --}}
 
@@ -64,7 +73,7 @@
             @endif
         </div>
 
-        <hr class="linha-cabecalho">
+        <hr class="divider"></hr>
         <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reuniões Agendadas</label>
 
         <div style="overflow: auto; height: 450px">
@@ -80,9 +89,9 @@
                 <tbody>
                     @foreach ($reunioes_agendadas as $reuniao_agendada)
                         <tr class='reuniao'>
-                            <td class='nome_reuniao'><a class="cor-texto" href="{{route('user.coordenador.verReuniao', ['id_reuniao' => $reuniao_agendada->id])}}">{{$reuniao_agendada->nome}}</a></td>
-                            <td class='data_reunião cor-texto'>{{$reuniao_agendada->data}}</td>
-                            <td>
+                            <td class='nome_reuniao basic-space'><a class="cor-texto" href="{{route('user.coordenador.verReuniao', ['id_reuniao' => $reuniao_agendada->id])}}">{{$reuniao_agendada->nome}}</a></td>
+                            <td class='data_reunião cor-texto basic-space'>{{$reuniao_agendada->data}}</td>
+                            <td class="basic-space">
                                 @if($reuniao_agendada->registrada == false)
                                     <img class="imagem-registro" src="{{asset('images/logo_nao_registrad.png')}}" alt="">
                                     <font color="#FF0000">Não registrada</font>
@@ -91,14 +100,13 @@
                                     <font color="#2BC855">Registrada</font>
                                 @endif
                             </td>
-                            <td id="coluna-images">
+                            <td class="basic-space" id="coluna-images">
                                 @if ($reuniao_agendada->registrada == false)
                                     <a href="{{route('user.coordenador.registrarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt=""></a>
-                                    <a href=""><img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt=""></a>
                                     <a href="{{route('user.coordenador.cancelarReuniao', ['reuniao_agendada_id' => $reuniao_agendada->id])}}"><img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt=""></a>
                                 @else
                                     <a class="disabled" href="{{route('user.coordenador.registrarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt=""></a>
-                                    <a class="disabled" href=""><img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}"></a>
+                                    <a href="{{route('user.coordenador.editarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt=""></a>
                                     <a class="disabled" href="{{route('user.coordenador.cancelarReuniao', ['reuniao_agendada_id' => $reuniao_agendada->id])}}"><img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt=""></a>
                                 @endif
                             </td>
@@ -159,4 +167,3 @@
 </script> --}}
 
 @endsection
-

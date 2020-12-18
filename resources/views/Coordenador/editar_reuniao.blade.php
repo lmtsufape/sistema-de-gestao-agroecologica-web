@@ -7,7 +7,7 @@
             <br>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="marker">Reunião</h1>
+                    <h1 class="marker">Editar reunião</h1>
                 </div>
             </div>
             <hr class="divider"></hr>
@@ -56,11 +56,9 @@
                 <div class="col-md-4">
                     <label class="label-static">Fotos</label><br>
                     @foreach ($reuniao->reuniaoRegistrada->fotosReuniao as $fotoReuniao)
-                    {{asset('storage/app/' . $fotoReuniao->path)}}
-                    <img src="{{asset('storage/app/' . $fotoReuniao->path)}}" alt="" width="800px" height="400px"> <br> <br>
+                    <img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="800px" height="400px"> <br> <br>
                     @endforeach
                 </div>
-
             </div>
             <div class="inner-div">
                 <label class="">Retificações</label><br>
@@ -77,6 +75,21 @@
                         <label class="label-ntstatic">{{$ret->dataFormatada()}}</label>
                     </div>
                     @endforeach
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="POST" action="{{route('user.coordenador.editarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}">
+                        @csrf
+                        <label class="label-static">Nova Retificação</label><br>
+                        <textarea type="text" class="form-control" name="retificacao" id='retificacao' rows="3"></textarea>
+                        <input type="hidden" value="{{$reuniao->reuniaoRegistrada->id}}" name="id_reuniao">
+                    </div>
+
+                        <div class="col-md-12 mb-3">
+                            <br>
+                            <button class="btn botao-submit" type="submit">Adicionar retificação</button>
+                        </div>
+                </form>
             </div>
         </div>
         @endif

@@ -6,23 +6,18 @@
         <div class="especifies">
             <br>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <h1 class="marker">Detalhes da produção</h1>
                 </div>
-            </div>
-            @if($id_p == Auth::id())
-            <div class="row">
-                <div class="col-md-10">
-                </div>
+                @if($id_p == Auth::id())
                 <div class="col-md-2">
                     <img id="botao-add" class="imagens-acoes" src="{{asset('images/rounded-add-button.png')}}" alt="">
                     <img id="botao-colher" class="imagens-acoes" src="{{asset('images/save-plant.png')}}" alt="">
                 </div>
+                @endif
             </div>
-            @endif
+
             <hr class="divider"></hr>
-
-
 
             <div class="inner-div">
                 <label class="">Produção</label><br>

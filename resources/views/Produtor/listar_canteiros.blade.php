@@ -85,16 +85,20 @@ $(document).on("click", "#ativarView", function () {
                     <thead>
                         <tr>
                             <th scope="col" class="nome-col">Local</th>
+                            <th scope="col" class="nome-col"></th>
                             <th scope="col" class="nome-col">Tamanho</th>
-                            <th scope="col" class="nome-col">Ações</th>
+                            <th scope="col" class="nome-col"></th>
+                            <th scope="col" class="nome-col" colspan="2">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($canteiro as $cant)
                         <tr>
                             <td class='nome_reuniao basic-space'><a class="cor-texto link load-ajax-modal"  id="ativarView"  data-id="{{$cant->id}}" data-toggle = "modal" data-target="#verCanteiro{{$cant->id}}">{{$cant->localizacao}}</a></td>
+                            <td class='nome_reuniao basic-space'></td>
                             <td class='cor-texto basic-space'>{{$cant->tamanho}}</td>
-                            <td id="coluna-images" class="basic-space">
+                            <td class='nome_reuniao basic-space'></td>
+                            <td id="coluna-images" class="basic-space" colspan="2">
                                 <img class="imagens-acoes" src="{{asset('images/logo_registrado.png')}}" alt="">
                                 <img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_historico.png')}}" alt="">
                                 <img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt="">

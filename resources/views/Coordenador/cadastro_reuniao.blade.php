@@ -1,15 +1,111 @@
 @extends('layouts.app')
 
+<script>
+function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("participantesTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+        td2 = tr[i].getElementsByTagName("td")[1];
+        if (td2) {
+            txtValue = td2.textContent || td2.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+var prods = [];
+var nomes = [];
+
+function mudaCor(id, nome){
+    var isArray = false;
+    prods.forEach(function (item, indice, array) {
+        if (item == id) {
+            isArray = true;
+            prods.splice(indice);
+            nomes.splice(indice);
+        }
+    });
+    var n = "confirm" + id;
+    n.concat(id);
+    if (isArray) {
+        document.getElementById("bt" + id).style.backgroundColor = "#666666";
+        document.getElementById(n).style.display = 'none';
+    } else {
+        document.getElementById("bt" + id).style.backgroundColor = "#1593E7";
+        document.getElementById(n).style.display = 'block';
+        prods.push(id);
+        nomes.push(nome);
+    }
+    document.getElementById('participantes').value = nomes;
+    console.log(nomes);
+}
+
+function previewImages() {
+
+  var preview = document.querySelector('#preview');
+
+  if (this.files) {
+    [].forEach.call(this.files, readAndPreview);
+  }
+  function readAndPreview(file) {
+
+    // Make sure `file.name` matches our extensions criteria
+    if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+      return alert(file.name + " is not an image");
+      } // else...
+    document.getElementById('lbfoto').innerHTML = '';
+    document.getElementById('preview').innerHTML =  '';
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function() {
+      document.getElementById('lbfoto').innerHTML +=  file.name + ', ';
+      var image = new Image();
+      image.height = 100;
+      image.title  = file.name;
+      image.src    = this.result;
+      preview.appendChild(image);
+    });
+
+    reader.readAsDataURL(file);
+
+  }
+
+}
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('#fotos').addEventListener("change", previewImages);
+});
+
+</script>
+
 @section('content')
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul style="padding: 0px;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul style="padding: 0px;">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="container-registrar-reuniao">
@@ -44,45 +140,45 @@
                         </div>
                         <div class="col-md-3">
                             <span class="fa fa-search form-control-feedback" id='search-icon'></span>
-                            <input type="text" class="form-control" placeholder="Nome ou CPF do participante" id='searchbar' onkeyup="searchParticipante()">
+                            <input type="text" class="form-control" placeholder="Nome ou CPF do participante" id='searchbar' onkeyup="myFunction()">
                         </div>
                         <div class="col-md-5">
                             <img id="botao-pesquisa" class="imagens-acoes" src="{{asset('images/logo_procurar.png')}}" alt="">
                         </div>
                         <div class="col-md-2">
-                            <a id="botao-adicionar-participante" href="" class="btn">Adicionar participante</a>
+                            <!--<a id="botao-adicionar-participante" href="" class="btn">Adicionar participante</a>-->
                         </div>
                     </div>
                     <br>
+                    <input type="hidden" id="participantes" name="participantes">
                     {{-- Colocar funcionalidade de busca e botão para add participantes--}}
                     <div style="overflow: auto; height: 300px">
-                        <table class="table">
+                        <table class="table" id="participantesTable">
                             <thead>
-                            <tr class="participantes">
-                                <th scope="col" class="nome-col" style="width: 400px">Nome</th>
-                                <th scope="col" class="nome-col">CPF</th>
-                                <th scope="col" class="nome-col">Status</th>
-                                <th scope="col" class="nome-col">Ação</th>
-                            </tr>
+                                <tr class="participantes">
+                                    <th scope="col" class="nome-col" style="width: 400px">Nome</th>
+                                    <th scope="col" class="nome-col">CPF</th>
+                                    <th scope="col" class="nome-col">Status</th>
+                                    <th scope="col" class="nome-col">Ação</th>
+                                </tr>
                             </thead>
                             <tbody>
+                                @foreach ($produtores as $produtor)
                                 <tr>
-                                    @foreach ($produtores as $produtor)
-                                        <td class="cor-texto">{{$produtor->nome}}</td>
-                                        <td class="cor-texto">{{$produtor->cpf}}</td>
-                                        <td>
-                                            {{-- Colcoar status apos clicar no botaoPresente --}}
-                                        </td>
-                                        <td>
-                                            <a id="botaoPresente" class="btn btn" href=""><img id="imagemPresente" src="{{asset('images/logo_presente.png')}}" alt=""> Presente</a>
-                                        </td>
-                                    @endforeach
+                                    <td class="cor-texto">{{$produtor->nome}}</td>
+                                    <td class="cor-texto">{{$produtor->cpf}}</td>
+                                    <td>
+                                        <img class="imagens-acoes" style="width: 45px; display: none" src="{{asset('images/logo_registrado.png')}}" alt="" id="confirm{{$produtor->id}}">
+                                    </td>
+                                    <td>
+                                        <button class="btn botaoPresente" type="button" id="bt{{$produtor->id}}" onclick="mudaCor('{{$produtor->id}}', '{{$produtor->nome}}')"><img id="imagemPresente" src="{{asset('images/logo_presente.png')}}" alt="">Presente</button>
+                                    </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 {{-- Ata --}}
                 <div>
                     <label id="nome-tabela-reuniao" class = "col-md-12" for="">Ata</label>
@@ -91,13 +187,17 @@
                         <textarea class="form-control" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "5"></textarea>
                     </div>
                 </div>
-                
+                <!--<img src="" height="200" alt="Image preview...">   -->
                 {{-- Álbum --}}
                 <div>
                     <label id="nome-tabela-reuniao" class = "col-md-12" for="">Álbum</label>
                     <div class="col-md-6">
                         <input type="file" name="fotos[]" class="custom-file-input input-stl" id="fotos" multiple="multiple" accept="image/*">
-                        <label class="custom-file-label" for="fotos">Escolha as fotos</label>
+                        <label class="custom-file-label" id="lbfoto" for="fotos">Escolha as fotos</label>
+                    </div>
+                    <div class="col-md-12" id="preview">
+
+                    </div>
                     </div>
                 </div>
                 <div>
@@ -116,33 +216,9 @@
                         <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter">Registrar reunião</button>
                     </div>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 </div>
-
-<script>
-    // function habilitar(){
-    //     if(document.getElementById('outros').checked){
-    //         document.getElementById('outrosParticipantes').removeAttribute("disabled");
-    //     }else{
-    //         document.getElementById('onoff').value='';
-    //         document.getElementById('outrosParticipantes').setAttribute("disabled", "disabled");
-    //     }
-    // }
-    function searchParticipante(){
-        let input = document.getElementById('searchbar').value;
-        input = input.toLowerCase();
-        let participantes = document.getElementsByClassName('participantes');
-        for(i=0; i<participantes.length; i++){
-            if(!participantes[i].children[1].innerHTML.toLowerCase().includes(input)){
-                participantes[i].style.display='none';
-            }
-            else{
-                participantes[i].style.display='';
-            }
-        }
-    }
-</script> 
 
 @endsection
