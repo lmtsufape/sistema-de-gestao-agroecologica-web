@@ -45,6 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function dataFormatada(){
+        $time = strtotime($this->data_nascimento);
+        return date('d/m/Y', $time);
+    }
+
 
     public static $regras_validacao_criar = [
         'nome' => 'required|max:255',
@@ -77,7 +82,9 @@ class User extends Authenticatable
     }
 
     public function propriedade() {
-        return $this->hasOne('\App\Models\Propriedade', 'id');
+        //return Propriedade::find('id_propriedade');
+        //return Propriedade::where('id', '=', 'id_propriedade')->get();
+        return $this->hasOne('\App\Models\Propriedade', 'id_produtor', 'id');
     }
 
 }

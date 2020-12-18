@@ -148,13 +148,13 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="label-static required" for="cep">CEP</label>
+                            <label class="label-static" for="cep">CEP</label>
                             <input type="text" class="form-control input-stl" id="cep" name="cep" placeholder="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="label-static required">Ponto de Referência</label>
+                        <label class="label-static">Ponto de Referência</label>
                         <textarea class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
                     </div>
 

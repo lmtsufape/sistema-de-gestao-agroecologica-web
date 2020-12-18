@@ -99,7 +99,6 @@ $(document).on("click", "#ativarView", function () {
                             <td class='cor-texto basic-space'>{{$cant->tamanho}}</td>
                             <td class='nome_reuniao basic-space'></td>
                             <td id="coluna-images" class="basic-space" colspan="2">
-                                <img class="imagens-acoes" src="{{asset('images/logo_registrado.png')}}" alt="">
                                 <img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_historico.png')}}" alt="">
                                 <img id="botao-editar" class="imagens-acoes" src="{{asset('images/logo_editar_reuniao.png')}}" alt="">
                                 <img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt="">
@@ -203,10 +202,6 @@ $(document).on("click", "#ativarView", function () {
                 <div id="linha-legenda"><hr></div>
                 <div>
                     <label class= "cor-texto" for="">Legenda:</label>
-                </div>
-                <div class="div-lado">
-                    <img class="imagens-acoes" src="{{asset('images/logo_registrado.png')}}" alt="">
-                    <label class= "cor-texto" for="">Cadastrar produção</label>
                 </div>
                 <div class="div-lado">
                     <img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_historico.png')}}" alt="">

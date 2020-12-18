@@ -53,28 +53,28 @@
                 <label class="">Imagens da reunião</label><br>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label class="label-static">Fotos</label><br>
+                </div>
+                <div class="col-md-12">
                     @foreach ($reuniao->reuniaoRegistrada->fotosReuniao as $fotoReuniao)
-                    <img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="800px" height="400px"> <br> <br>
+                    <center><img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="600px"> <br> <br></center>
                     @endforeach
                 </div>
+
             </div>
             <div class="inner-div">
                 <label class="">Retificações</label><br>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <label class="label-static">Retificações</label><br>
+                @foreach ($reuniao->reuniaoRegistrada->retificacao as $ret)
+                <div class="col-md-10">
+                    <label class="label-ntstatic">{{$ret->retificacao}}</label>
                 </div>
-                    @foreach ($reuniao->reuniaoRegistrada->retificacao as $ret)
-                    <div class="col-md-10">
-                        <label class="label-ntstatic">{{$ret->retificacao}}</label>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="label-ntstatic">{{$ret->dataFormatada()}}</label>
-                    </div>
-                    @endforeach
+                <div class="col-md-2">
+                    <label class="label-ntstatic">{{$ret->dataFormatada()}}</label>
+                </div>
+                @endforeach
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -85,10 +85,10 @@
                         <input type="hidden" value="{{$reuniao->reuniaoRegistrada->id}}" name="id_reuniao">
                     </div>
 
-                        <div class="col-md-12 mb-3">
-                            <br>
-                            <button class="btn botao-submit" type="submit">Adicionar retificação</button>
-                        </div>
+                    <div class="col-md-12 mb-3">
+                        <br>
+                        <button class="btn botao-submit" type="submit">Adicionar retificação</button>
+                    </div>
                 </form>
             </div>
         </div>

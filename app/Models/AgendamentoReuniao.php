@@ -13,6 +13,12 @@ class AgendamentoReuniao extends Model
         'local' => 'required',
     ];
 
+    public function dataFormatada(){
+        $time = strtotime($this->data);
+        return date('d/m/Y', $time);
+    }
+
+
     public function reuniaoRegistrada(){
         return $this->hasOne('App\Models\Reuniao', 'id_agendamento' , 'id');
     }

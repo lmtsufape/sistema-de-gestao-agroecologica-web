@@ -321,7 +321,6 @@ a:hover,a:visited:hover {
 .basic-space{
     width: auto;
     background-color: #F5F5F5;
-    font-weight: bold;
     text-decoration: none;
 }
 
@@ -615,8 +614,6 @@ a.disabled {
 /* Tela - Registrar reunião */
 
 .container-registrar-reuniao{
-    height: 1400px;
-    width: 1091px;
     background-color: #07A287;
     margin-inline-start: 139px;
     padding-top: 40px;
@@ -624,7 +621,6 @@ a.disabled {
 
 #jumbotron-registrar-reuniao{
     margin-inline-start: 40px;
-    height: 1320px;
     width: 1010px;
     background-color: #fff;
     border-radius: 20px;
@@ -762,4 +758,20 @@ a.disabled {
 
 #produ{
     display: none;
+}
+
+.bt-spec{
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0, 0, 0, 0.0);
+    font-size: 30px;
+    font-size: bold;
+    height: 100px;
+    border: none;
+    margin-right: 20px;
+}
+
+.bt-spec:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: black;
+    border-style: solid;
 }

@@ -53,11 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="especifies">
             <br>
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-10">
                     <h1 class="marker">Ocs</h1>
-                </div>
-                <div class="col-md-3">
-                    <button class="btn botaoPresente bg-verde" type="button" href="{{ route('user.coordenador.cadastrarProdutor') }}"><img class="bg-verde" id="botao-add" style="width:27px !important;" src="{{asset('images/rounded-add-button.png')}}" alt=""> Novo Produtor</button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn edit-bt" id="enable-bt">Editar</button>
@@ -87,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <input disabled="true"type="text" class="form-control input-stl" id="nome_entidade" name="nome_entidade" placeholder="Nome Completo" value="{{ old('nome_entidade', $ocs->nome_entidade) }}">
                         </div>
                         <div class="col-md-4">
-                            <label class="label-static required">CNPJ</label>
+                            <label class="label-static required">CNPJ da associação</label>
                             <input disabled="true"type="text" class="form-control input-stl" id="cnpj" name="cnpj" placeholder="CNPJ" value="{{ old('cnpj', $ocs->cnpj) }}">
                             <br>
                         </div>
@@ -138,11 +135,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     <br>
                     <div class="form-row inner-div">
-                        <label class="">Endereço</label>
+                        <label class="">Endereço da associação</label>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label class="label-static">Rua</label>
+                            <label class="label-static">Logradouro</label>
                             <input disabled="true"type="text" class="form-control input-stl" id="nome_rua" name="nome_rua" placeholder="Rua onde se localiza a OCS" value="{{ old('nome_rua', $ocs->endereco->nome_rua) }}">
                         </div>
                         <div class="col-md-4">
@@ -166,18 +163,18 @@ document.addEventListener('DOMContentLoaded', function () {
                             <br>
                         </div>
                         <div class="col-md-4">
-                            <label class="label-static required">CEP</label>
+                            <label class="label-static">CEP</label>
                             <input disabled="true"type="text" class="form-control input-stl" id="cep" name="cep" value="{{ old('cep', $ocs->endereco->cep) }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="label-static">Descricao</label>
+                            <label class="label-static">Descrição</label>
                             <textarea disabled="true"type="text" class="form-control input-stl" id="descricao" name="descricao" placeholder="Descrição de como chegar a OCS">{{ $ocs->endereco->descricao}}</textarea>
                             <br>
                         </div>
                         <div class="col-md-12">
-                            <label class="label-static required">Ponto de Referência</label>
+                            <label class="label-static">Ponto de Referência</label>
                             <textarea disabled="true"type="text" class="form-control input-stl" id="ponto_referencia" name="ponto_referencia">{{ $ocs->endereco->ponto_referencia}}</textarea>
                             <br>
                         </div>

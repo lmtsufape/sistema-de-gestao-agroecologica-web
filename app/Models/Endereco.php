@@ -20,7 +20,5 @@ class Endereco extends Model
     public static $regras_validacao = [
         'estado' => 'required',
         'cidade' => 'required',
-        'cep' => 'required|numeric',
-        'ponto_referencia' => 'required',
     ];
 }
