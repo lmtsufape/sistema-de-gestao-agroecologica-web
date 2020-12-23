@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAgendamentoReunioesTable extends Migration
+class CreateAgendamentoReuniaosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateAgendamentoReunioesTable extends Migration
             $table->date('data');
             $table->text('local');
             $table->boolean('registrada');
-            $table->unsignedBigInteger('id_ocs');
-            $table->foreign('id_ocs')->references('id')->on('ocs');
+            $table->unsignedBigInteger('ocs_id');
+            $table->foreign('ocs_id')->references('id')->on('ocs');
             $table->timestamps();
         });
     }
@@ -32,6 +32,7 @@ class CreateAgendamentoReunioesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('agendamento_reuniaos');
         Schema::dropIfExists('agendamento_reunioes');
     }
 }

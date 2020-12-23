@@ -122,7 +122,7 @@ class CoordenadorController extends Controller {
         $endereco->save();
 
         $ocs->fill($entrada);
-        $ocs->id_endereco = $endereco->id;
+        $ocs->endereco_id = $endereco->id;
         $ocs->unidade_federacao = $endereco->estado;
 
         $ocs->save();
@@ -182,12 +182,12 @@ class CoordenadorController extends Controller {
         $produtor = new User;
         $produtor->fill($entrada);
         $produtor->tipo_perfil = 'Produtor';
-        $produtor->id_endereco = $endereco->id;
+        $produtor->endereco_id = $endereco->id;
 
         $produtor->password = Hash::make($entrada['password']);
 
         $coordenadorlogado = User::find(Auth::id());
-        $produtor->id_ocs = $coordenadorlogado->id_ocs;
+        $produtor->ocs_id = $coordenadorlogado->ocs_id;
 
         $produtor->save();
 
@@ -252,13 +252,13 @@ class CoordenadorController extends Controller {
 
         if(!$cad){
             $end_ocs->save();
-            $ocs->id_endereco = $end_ocs->id;
+            $ocs->endereco_id = $end_ocs->id;
             $ocs->save();
         }
 
         $endereco->save();
-        $coordenador->id_ocs = $ocs->id;
-        $coordenador->id_endereco = $endereco->id;
+        $coordenador->ocs_id = $ocs->id;
+        $coordenador->endereco_id = $endereco->id;
         $coordenador->save();
         $request->session()->forget('ocs');
         $request->session()->forget('end_ocs');
@@ -327,7 +327,7 @@ class CoordenadorController extends Controller {
         $reuniao = new Reuniao();
         $reuniao->participantes = $participantes;
         $reuniao->ata = $entrada['ata'];
-        $reuniao->id_agendamento = $reuniao_agendada_id;
+        $reuniao->agendamento_id = $reuniao_agendada_id;
         $reuniao->save();
 
         $reuniaoAgendada = AgendamentoReuniao::find($reuniao_agendada_id);
@@ -346,7 +346,7 @@ class CoordenadorController extends Controller {
 
                 $fotosReuniao = new FotosReuniao();
                 $fotosReuniao->reuniao_id = $reuniao->id;
-                $fotosReuniao->path = $file->store('public/fotosReuniao/' . $reuniao->id_ocs . '/' . $reuniao->id);
+                $fotosReuniao->path = $file->store('public/fotosReuniao/' . $reuniao->ocs_id . '/' . $reuniao->id);
 
                 echo $fotosReuniao->path;
                 $fotosReuniao->save();
@@ -363,10 +363,10 @@ class CoordenadorController extends Controller {
         $produtoresDaOcs = array();
 
         $coordenadorLogado = User::find(Auth::id());
-        $id_ocs = $coordenadorLogado->id_ocs;
+        $ocs_id = $coordenadorLogado->ocs_id;
 
         foreach ($produtores as $produtor) {
-            if($produtor->id_ocs == $id_ocs){
+            if($produtor->ocs_id == $ocs_id){
                 array_push($produtoresDaOcs, $produtor);
             }
         }
@@ -405,7 +405,7 @@ class CoordenadorController extends Controller {
         $agendamentoReuniao->local = $entrada['local'];
         $agendamentoReuniao->registrada = false;
 
-        $agendamentoReuniao->id_ocs = $coordenadorlogado->id_ocs;
+        $agendamentoReuniao->ocs_id = $coordenadorlogado->ocs_id;
         $agendamentoReuniao->save();
 
         return redirect(route('user.coordenador.listar_reunioes'));

@@ -20,6 +20,6 @@ class AgendamentoReuniao extends Model
 
 
     public function reuniaoRegistrada(){
-        return $this->hasOne('App\Models\Reuniao', 'id_agendamento' , 'id');
+        return $this->hasOne('App\Models\Reuniao');
     }
 }

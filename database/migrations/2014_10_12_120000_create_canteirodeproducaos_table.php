@@ -17,8 +17,8 @@ class CreateCanteirodeproducaosTable extends Migration
             $table->id();
             $table->integer('tamanho');
             $table->string('localizacao');
-            $table->unsignedBigInteger('id_propriedade');
-            $table->foreign('id_propriedade')->references('id')->on('propriedades');
+            $table->unsignedBigInteger('propriedade_id');
+            $table->foreign('propriedade_id')->references('id')->on('propriedades');
         });
     }
 

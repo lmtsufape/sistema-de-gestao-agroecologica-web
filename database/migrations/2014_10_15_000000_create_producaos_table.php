@@ -20,8 +20,8 @@ class CreateProducaosTable extends Migration
             $table->longText('observacoes')->nullable();
             $table->longText('lista_produtos');
             $table->longText('lista_produtos_exteriores_beneficiado')->nullable();
-            $table->unsignedBigInteger('id_canteirodeproducao');
-            $table->foreign('id_canteirodeproducao')->references('id')->on('canteirodeproducaos');
+            $table->unsignedBigInteger('canteirodeproducao_id');
+            $table->foreign('canteirodeproducao_id')->references('id')->on('canteirodeproducaos');
         });
     }
 

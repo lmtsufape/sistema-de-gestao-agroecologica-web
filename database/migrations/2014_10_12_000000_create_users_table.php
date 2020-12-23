@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->date('data_nascimento');
             $table->string('cpf')->unique();
             $table->string('rg')->unique();
-            $table->unsignedBigInteger('id_endereco');
-            $table->foreign('id_endereco')->references('id')->on('enderecos');
-            $table->unsignedBigInteger('id_ocs');
-            $table->foreign('id_ocs')->references('id')->on('ocs');
+            $table->unsignedBigInteger('endereco_id');
+            $table->foreign('endereco_id')->references('id')->on('enderecos');
+            $table->unsignedBigInteger('ocs_id');
+            $table->foreign('ocs_id')->references('id')->on('ocs');
             $table->string('telefone');
             $table->string('tipo_perfil');  // Se é ciirdenador ou produtor
             $table->string('nome_conjugue')->nullable();

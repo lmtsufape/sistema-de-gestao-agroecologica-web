@@ -53,7 +53,7 @@ class UserController extends Controller {
         $endereco->save();
 
         $produtor->fill($entrada);
-        $produtor->id_endereco = $endereco->id;
+        $produtor->endereco_id = $endereco->id;
 
         $produtor->save();
 

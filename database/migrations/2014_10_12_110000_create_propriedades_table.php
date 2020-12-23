@@ -17,10 +17,10 @@ class CreatePropriedadesTable extends Migration
             $table->id();
             $table->integer('tamanho_total');
             $table->string('fonte_de_agua');
-            $table->unsignedBigInteger('id_produtor');
-            $table->foreign('id_produtor')->references('id')->on('users');
-            $table->unsignedBigInteger('id_endereco');
-            $table->foreign('id_endereco')->references('id')->on('enderecos');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('endereco_id');
+            $table->foreign('endereco_id')->references('id')->on('enderecos');
         });
     }
 

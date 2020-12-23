@@ -74,17 +74,17 @@ class User extends Authenticatable
 
 	// Ocs que o produtor participa
 	public function ocs() {
-		return $this->belongsTo('App\Models\Ocs', 'id_ocs');
+		return $this->belongsTo('App\Models\Ocs', 'ocs_id');
 	}
 
     public function endereco() {
-        return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
+        return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
     }
 
     public function propriedade() {
         //return Propriedade::find('id_propriedade');
         //return Propriedade::where('id', '=', 'id_propriedade')->get();
-        return $this->hasOne('\App\Models\Propriedade', 'id_produtor', 'id');
+        return $this->hasOne('\App\Models\Propriedade', 'user_id', 'id');
     }
 
 }

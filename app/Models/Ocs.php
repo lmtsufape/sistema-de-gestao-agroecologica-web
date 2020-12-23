@@ -43,15 +43,15 @@ class Ocs extends Authenticatable
     ];
 
     public function endereco() {
-        return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
+        return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
     }
 
     public function produtor(){
-        return $this->hasMany('App\Models\User', 'id_ocs', 'id');
+        return $this->hasMany('App\Models\User', 'ocs_id');
     }
 
     public function agendamentoReuniao(){
-        return $this->hasMany('App\Models\AgendamentoReuniao', 'id_ocs', 'id'); // foreign_key e local_key
+        return $this->hasMany('App\Models\AgendamentoReuniao', 'ocs_id', 'id'); // foreign_key e local_key
     }
 
 }
