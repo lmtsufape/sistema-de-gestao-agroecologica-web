@@ -74,7 +74,8 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
     });
 
     Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil')->middleware('auth');
-
+    Route::get('/primeiro_acesso',  [UserController::class, 'primeiroAcessoTela'])->name('.primeiro_acesso')->middleware('auth');
+    Route::post('/primeiro_acesso/salvar',  [UserController::class, 'primeiroAcesso'])->name('.primeiro_acesso_salvar')->middleware('auth');
     Route::post('/ver_perfil/editar/salvar',  [UserController::class, 'salvarEditarPerfil'])->name('.salvar_editar_perfil')->middleware('auth');
 
     Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');

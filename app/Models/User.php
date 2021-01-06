@@ -25,6 +25,8 @@ class User extends Authenticatable
         'nome_filhos',
         'email',
         'password',
+        'primeiro_acesso',
+        'perfil_coordenador',
     ];
 
     /**
@@ -60,6 +62,22 @@ class User extends Authenticatable
         'nome_conjugue' => 'nullable|max:255',
         'nome_filhos'=> 'nullable',
         'email' => 'required|max:255|unique:users,email',
+        'password' => 'required|max:255|min:6',
+    ];
+
+    public static $regras_validacao_criar_produtor = [
+        'nome' => 'required|max:255',
+        'cpf' => 'required|numeric|unique:users,cpf',
+        'email' => 'required|max:255|unique:users,email',
+    ];
+
+    public static $regras_validacao_primeiro_acesso = [
+        'nome' => 'required|max:255',
+        'rg' => 'required|numeric|unique:users,rg',
+        'data_nascimento' => 'required',
+        'telefone' => 'required',
+        'nome_conjugue' => 'nullable|max:255',
+        'nome_filhos'=> 'nullable',
         'password' => 'required|max:255|min:6',
     ];
 

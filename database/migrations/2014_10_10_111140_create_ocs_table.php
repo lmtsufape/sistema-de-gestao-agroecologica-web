@@ -17,6 +17,7 @@ class CreateOcsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('cnpj')->unique();
+            $table->string('nome_ocs');
             $table->string('nome_entidade');
             $table->unsignedBigInteger('endereco_id');
             $table->foreign('endereco_id')->references('id')->on('enderecos');

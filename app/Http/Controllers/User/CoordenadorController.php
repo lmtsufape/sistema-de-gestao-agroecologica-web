@@ -158,14 +158,7 @@ class CoordenadorController extends Controller {
         ];
 
 
-        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
-        if ($validator_endereco->fails()) {
-            return redirect()->back()
-                             ->withErrors($validator_endereco)
-                             ->withInput();
-        }
-
-        $validator_produtor = Validator::make($entrada, User::$regras_validacao_criar, $messages);
+        $validator_produtor = Validator::make($entrada, User::$regras_validacao_criar_produtor, $messages);
         if ($validator_produtor->fails()) {
             return redirect()->back()
                              ->withErrors($validator_produtor)
@@ -173,18 +166,11 @@ class CoordenadorController extends Controller {
         }
 
 
-
-        $endereco = new Endereco;
-        $endereco->fill($entrada);
-        $endereco->save();
-
-
         $produtor = new User;
         $produtor->fill($entrada);
         $produtor->tipo_perfil = 'Produtor';
-        $produtor->endereco_id = $endereco->id;
-
-        $produtor->password = Hash::make($entrada['password']);
+        $produtor->primeiro_acesso = true;
+        $produtor->password = Hash::make('123123123');
 
         $coordenadorlogado = User::find(Auth::id());
         $produtor->ocs_id = $coordenadorlogado->ocs_id;
@@ -257,6 +243,7 @@ class CoordenadorController extends Controller {
         }
 
         $endereco->save();
+        $coordenador->primeiro_acesso = false;
         $coordenador->ocs_id = $ocs->id;
         $coordenador->endereco_id = $endereco->id;
         $coordenador->save();

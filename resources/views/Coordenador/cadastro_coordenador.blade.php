@@ -55,7 +55,18 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-7 mb-3">
+                        <div class="col-md-12 mb-3">
+                            <label class="label-static">Tipo de perfil:</label>
+                            <select class="custom-select" id="perfil_coordenador" name="perfil_coordenador" placeholder="Perfil do coordenador">
+                                <option selected disabled value="">Função do coordenador</option>
+                                <option value="Produtor">Produtor</option>
+                                <option value="Tesoureiro">Tesoureiro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
                             <label class="label-static">Nome do Conjuge</label>
                             <input type="text" class="form-control input-stl" id="nome_conjuge" name="nome_conjuge" placeholder="Nome do Conjuge">
                         </div>

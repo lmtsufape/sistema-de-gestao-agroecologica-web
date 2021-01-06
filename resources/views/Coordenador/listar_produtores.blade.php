@@ -50,6 +50,8 @@ function showDiv(id, id1, id2) {
                 </thead>
                 <tbody>
                     @foreach ($produtores as $produtor)
+                    @if($produtor->tipo_perfil == 'Produtor')
+                    @if(!$produtor->primeiro_acesso)
                     <tr>
                         <td class="basic-space label-ntstatic">{{$produtor->nome}}</td>
                         <td class="basic-space">{{$produtor->cpf}}</td>
@@ -115,7 +117,7 @@ function showDiv(id, id1, id2) {
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <label class="label-static">Data de Nascimento</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->data_nascimento}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->dataFormatada()}}</label>
                                                 </div>
                                                 @if($produtor->nome_conjugue)
                                                 <div class="col-md-12 mb-2">
@@ -298,10 +300,13 @@ function showDiv(id, id1, id2) {
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @endif
                     @endforeach
 
                 </td>
             </tr>
+
                 </tbody>
             </table>
             </div>

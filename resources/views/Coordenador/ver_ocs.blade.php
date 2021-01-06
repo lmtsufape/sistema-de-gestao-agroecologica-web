@@ -74,10 +74,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 @endif
                 <form class="formulario" method="post" action="{{ route('user.coordenador.editarOcs.salvar') }}">
-                    <div class="form-row inner-div">
-                        <label class="">Informações</label>
-                    </div>
                     @csrf
+                    <div class="form-row inner-div">
+                        <label class="">Informações da OCS</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="label-static required">Nome da OCS</label>
+                            <input disabled="true"type="text" class="form-control input-stl" id="nome_ocs" name="nome_ocs" value="{{ old('nome_ocs', $ocs->nome_ocs) }}">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="label-static">Coordenador responsável</label><br>
+                            <label class="label-ntstatic"><b>{{$ocs->nome_para_contato}}</b></label>
+                        </div>
+                        <div class="col-md-7">
+                            <br>
+                            <label class="label-static required">Órgão fiscalizador</label>
+                            <input disabled="true"type="text" class="form-control input-stl" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="" value="{{ old('orgao_fiscalizador', $ocs->orgao_fiscalizador) }}">
+                        </div>
+
+                        <div class="col-md-5 repos">
+                            <br>
+                            <label class="label-static">Produtores</label>
+                                <table class="table">
+                                    <tbody class="wrp">
+                                        @foreach($ocs->produtor as $pro)
+                                        <tr>
+                                            <td class="cor-texto basic-space">{{$pro->nome}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                        </div>
+                    </div>
+                    <div class="form-row inner-div">
+                        <label class="">Informações da associação</label>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <label class="label-static required">Nome da entidade</label>
@@ -105,32 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="col-md-4 mb-4">
                             <label class="label-static">Fax</label>
                             <input disabled="true" class="form-control input-stl" type="number" class="form-control" name="fax" placeholder="FAX" value="{{ old('telefone', $ocs->fax) }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label class="label-static">Coordenador responsável</label><br>
-                            <label class="label-ntstatic"><b>{{$ocs->nome_para_contato}}</b></label>
-                        </div>
-                        <div class="col-md-7">
-                            <br>
-                            <label class="label-static required">Órgão fiscalizador</label>
-                            <input disabled="true"type="text" class="form-control input-stl" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="" value="{{ old('orgao_fiscalizador', $ocs->orgao_fiscalizador) }}">
-                        </div>
-
-                        <div class="col-md-5 repos">
-                            <br>
-                            <label class="label-static">Produtores</label>
-                                <table class="table">
-                                    <tbody class="wrp">
-                                        @foreach($ocs->produtor as $pro)
-                                        <tr>
-                                            <td class="cor-texto basic-space">{{$pro->nome}}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
                         </div>
                     </div>
                     <br>

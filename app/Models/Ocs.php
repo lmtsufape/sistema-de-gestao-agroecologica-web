@@ -17,6 +17,7 @@ class Ocs extends Authenticatable
     protected $fillable = [
         'cnpj',
         'nome_entidade',
+        'nome_ocs',
         'telefone',
         'fax',
         'email',
@@ -28,6 +29,7 @@ class Ocs extends Authenticatable
     public static $regras_validacao_criar = [
         'cnpj' => 'required|max:20|unique:ocs,cnpj',
         'nome_entidade' => 'required|max:255',
+        'nome_ocs' => 'required|max:255',
         'telefone' => 'required|numeric|min:10',
         'fax' => 'max:255',
         'email' => 'max:255',
@@ -36,6 +38,7 @@ class Ocs extends Authenticatable
 
     public static $regras_validacao_editar = [
         'nome_entidade' => 'required|max:255',
+        'nome_ocs' => 'required|max:255',
         'telefone' => 'required|numeric|min:10',
         'fax' => 'max:255',
         'email' => 'max:255',
