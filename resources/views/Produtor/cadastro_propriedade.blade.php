@@ -83,7 +83,7 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label class="label-static required">Tamanho total (Metros)</label>
+                            <label class="label-static required">Tamanho total (HA)</label>
                             <input  type="number" class="form-control input-stl" id="tamanho_total" name="tamanho_total" placeholder="Tamanho total da propriedade (Metros)">
                         </div>
                         <div class="col-md-6 mb-3">
@@ -148,13 +148,13 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="label-static required" for="cep">CEP</label>
+                            <label class="label-static" for="cep">CEP</label>
                             <input  type="text" class="form-control input-stl" id="cep" name="cep" placeholder="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="label-static required">Ponto de Referencia</label>
+                        <label class="label-static">Ponto de Referencia</label>
                         <textarea  class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
                     </div>
 

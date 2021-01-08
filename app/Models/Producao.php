@@ -28,7 +28,7 @@ class Producao extends Model
 
 
     public function canteirodeproducaos() {
-        return $this->belongsTo('App\Models\CanteiroDeProducao', 'id');
+        return $this->belongsTo('App\Models\CanteiroDeProducao', 'canteirodeproducao_id', 'id');
     }
 
     public function dataInicioFormatada(){

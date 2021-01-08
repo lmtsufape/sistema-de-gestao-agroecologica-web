@@ -12,18 +12,11 @@ function myFunction() {
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
+        td2 = tr[i].getElementsByTagName("td")[1];
         if (td) {
             txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-        td2 = tr[i].getElementsByTagName("td")[1];
-        if (td2) {
-            txtValue = td2.textContent || td2.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            txtValue2 = td2.textContent || td2.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
@@ -58,40 +51,55 @@ function mudaCor(id, nome){
     document.getElementById('participantes').value = nomes;
     console.log(nomes);
 }
+let list = new DataTransfer();
+
+function removeImage(file, image) {
+    list.items.remove(file);
+    preview.removeChild(image);
+    lbfoto.innerHTML = 'Escolha mais imagens';
+}
+
 
 function previewImages() {
 
-  var preview = document.querySelector('#preview');
+    var preview = document.querySelector('#preview');
 
-  if (this.files) {
-    [].forEach.call(this.files, readAndPreview);
-  }
-  function readAndPreview(file) {
+    if (this.files) {
+        [].forEach.call(this.files, readAndPreview);
+    }
+    function readAndPreview(file) {
+        // Make sure `file.name` matches our extensions criteria
+        if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+            return alert(file.name + " is not an image");
+        } // else...
+        var reader = new FileReader();
 
-    // Make sure `file.name` matches our extensions criteria
-    if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
-      return alert(file.name + " is not an image");
-      } // else...
-    document.getElementById('lbfoto').innerHTML = '';
-    document.getElementById('preview').innerHTML =  '';
-    var reader = new FileReader();
+        reader.addEventListener("load", function() {
+            document.getElementById('lbfoto').innerHTML +=  file.name + ', ';
+            var image = new Image();
+            image.className = 'bt-spec';
+            image.title  = file.name;
+            image.src    = this.result;
+            image.onclick = function(){removeImage(file, image);};
+            preview.appendChild(image);
+            list.items.add(file);
+            lbfoto.innerHTML = 'Escolha mais imagens';
+            //btn.style.margin = '-50px';
+        });
+        reader.readAsDataURL(file);
 
-    reader.addEventListener("load", function() {
-      document.getElementById('lbfoto').innerHTML +=  file.name + ', ';
-      var image = new Image();
-      image.height = 100;
-      image.title  = file.name;
-      image.src    = this.result;
-      preview.appendChild(image);
-    });
-
-    reader.readAsDataURL(file);
-
-  }
+    }
 
 }
+
+function enviarFotos(){
+  document.querySelector('#fotos').files = list.files;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#fotos').addEventListener("change", previewImages);
+    document.querySelector('#botao-registrar-reuniao').addEventListener("click", enviarFotos);
+
 });
 
 </script>
@@ -127,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                         <div class="col-md-2 mb-4">
                             <label class="corLabelReuniao" for="">Data da reunião</label> <br>
-                            <label class="cor-texto" for="">{{$reuniao->data}}</label>
+                            <label class="cor-texto" for="">{{$reuniao->dataFormatada()}}</label>
                         </div>
                     </div>
                 </div>
@@ -191,34 +199,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 {{-- Álbum --}}
                 <div>
                     <label id="nome-tabela-reuniao" class = "col-md-12" for="">Álbum</label>
+                    <div style="background-color: #05856F;" class="form-row inner-div">
+                        <label class="">Você pode remover as imagens clicando sobre elas!</label>
+                    </div>
                     <div class="col-md-6">
-                        <input type="file" name="fotos[]" class="custom-file-input input-stl" id="fotos" multiple="multiple" accept="image/*">
-                        <label class="custom-file-label" id="lbfoto" for="fotos">Escolha as fotos</label>
+                        <input type="file" multiple='multiple' name='fotos[]' class="custom-file-input input-stl" id="fotos" accept="image/*" placeholder="Escolha as fotos">
+                        <label class="btn btn-primary btn-block btn-outlined" id="lbfoto" for="fotos">Escolha as fotos</label>
                     </div>
                     <div class="col-md-12" id="preview">
 
                     </div>
-                    </div>
                 </div>
+            </div>
+            <div>
+                <div id="linha-legenda"><hr></div>
                 <div>
-                    <div id="linha-legenda"><hr></div>
-                    <div>
-                        <label class= "cor-texto" for="">Legenda:</label>
-                    </div>
-                    <div class="form-row">
-                        <div class="div-lado">
-                            <img id="botaoProcurar" class="imagens-acoes" src="{{asset('images/logo_procurar.png')}}" alt="">
-                            <label class= "cor-texto" for="">Localizar participante</label>
-                        </div>
-                        <div class="col-md-3 mb-4">
-                            <a id="labelCancelar-registrar" class="fonteFooter" href="{{route('user.coordenador.listar_reunioes')}}">Cancelar</a>
-                        </div>
-                        <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter">Registrar reunião</button>
-                    </div>
+                    <label class= "cor-texto" for="">Legenda:</label>
                 </div>
-            </form>
-        </div>
+                <div class="form-row">
+                    <div class="div-lado">
+                        <img id="botaoProcurar" class="imagens-acoes" src="{{asset('images/logo_procurar.png')}}" alt="">
+                        <label class= "cor-texto" for="">Localizar participante</label>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <a id="labelCancelar-registrar" class="fonteFooter" href="{{route('user.coordenador.listar_reunioes')}}">Cancelar</a>
+                    </div>
+                    <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter">Registrar reunião</button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 </div>
 
 @endsection

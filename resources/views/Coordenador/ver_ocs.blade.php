@@ -53,11 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="especifies">
             <br>
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-10">
                     <h1 class="marker">Ocs</h1>
-                </div>
-                <div class="col-md-3">
-                    <button class="btn botaoPresente bg-verde" type="button" href="{{ route('user.coordenador.cadastrarProdutor') }}"><img class="bg-verde" id="botao-add" style="width:27px !important;" src="{{asset('images/rounded-add-button.png')}}" alt=""> Novo Produtor</button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn edit-bt" id="enable-bt">Editar</button>
@@ -77,37 +74,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 @endif
                 <form class="formulario" method="post" action="{{ route('user.coordenador.editarOcs.salvar') }}">
-                    <div class="form-row inner-div">
-                        <label class="">Informações</label>
-                    </div>
                     @csrf
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label class="label-static required">Nome da entidade</label>
-                            <input disabled="true"type="text" class="form-control input-stl" id="nome_entidade" name="nome_entidade" placeholder="Nome Completo" value="{{ old('nome_entidade', $ocs->nome_entidade) }}">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="label-static required">CNPJ</label>
-                            <input disabled="true"type="text" class="form-control input-stl" id="cnpj" name="cnpj" placeholder="CNPJ" value="{{ old('cnpj', $ocs->cnpj) }}">
-                            <br>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="label-static required">Telefone</label>
-                            <input disabled="true"type="text" class="form-control input-stl" id="telefone" name="telefone" placeholder="Telefone da OCS" value="{{ old('telefone', $ocs->telefone) }}">
-                        </div>
+                    <div class="form-row inner-div">
+                        <label class="">Informações da OCS</label>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <label class="label-static required">Email</label>
-                            <input disabled="true" class="form-control input-stl" type="email" class="form-control" id="emailemail" name="email" placeholder="Email" value="{{ old('email', $ocs->email) }}" >
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label class="label-static">Celular</label>
-                            <input disabled="true" class="form-control input-stl" type="number" class="form-control" name="celular" placeholder="Celular" value="{{ old('telefone', $ocs->celular) }}">
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label class="label-static">Fax</label>
-                            <input disabled="true" class="form-control input-stl" type="number" class="form-control" name="fax" placeholder="FAX" value="{{ old('telefone', $ocs->fax) }}">
+                        <div class="col-md-12">
+                            <label class="label-static required">Nome da OCS</label>
+                            <input disabled="true"type="text" class="form-control input-stl" id="nome_ocs" name="nome_ocs" value="{{ old('nome_ocs', $ocs->nome_ocs) }}">
+                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -136,13 +111,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         </div>
                     </div>
-                    <br>
                     <div class="form-row inner-div">
-                        <label class="">Endereço</label>
+                        <label class="">Informações da associação</label>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label class="label-static">Rua</label>
+                            <label class="label-static required">Nome da entidade</label>
+                            <input disabled="true"type="text" class="form-control input-stl" id="nome_entidade" name="nome_entidade" placeholder="Nome Completo" value="{{ old('nome_entidade', $ocs->nome_entidade) }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="label-static required">CNPJ da associação</label>
+                            <input disabled="true"type="text" class="form-control input-stl" id="cnpj" name="cnpj" placeholder="CNPJ" value="{{ old('cnpj', $ocs->cnpj) }}">
+                            <br>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="label-static required">Telefone</label>
+                            <input disabled="true"type="text" class="form-control input-stl" id="telefone" name="telefone" placeholder="Telefone da OCS" value="{{ old('telefone', $ocs->telefone) }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label-static required">Email</label>
+                            <input disabled="true" class="form-control input-stl" type="email" class="form-control" id="emailemail" name="email" placeholder="Email" value="{{ old('email', $ocs->email) }}" >
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="label-static">Celular</label>
+                            <input disabled="true" class="form-control input-stl" type="number" class="form-control" name="celular" placeholder="Celular" value="{{ old('telefone', $ocs->celular) }}">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="label-static">Fax</label>
+                            <input disabled="true" class="form-control input-stl" type="number" class="form-control" name="fax" placeholder="FAX" value="{{ old('telefone', $ocs->fax) }}">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row inner-div">
+                        <label class="">Endereço da associação</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label-static">Logradouro</label>
                             <input disabled="true"type="text" class="form-control input-stl" id="nome_rua" name="nome_rua" placeholder="Rua onde se localiza a OCS" value="{{ old('nome_rua', $ocs->endereco->nome_rua) }}">
                         </div>
                         <div class="col-md-4">
@@ -166,18 +173,18 @@ document.addEventListener('DOMContentLoaded', function () {
                             <br>
                         </div>
                         <div class="col-md-4">
-                            <label class="label-static required">CEP</label>
+                            <label class="label-static">CEP</label>
                             <input disabled="true"type="text" class="form-control input-stl" id="cep" name="cep" value="{{ old('cep', $ocs->endereco->cep) }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="label-static">Descricao</label>
+                            <label class="label-static">Descrição</label>
                             <textarea disabled="true"type="text" class="form-control input-stl" id="descricao" name="descricao" placeholder="Descrição de como chegar a OCS">{{ $ocs->endereco->descricao}}</textarea>
                             <br>
                         </div>
                         <div class="col-md-12">
-                            <label class="label-static required">Ponto de Referência</label>
+                            <label class="label-static">Ponto de Referência</label>
                             <textarea disabled="true"type="text" class="form-control input-stl" id="ponto_referencia" name="ponto_referencia">{{ $ocs->endereco->ponto_referencia}}</textarea>
                             <br>
                         </div>

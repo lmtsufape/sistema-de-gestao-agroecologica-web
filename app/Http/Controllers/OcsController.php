@@ -16,7 +16,7 @@ class OcsController extends Controller
 {
     public function listarProdutores(){
         $produtor = user::find(Auth::id());
-        $ocs = Ocs::find($produtor->id_ocs);
+        $ocs = Ocs::find($produtor->ocs_id);
 
         return view('Coordenador.listar_produtores', [
                 'produtores' => $ocs->produtor,

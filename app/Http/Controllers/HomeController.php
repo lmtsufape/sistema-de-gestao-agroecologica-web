@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use GNAHotelSolutions\Weather\Weather;
 class HomeController extends Controller
 {
     /**
@@ -26,6 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $produtor = User::find(Auth::id());
+        if($produtor->primeiro_acesso){
+            return redirect()->route('user.primeiro_acesso');
+        }
         return view('home', [
             'perfil' => $produtor->tipo_perfil,
         ]);

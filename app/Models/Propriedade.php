@@ -24,15 +24,15 @@ class Propriedade extends Model
 
 
 	public function produtor() {
-		return $this->belongsTo('App\Models\User', 'id_produtor', 'id');
+		return $this->belongsTo('App\Models\User', 'user_id', 'id');
 	}
 
     public function canteirodeproducaos() {
-        return $this->hasMany('App\Models\CanteiroDeProducao', 'id_propriedade');
+        return $this->hasMany('App\Models\CanteiroDeProducao', 'propriedade_id', 'id');
     }
 
     public function endereco(){
-        return $this->hasOne('\App\Models\Endereco', 'id', 'id_endereco');
+        return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
     }
 
     /*

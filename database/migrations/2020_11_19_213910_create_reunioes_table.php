@@ -17,8 +17,8 @@ class CreateReunioesTable extends Migration
             $table->id();
             $table->text('participantes');
             $table->longText('ata');
-            $table->unsignedBigInteger('id_agendamento');
-            $table->foreign('id_agendamento')->references('id')->on('agendamento_reuniaos');
+            $table->unsignedBigInteger('agendamento_id');
+            $table->foreign('agendamento_id')->references('id')->on('agendamento_reuniaos');
             $table->timestamps();
         });
     }

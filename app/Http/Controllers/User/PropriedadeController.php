@@ -48,7 +48,7 @@ class PropriedadeController extends Controller {
 
         $producao = new Producao;
         $producao->lista_produtos = $ids_prods;
-        $producao->id_canteirodeproducao = $entrada['id_canteirodeproducao'];
+        $producao->canteirodeproducao_id = $entrada['id_canteirodeproducao'];
         $producao->fill($entrada);
         $producao->save();
 
@@ -94,7 +94,7 @@ class PropriedadeController extends Controller {
 
         $producao = new Producao;
         $producao->lista_produtos = $ids_prods;
-        $producao->id_canteirodeproducao = $entrada['id_canteirodeproducao'];
+        $producao->canteirodeproducao_id = $entrada['canteirodeproducao_id'];
         $producao->fill($entrada);
         $producao->save();
 
@@ -169,8 +169,8 @@ class PropriedadeController extends Controller {
         $endereco->save();
 
         $propriedade->fill($entrada);
-        $propriedade->id_endereco = $endereco->id;
-        $propriedade->id_produtor = Auth::id();
+        $propriedade->endereco_id = $endereco->id;
+        $propriedade->user_id = Auth::id();
         $propriedade->save();
 
         return redirect()->route('user.verPropriedade');
@@ -194,7 +194,7 @@ class PropriedadeController extends Controller {
 
         $canteiro = new CanteiroDeProducao;
         $canteiro->fill($entrada);
-        $canteiro->id_propriedade = $entrada['id_propriedade'];
+        $canteiro->propriedade_id = $entrada['id_propriedade'];
         $canteiro->save();
 
         return redirect()->route('user.canteiroProducao.listar');
@@ -204,10 +204,10 @@ class PropriedadeController extends Controller {
     public function verProducao($id_producao){
         $producao = Producao::find($id_producao);
         if($producao){
-            $id_produtor = $producao->canteirodeproducaos->propriedade->produtor->id;
+            $user_id = $producao->canteirodeproducaos->propriedade->produtor->id;
             return view('Produtor.ver_producao',[
                 'producao' => $producao,
-                'id_p' => $id_produtor,
+                'id_p' => $user_id,
             ]);
         } else {
             return redirect()->route('home');
@@ -218,9 +218,8 @@ class PropriedadeController extends Controller {
     public function listarCanteiroDeProducao(){
         $produtor = User::find(Auth::id());
         if($produtor->propriedade){
-            $canteiros = CanteiroDeProducao::where('id_propriedade', $produtor->propriedade->id)->get();
             return view('Produtor/listar_canteiros', [
-                'canteiro' => $canteiros,
+                'canteiro' => $produtor->propriedade->canteirodeproducaos,
                 'propriedade' => $produtor->propriedade->id,
             ]);
         } else {
@@ -259,17 +258,17 @@ class PropriedadeController extends Controller {
 
         $propriedade = new Propriedade;
         $propriedade->fill($entrada);
-        $propriedade->id_endereco = $endereco->id;
-        $propriedade->id_produtor = Auth::id();
+        $propriedade->endereco_id = $endereco->id;
+        $propriedade->user_id = Auth::id();
         $propriedade->save();
 
         return redirect()->route('user.verPropriedade');
     }
 
     public function verPropriedade(){
-        $propriedade = Propriedade::where('id_produtor', Auth::id())->get();
+        $propriedade = Propriedade::where('user_id', Auth::id())->get();
         if(count($propriedade) > 0){
-            $canteiros = CanteiroDeProducao::where('id_propriedade', $propriedade[0]->id)->get();
+            $canteiros = CanteiroDeProducao::where('propriedade_id', $propriedade[0]->id)->get();
             return view('Produtor/propriedade_ver', [
                 'propriedade' => $propriedade[0],
                 'canteiros' => $canteiros,

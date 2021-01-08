@@ -25,36 +25,13 @@
                 </div>
                 @endif
                 <div class="form-row inner-div">
-                    <label class="">Informações</label>
-                </div>
-                @csrf
-                <div class="row">
-                    <div class="col-md-4">
-                        <label class="label-static required">Nome da entidade</label><br>
-                        <label class="label-ntstatic">{{$ocs->nome_entidade}}</label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="label-static required">CNPJ</label><br>
-                        <label class="label-ntstatic">{{$ocs->cnpj}}</label>
-                        <br>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="label-static required">Telefone</label><br>
-                        <label class="label-ntstatic">{{$ocs->telefone}}</label>
-                    </div>
+                    <label class="">Informações da OCS</label>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <label class="label-static required">Email</label><br>
-                        <label class="label-ntstatic">{{$ocs->email}}</label>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <label class="label-static">Celular</label><br>
-                        <label class="label-ntstatic">{{$ocs->celular}}</label>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <label class="label-static">Fax</label><br>
-                        <label class="label-ntstatic">{{$ocs->fax}}</label>
+                    <div class="col-md-12">
+                        <label class="label-static">Nome da OCS</label><br>
+                        <label class="label-ntstatic"><b>{{$ocs->nome_ocs}}</b></label>
+                        <br><br>
                     </div>
                 </div>
                 <div class="row">
@@ -64,7 +41,7 @@
                     </div>
                     <div class="col-md-7">
                         <br>
-                        <label class="label-static required">Órgão fiscalizador</label><br>
+                        <label class="label-static ">Órgão fiscalizador</label><br>
                         <label class="label-ntstatic">{{$ocs->orgao_fiscalizador}}</label>
                     </div>
 
@@ -83,9 +60,42 @@
                             </table>
                     </div>
                 </div>
+                <div class="form-row inner-div">
+                    <label class="">Informações da Associação</label>
+                </div>
+                @csrf
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-static ">Nome da entidade</label><br>
+                        <label class="label-ntstatic">{{$ocs->nome_entidade}}</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="label-static ">CNPJ da associação</label><br>
+                        <label class="label-ntstatic">{{$ocs->cnpj}}</label>
+                        <br>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="label-static ">Telefone</label><br>
+                        <label class="label-ntstatic">{{$ocs->telefone}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-static ">Email</label><br>
+                        <label class="label-ntstatic">{{$ocs->email}}</label>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="label-static">Celular</label><br>
+                        <label class="label-ntstatic">{{$ocs->celular}}</label>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="label-static">Fax</label><br>
+                        <label class="label-ntstatic">{{$ocs->fax}}</label>
+                    </div>
+                </div>
                 <br>
                 <div class="form-row inner-div">
-                    <label class="">Endereço</label>
+                    <label class="">Endereço da associação</label>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -104,16 +114,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="label-static required">Cidade</label><br>
+                        <label class="label-static ">Cidade</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->cidade}}</label>
                     </div>
                     <div class="col-md-4">
-                        <label class="label-static required">Estado</label><br>
+                        <label class="label-static ">Estado</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->estado}}</label>
                         <br>
                     </div>
                     <div class="col-md-4">
-                        <label class="label-static required">CEP</label><br>
+                        <label class="label-static ">CEP</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->cep}}</label>
                     </div>
                 </div>
@@ -124,7 +134,7 @@
                         <br>
                     </div>
                     <div class="col-md-12">
-                        <label class="label-static required">Ponto de Referência</label><br>
+                        <label class="label-static ">Ponto de Referência</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->ponto_referencia}}</label>
                         <br>
                     </div>

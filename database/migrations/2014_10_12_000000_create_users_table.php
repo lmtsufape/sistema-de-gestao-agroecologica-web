@@ -16,20 +16,22 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->date('data_nascimento');
+            $table->date('data_nascimento')->nullable();
+            $table->boolean('primeiro_acesso');
             $table->string('cpf')->unique();
-            $table->string('rg')->unique();
-            $table->unsignedBigInteger('id_endereco');
-            $table->foreign('id_endereco')->references('id')->on('enderecos');
-            $table->unsignedBigInteger('id_ocs');
-            $table->foreign('id_ocs')->references('id')->on('ocs');
-            $table->string('telefone');
+            $table->string('rg')->unique()->nullable();
+            $table->unsignedBigInteger('endereco_id')->nullable();
+            $table->foreign('endereco_id')->references('id')->on('enderecos');
+            $table->unsignedBigInteger('ocs_id');
+            $table->foreign('ocs_id')->references('id')->on('ocs');
+            $table->string('telefone')->nullable();
             $table->string('tipo_perfil');  // Se é ciirdenador ou produtor
+            $table->string('perfil_coordenador')->nullable();
             $table->string('nome_conjugue')->nullable();
             $table->text('nome_filhos')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

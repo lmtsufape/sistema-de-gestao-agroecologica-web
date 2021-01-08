@@ -17,14 +17,14 @@ class CreateEnderecosTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('estado');
-            $table->string('cidade');
+            $table->string('estado')->nullable(true);
+            $table->string('cidade')->nullable(true);
             $table->string('bairro')->nullable(true);
             $table->string('nome_rua')->nullable(true);
-            $table->string('cep');
+            $table->string('cep')->nullable(true);
             $table->unsignedInteger('numero_casa')->nullable(true);
             $table->text('descricao')->nullable(true);
-            $table->string('ponto_referencia');
+            $table->string('ponto_referencia')->nullable(true);
         });
     }
 

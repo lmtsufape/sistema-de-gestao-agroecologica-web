@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label class="label-static">Data</label><br>
-                    <label class="label-ntstatic">{{$reuniao->data}}</label>
+                    <label class="label-ntstatic">{{$reuniao->dataFormatada()}}</label>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -53,11 +53,12 @@
                 <label class="">Imagens da reunião</label><br>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label class="label-static">Fotos</label><br>
+                </div>
+                <div class="col-md-12">
                     @foreach ($reuniao->reuniaoRegistrada->fotosReuniao as $fotoReuniao)
-                    {{asset('storage/app/' . $fotoReuniao->path)}}
-                    <img src="{{asset('storage/app/' . $fotoReuniao->path)}}" alt="" width="800px" height="400px"> <br> <br>
+                    <center><img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="600px"> <br> <br></center>
                     @endforeach
                 </div>
 
@@ -66,9 +67,6 @@
                 <label class="">Retificações</label><br>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <label class="label-static">Retificações</label><br>
-                </div>
                     @foreach ($reuniao->reuniaoRegistrada->retificacao as $ret)
                     <div class="col-md-10">
                         <label class="label-ntstatic">{{$ret->retificacao}}</label>

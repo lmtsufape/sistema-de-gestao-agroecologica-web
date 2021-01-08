@@ -26,12 +26,12 @@ class CanteiroDeProducao extends Model
 
 
 	public function propriedade() {
-		return $this->belongsTo('App\Models\Propriedade', 'id_propriedade', 'id');
+		return $this->belongsTo('App\Models\Propriedade', 'propriedade_id');
 	}
 
 
     public function producoes() {
-        return $this->hasMany('App\Models\Producao', 'id_canteirodeproducao');
+        return $this->hasMany('App\Models\Producao', 'canteirodeproducao_id', 'id');
     }
 
 

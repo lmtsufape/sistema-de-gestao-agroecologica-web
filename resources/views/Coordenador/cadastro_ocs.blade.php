@@ -23,31 +23,25 @@
                 <form method="post" action="{{ route('user.coordenador.cadastrarOcs.salvar') }}">
                     @csrf
                     <div class="form-row inner-div">
-                        <label class="">OCS</label>
+                        <label class="">Associação</label>
                     </div>
                     <div class="form-row">
                         <div class="col-md-9 mb-3">
-                            <label class="label-static required">Nome da OCS</label>
+                            <label class="label-static required">Nome da Associação</label>
                             <input class="form-control input-stl" type="text" class="form-control" id="nome_entidade" name="nome_entidade" placeholder="Nome completo">
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="label-static">CNPJ</label>
+                            <label class="label-static">CNPJ da Associação</label>
                             <input class="form-control input-stl" type="number" class="form-control" id="cpnj" name="cnpj" placeholder="CNPJ">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="label-static required">Órgão fiscalizador</label>
-                        <input class="form-control input-stl" type="text" class="form-control" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="Órgão fiscalizador">
-                    </div>
-
                     <div class="form-row inner-div">
-                        <label class="">Contato</label>
+                        <label class="">Contato da associação</label>
                     </div>
                     <div class="form-group">
                         <label class="label-static required">Email</label>
                         <input class="form-control input-stl" type="email" class="form-control" id="email" name="email" placeholder="Email">
                     </div>
-
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label class="label-static required">Telefone</label>
@@ -62,9 +56,8 @@
                             <input class="form-control input-stl" type="number" class="form-control" name="fax" placeholder="FAX">
                         </div>
                     </div>
-
                     <div class="form-row inner-div">
-                        <label class="">Endereço</label>
+                        <label class="">Endereço da associação</label>
                     </div>
 
                     <div class="form-row">
@@ -121,13 +114,13 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="label-static required" for="cep">CEP</label>
+                            <label class="label-static" for="cep">CEP</label>
                             <input class="form-control input-stl" type="text" class="form-control" id="cep" name="cep" placeholder="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="label-static required">Ponto de Referência</label>
+                        <label class="label-static">Ponto de Referência</label>
                         <textarea class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
                     </div>
 
@@ -135,6 +128,21 @@
                         <label class="label-static">Descrição</label>
                         <textarea class="form-control input-stl" id="descricao" name="descricao" rows="3"></textarea>
                     </div>
+
+                    <div class="form-row inner-div">
+                        <label class="">OCS</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-9 mb-3">
+                            <label class="label-static required">Nome da OCS</label>
+                            <input class="form-control input-stl" type="text" class="form-control" id="nome_ocs" name="nome_ocs" placeholder="Nome da OCS ligada à associação">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="label-static required">Órgão fiscalizador</label>
+                            <input class="form-control input-stl" type="text" class="form-control" id="orgao_fiscalizador" name="orgao_fiscalizador" placeholder="Órgão fiscalizador">
+                        </div>
+                    </div>
+
 
                     <hr class="outliner"></hr>
 

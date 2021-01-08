@@ -90,7 +90,7 @@
                     @foreach ($reunioes_agendadas as $reuniao_agendada)
                         <tr class='reuniao'>
                             <td class='nome_reuniao basic-space'><a class="cor-texto" href="{{route('user.coordenador.verReuniao', ['id_reuniao' => $reuniao_agendada->id])}}">{{$reuniao_agendada->nome}}</a></td>
-                            <td class='data_reunião cor-texto basic-space'>{{$reuniao_agendada->data}}</td>
+                            <td class='data_reunião cor-texto basic-space'>{{$reuniao_agendada->dataFormatada()}}</td>
                             <td class="basic-space">
                                 @if($reuniao_agendada->registrada == false)
                                     <img class="imagem-registro" src="{{asset('images/logo_nao_registrad.png')}}" alt="">
