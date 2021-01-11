@@ -50,7 +50,11 @@ class CoordenadorController extends Controller {
         $logado = User::find(Auth::id());
         $reuniaoAgendada = AgendamentoReuniao::find($id_reuniao);
         if($logado->tipo_perfil == "Coordenador"){
-            return view('Coordenador.cadastro_reuniao')->with(['produtores' => $this->getProdutoresDaOcs(), 'reuniao' => $reuniaoAgendada]);
+            return view('Coordenador.cadastro_reuniao')->with([
+              'produtores' => $this->getProdutoresDaOcs(),
+              'reuniao' => $reuniaoAgendada,
+              'allProds' => json_encode($this->getProdutoresDaOcs()),
+            ]);
         }
         return redirect()->back();
     }

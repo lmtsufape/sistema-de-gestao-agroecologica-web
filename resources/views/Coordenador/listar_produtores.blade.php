@@ -144,7 +144,7 @@ function showDiv(id, id1, id2) {
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Rua</label> <br>
+                                                    <label class="label-static">Logradouro</label> <br>
                                                     <label class="label-ntstatic">{{$produtor->endereco->nome_rua}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
@@ -194,7 +194,7 @@ function showDiv(id, id1, id2) {
                                         <div style="margin-left: 15px;">
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="label-static required">Tamanho total (Metros)</label><br>
+                                                    <label class="label-static required">Tamanho total (HA)</label><br>
                                                     <label class="label-ntstatic">{{$produtor->propriedade->tamanho_total}}</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
@@ -207,11 +207,11 @@ function showDiv(id, id1, id2) {
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Rua</label><br>
+                                                    <label class="label-static">Logradouro</label><br>
                                                     <label class="label-ntstatic">{{$produtor->propriedade->endereco->rua}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Numero</label><br>
+                                                    <label class="label-static">Número</label><br>
                                                     <label class="label-ntstatic">{{$produtor->propriedade->endereco->numero_casa}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
@@ -236,7 +236,7 @@ function showDiv(id, id1, id2) {
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="label-static required">Ponto de Referencia</label><br>
+                                                <label class="label-static required">Ponto de Referência</label><br>
                                                 <label class="label-ntstatic">{{$produtor->propriedade->endereco->ponto_referencia}}</label>
                                             </div>
 

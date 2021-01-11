@@ -59,6 +59,12 @@ function removeImage(file, image) {
     lbfoto.innerHTML = 'Escolha mais imagens';
 }
 
+function mudaCorAll(pros){
+  for (var i = pros.length - 1; i >=  0; i--) {
+    mudaCor(pros[i]['id'], pros[i]['nome']);
+  }
+}
+
 
 function previewImages() {
 
@@ -168,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <th scope="col" class="nome-col">CPF</th>
                                     <th scope="col" class="nome-col">Status</th>
                                     <th scope="col" class="nome-col">Ação</th>
+                                    <th scope="col" class="nome-col"><button class="btn botaoPresente" type="button" id="btFirst"  onclick="mudaCorAll({{$allProds}})">Selecionar Todos</button></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <td>
                                         <img class="imagens-acoes" style="width: 45px; display: none" src="{{asset('images/logo_registrado.png')}}" alt="" id="confirm{{$produtor->id}}">
                                     </td>
-                                    <td>
+                                    <td colspan="2">
                                         <button class="btn botaoPresente" type="button" id="bt{{$produtor->id}}" onclick="mudaCor('{{$produtor->id}}', '{{$produtor->nome}}')"><img id="imagemPresente" src="{{asset('images/logo_presente.png')}}" alt="">Presente</button>
                                     </td>
                                 </tr>

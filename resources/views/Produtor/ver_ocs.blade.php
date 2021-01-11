@@ -99,7 +99,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="label-static">Rua</label><br>
+                        <label class="label-static">Logradouro</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->nome_rua}}</label>
                     </div>
                     <div class="col-md-4">
@@ -129,12 +129,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <label class="label-static">Descricao</label><br>
+                        <label class="label-static">Descriço</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->descricao}}</label>
                         <br>
                     </div>
                     <div class="col-md-12">
-                        <label class="label-static ">Ponto de Referência</label><br>
+                        <label class="label-static">Ponto de Referência</label><br>
                         <label class="label-ntstatic">{{$ocs->endereco->ponto_referencia}}</label>
                         <br>
                     </div>

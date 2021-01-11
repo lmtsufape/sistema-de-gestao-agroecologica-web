@@ -96,11 +96,11 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-4">
-                            <label class="label-static">Rua</label>
+                            <label class="label-static">Logradouro</label>
                             <input  type="text" class="form-control input-stl" name="nome_rua" placeholder="Rua">
                         </div>
                         <div class="col-md-2 mb-4">
-                            <label class="label-static">Numero</label>
+                            <label class="label-static">Número</label>
                             <input  type="number" class="form-control input-stl" name="numero_casa" placeholder="Numero">
                         </div>
                         <div class="col-md-4 mb-4">
@@ -154,7 +154,7 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                     </div>
 
                     <div class="form-group">
-                        <label class="label-static">Ponto de Referencia</label>
+                        <label class="label-static">Ponto de Referência</label>
                         <textarea  class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
                     </div>
 

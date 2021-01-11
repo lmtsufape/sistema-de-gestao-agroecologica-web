@@ -66,11 +66,11 @@
 
                 <div class="form-row">
                     <div class="col-md-6 mb-4">
-                        <label class="label-static">Rua</label>
+                        <label class="label-static">Logradouro</label>
                         <input type="text" class="form-control input-stl" name="nome_rua" placeholder="Rua" value="{{ old('nome_rua', $produtor->endereco->nome_rua) }}">
                     </div>
                     <div class="col-md-2 mb-4">
-                        <label class="label-static">Numero</label>
+                        <label class="label-static">Número</label>
                         <input type="number" class="form-control input-stl" name="numero_casa" placeholder="Numero" value="{{ old('numero_casa', $produtor->endereco->numero_casa) }}">
                     </div>
                     <div class="col-md-4 mb-4">
@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="label-static">Ponto de Referencia</label>
+                    <label class="label-static">Ponto de Referência</label>
                     <textarea class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1">{{$produtor->endereco->ponto_referencia}}</textarea>
                 </div>
 

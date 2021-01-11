@@ -20,13 +20,13 @@
             </div>
             <div class="col-md-4">
                 <div class="col-md-12">
-                    <h4 class="label-static">Cpf</h4>
+                    <h4 class="label-static">CPF</h4>
                     <label class="label-ntstatic">{{$produtor->cpf}}</label>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="col-md-12">
-                    <h4 class="label-static">Rg</h4>
+                    <h4 class="label-static">RG</h4>
                     <label class="label-ntstatic">{{$produtor->rg}}</label>
                 </div>
             </div>
@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="col-md-12">
-                    <h4 class="label-static">Rua</h4>
+                    <h4 class="label-static">Logradouro</h4>
                     <label class="label-ntstatic">{{$produtor->endereco->nome_rua}}</label>
                 </div>
             </div>
@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12">
-                    <h4 class="label-static">Descricao</h4>
+                    <h4 class="label-static">Descrição</h4>
                     <label class="label-ntstatic">{{$produtor->endereco->descricao}}</label>
                 </div>
             </div>
