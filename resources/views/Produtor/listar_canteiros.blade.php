@@ -47,7 +47,7 @@ $(document).on("click", "#ativarView", function () {
                             <form method="post" action="{{ route('user.canteiroProducao.salvar') }}">
                                 @csrf
                                 <div class="form-row">
-                                    <input type="hidden" id="id_propriedade" name="id_propriedade" value="{{$propriedade}}">
+                                    <input type="hidden" id="propriedade_id" name="propriedade_id" value="{{$propriedade}}">
                                     <div class="col-md-6 mb-3">
                                         <label class="label-static required">Tamanho</label>
                                         <input type="number" class="form-control input-stl" id="tamanho" name="tamanho" placeholder="Tamanho total do canteiro (metros)">

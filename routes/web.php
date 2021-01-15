@@ -5,6 +5,7 @@ use App\Http\Controllers\User\CoordenadorController;
 use App\Http\Controllers\User\PropriedadeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\OcsController;
+use App\Http\Controllers\AssociacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,36 @@ use App\Http\Controllers\OcsController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'log'])->name('home');
 
+Route::prefix('/associacao')->name('associacao')->namespace('Associacao')->group(function(){
+  Route::prefix('/criar')->name('.cadastrarAssociacao')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'cadastroAssociacao']);
+      Route::post('/salvar', [AssociacaoController::class, 'salvarCadastroAssociacao'])->name('.salvar');
+  });
+
+  Route::prefix('/editar')->name('.editarAssociacao')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'editarAssociacao']);
+      Route::post('/salvar', [AssociacaoController::class, 'salvarEditarAssociacao'])->name('.salvar');
+  });
+
+
+  Route::get('/home', [AssociacaoController::class, 'homeAssociacao'])->name('.home');
+
+  Route::prefix('/criar_ocs')->name('.cadastrarOcs')->group(function () {
+      Route::post('/salvar', [AssociacaoController::class, 'salvarCadastrarOcs'])->name('.salvar');
+  });
+
+  Route::prefix('/info_ocs')->name('.infoOcs')->group(function () {
+    Route::get('/{$id}', [AssociacaoController::class, 'verOcs']);
+    Route::post('/salvar', [AssociacaoController::class, 'salvarEditarOcs'])->name('.salvar');
+
+
+  });
+
+  Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
+      Route::post('/salvar', [AssociacaoController::class, 'salvarCadastrarCoordenador'])->name('.salvar');
+  });
+
+});
 
 
 Route::prefix('/user')->name('user')->namespace('User')->group(function(){
@@ -26,18 +57,6 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
         Route::prefix('/criar_produtor')->name('.cadastrarProdutor')->group(function () {
             Route::get('/', [CoordenadorController::class, 'cadastroProdutor'])->middleware('auth');
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
-        });
-
-        Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
-            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarCoordenador'])->name('.salvar');
-        });
-        Route::prefix('/criar_ocs')->name('.cadastrarOcs')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'cadastroOcs']);
-            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
-        });
-        Route::prefix('/editar_ocs')->name('.editarOcs')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'editarOcs'])->middleware('auth');
-            Route::post('/salvar', [CoordenadorController::class, 'salvarEditarOcs'])->name('.salvar')->middleware('auth');
         });
 
         Route::prefix('/agendar_reuniao')->name('.agendarReuniao')->group(function(){

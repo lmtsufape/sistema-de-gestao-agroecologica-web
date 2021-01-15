@@ -16,18 +16,10 @@ class CreateOcsTable extends Migration
         Schema::create('ocs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('cnpj')->unique();
             $table->string('nome_ocs');
-            $table->string('nome_entidade');
-            $table->unsignedBigInteger('endereco_id');
-            $table->foreign('endereco_id')->references('id')->on('enderecos');
-            $table->string('telefone');
-            $table->string('celular')->nullable();
-            $table->string('fax')->nullable();
-            $table->string('email')->nullable();
-            $table->string('nome_para_contato');
             $table->string('orgao_fiscalizador')->nullable();
-            $table->string('unidade_federacao');
+            $table->unsignedBigInteger('associacao_id');
+            $table->foreign('associacao_id')->references('id')->on('associacaos');
 
 
         });
