@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller {
 
     public function index(){
-        $produtor = User::find(Auth::id());
+        $user = User::find(Auth::id());
+        if($user->associacao){
+          return view('Associacao.home_associacao', [
+            'associacao' => $user->associacao,
+          ]);
+        }
         return view('produtor.home', [
-            'perfil' => $produtor->tipo_perfil,
+            'perfil' => $user->tipo_perfil,
         ]);
     }
 

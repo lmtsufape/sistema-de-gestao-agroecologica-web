@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <label class="label-static required">CPF</label>
-                        <input type="number" class="form-control input-stl" name="cpf" placeholder="CPF" value="{{ old('cpf', $produtor->cpf) }}">
+                        <input type="number" class="form-control input-stl" name="cpf" placeholder="CPF" value="{{ old('cpf', $produtor->produtor->cpf) }}">
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                         <label class="label-static required" for="Email">Email</label>
-                        <input type="email" class="form-control input-stl" id="email" name="email" placeholder="Email">
+                        <input type="email" class="form-control input-stl" id="email" name="email" placeholder="Email" value="{{ old('email', $produtor->email) }}">
                     </div>
                 </div>
 

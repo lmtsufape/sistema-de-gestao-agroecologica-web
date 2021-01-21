@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
+use App\Models\Produtor;
 use App\Models\Endereco;
 use App\Models\Ocs;
 use Illuminate\Support\Facades\Hash;
@@ -63,12 +64,6 @@ class UserController extends Controller {
         return redirect()->route('user.ver_perfil');
     }
 
-    public function primeiroAcessoTela(){
-        $produtor = User::find(Auth::id());
-        return view('Produtor.primeiro_acesso', [
-            'produtor' => $produtor,
-        ]);
-    }
 
     public function primeiroAcesso(Request $request){
         $entrada = $request->all();
@@ -90,7 +85,15 @@ class UserController extends Controller {
                              ->withInput();
         }
 
-        $validator_produtor = Validator::make($entrada, User::$regras_validacao_primeiro_acesso, $messages);
+        $validator_user = Validator::make($entrada, User::$regras_validacao_primeiro_acesso, $messages);
+        if ($validator_endereco->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_endereco)
+                             ->withInput();
+        }
+
+
+        $validator_produtor = Validator::make($entrada, Produtor::$regras_validacao_primeiro_acesso, $messages);
         if ($validator_produtor->fails()) {
             return redirect()->back()
                              ->withErrors($validator_produtor)
@@ -104,9 +107,13 @@ class UserController extends Controller {
 
         $produtor->fill($entrada);
         $produtor->endereco_id = $endereco->id;
-        $produtor->primeiro_acesso = false;
         $produtor->password = Hash::make($entrada['password']);
 
+
+        $produtor->produtor->fill($entrada);
+        $produtor->produtor->primeiro_acesso = false;
+
+        $produtor->produtor->save();
         $produtor->save();
 
         return redirect()->route('user.ver_perfil');

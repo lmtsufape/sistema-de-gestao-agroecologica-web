@@ -96,15 +96,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label class="label-static required" for="data de nascimento">Data de Nascimento</label>
-                            <input disabled="true"type="date" class="form-control input-stl" name="data_nascimento" value="{{ old('data_nascimento', $produtor->data_nascimento) }}">
+                            <input disabled="true"type="date" class="form-control input-stl" name="data_nascimento" value="{{ old('data_nascimento', $produtor->produtor->data_nascimento) }}">
                         </div>
                         <div class="col-md-4 mb-4">
                             <label class="label-static required">RG</label>
-                            <input disabled="true"type="number" class="form-control input-stl" name="rg" placeholder="RG" value="{{ old('rg', $produtor->rg) }}">
+                            <input disabled="true"type="number" class="form-control input-stl" name="rg" placeholder="RG" value="{{ old('rg', $produtor->produtor->rg) }}">
                         </div>
                         <div class="col-md-4 mb-4">
                             <label class="label-static required">CPF</label>
-                            <input disabled="true"type="number" class="form-control input-stl" name="cpf" placeholder="CPF" value="{{ old('cpf', $produtor->cpf) }}">
+                            <input disabled="true"type="number" class="form-control input-stl" name="cpf" placeholder="CPF" value="{{ old('cpf', $produtor->produtor->cpf) }}">
                         </div>
                     </div>
 
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     <div class="form-group">
                         <label class="label-static">Nome dos Filhos</label>
-                        <textarea disabled="true"class="form-control input-stl" id="nome-filhos" name="nome_filhos" placeholder="Nome dos Filhos" rows="2"> {{$produtor->nome_filhos}} </textarea>
+                        <textarea disabled="true"class="form-control input-stl" id="nome-filhos" name="nome_filhos" placeholder="Nome dos Filhos" rows="2"> {{$produtor->produtor->nome_filhos}} </textarea>
                     </div>
                     <div class="form-row inner-div">
                         <label class="">Endereço</label>

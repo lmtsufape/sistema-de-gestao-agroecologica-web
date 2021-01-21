@@ -17,39 +17,23 @@ class Associacao extends Authenticatable
      */
     protected $fillable = [
         'cnpj',
-        'nome_entidade',
-        'telefone',
+        'celular',
         'fax',
-        'email',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
 
     public static $regras_validacao_criar = [
         'cnpj' => 'required|max:20|unique:associacaos,cnpj',
-        'nome_entidade' => 'required|max:255',
-        'telefone' => 'required|numeric|min:10',
+        'celular' => 'nullable|numeric|min:10',
         'fax' => 'max:255',
-        'email' => 'max:255',
     ];
 
     public static $regras_validacao_editar = [
-        'nome_entidade' => 'required|max:255',
-        'telefone' => 'required|numeric|min:10',
+        'celular' => 'nullable|numeric|min:10',
         'fax' => 'max:255',
-        'email' => 'max:255',
     ];
 
-    public function endereco() {
-        return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
+    public function user() {
+        return $this->hasOne('\App\Models\User', 'id', 'user_id');
     }
 
     public function ocs(){

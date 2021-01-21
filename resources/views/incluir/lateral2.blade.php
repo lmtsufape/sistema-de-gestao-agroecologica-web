@@ -9,10 +9,10 @@
         <div class="trying">
         <ul class="list-unstyled components">
             <li class="active">
-                <a class = "btn botao-menu" href="{{route('user.ver_perfil')}}">
+                <a class = "btn botao-menu" href="{{route('associacao.editarAssociacao')}}">
                     <i class=""></i>
                     <img class= "imagem-botao-menu" src="{{asset('images/logo_informacoes.png')}}" alt="">
-                    &nbsp Informações da associação
+                    &nbsp Editar associação
                 </a>
             </li>
         </ul>

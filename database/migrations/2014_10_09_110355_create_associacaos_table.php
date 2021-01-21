@@ -17,15 +17,11 @@ class CreateAssociacaosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('cnpj')->unique();
-            $table->string('nome_entidade');
-            $table->unsignedBigInteger('endereco_id');
-            $table->foreign('endereco_id')->references('id')->on('enderecos');
-            $table->string('telefone');
             $table->string('celular')->nullable();
             $table->string('fax')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('password');
             $table->string('unidade_federacao');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
 
 
         });

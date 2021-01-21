@@ -28,7 +28,7 @@
                     <div class="form-row">
                         <div class="col-md-9 mb-3">
                             <label class="label-static required">Nome da Associação</label>
-                            <input class="form-control input-stl" type="text" class="form-control" id="nome_entidade" name="nome_entidade" placeholder="Nome completo">
+                            <input class="form-control input-stl" type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="label-static">CNPJ da Associação</label>

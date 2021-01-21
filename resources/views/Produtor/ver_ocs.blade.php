@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <div class="row extra-space">
     <div class="col-md-12 upper-div">
         <div class="especifies">
@@ -37,7 +35,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="label-static">Coordenador responsável</label><br>
-                        <label class="label-ntstatic"><b>{{$ocs->nome_para_contato}}</b></label>
+                        <label class="label-ntstatic"><b>
+                          @foreach($ocs->produtor as $pro)
+                            @if($pro->user->tipo_perfil == "Coordenador")
+                            {{$pro->user->nome}}
+                            @endif
+                          @endforeach</b></label>
                     </div>
                     <div class="col-md-7">
                         <br>
@@ -51,9 +54,11 @@
                             <table class="table">
                                 <tbody class="wrp">
                                     @foreach($ocs->produtor as $pro)
+                                    @if(!$pro->perfil_coordenador || $pro->perfil_coordenador == "Produtor")
                                     <tr>
-                                        <td class="cor-texto basic-space">{{$pro->nome}}</td>
+                                        <td class="cor-texto basic-space">{{$pro->user->nome}}</td>
                                     </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
 
@@ -67,30 +72,30 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label class="label-static ">Nome da entidade</label><br>
-                        <label class="label-ntstatic">{{$ocs->nome_entidade}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->nome}}</label>
                     </div>
                     <div class="col-md-4">
                         <label class="label-static ">CNPJ da associação</label><br>
-                        <label class="label-ntstatic">{{$ocs->cnpj}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->cnpj}}</label>
                         <br>
                     </div>
                     <div class="col-md-4">
                         <label class="label-static ">Telefone</label><br>
-                        <label class="label-ntstatic">{{$ocs->telefone}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->telefone}}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <label class="label-static ">Email</label><br>
-                        <label class="label-ntstatic">{{$ocs->email}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->email}}</label>
                     </div>
                     <div class="col-md-4 mb-4">
                         <label class="label-static">Celular</label><br>
-                        <label class="label-ntstatic">{{$ocs->celular}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->celular}}</label>
                     </div>
                     <div class="col-md-4 mb-4">
                         <label class="label-static">Fax</label><br>
-                        <label class="label-ntstatic">{{$ocs->fax}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->fax}}</label>
                     </div>
                 </div>
                 <br>
@@ -100,42 +105,42 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label class="label-static">Logradouro</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->nome_rua}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->nome_rua}}</label>
                     </div>
                     <div class="col-md-4">
                         <label class="label-static">Bairro</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->bairro}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->bairro}}</label>
                         <br>
                     </div>
                     <div class="col-md-4">
                         <label class="label-static">Nº</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->numero_casa}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->numero_casa}}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <label class="label-static ">Cidade</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->cidade}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->cidade}}</label>
                     </div>
                     <div class="col-md-4">
                         <label class="label-static ">Estado</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->estado}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->estado}}</label>
                         <br>
                     </div>
                     <div class="col-md-4">
                         <label class="label-static ">CEP</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->cep}}</label>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->cep}}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <label class="label-static">Descriço</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->descricao}}</label>
+                        <label class="label-static">Descrição</label><br>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->descricao}}</label>
                         <br>
                     </div>
                     <div class="col-md-12">
-                        <label class="label-static">Ponto de Referência</label><br>
-                        <label class="label-ntstatic">{{$ocs->endereco->ponto_referencia}}</label>
+                        <label class="label-static">Ponto de referência</label><br>
+                        <label class="label-ntstatic">{{$ocs->associacao->user->endereco->ponto_referencia}}</label>
                         <br>
                     </div>
                 </div>

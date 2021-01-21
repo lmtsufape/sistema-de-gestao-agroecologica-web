@@ -33,11 +33,11 @@ class Ocs extends Model
 
 
     public function associacao() {
-  		return $this->belongsTo('App\Models\Associacao', 'associacao_id');
+  		return $this->belongsTo('App\Models\Associacao');
   	}
 
     public function produtor(){
-        return $this->hasMany('App\Models\User', 'ocs_id');
+        return $this->hasMany('App\Models\Produtor', 'ocs_id');
     }
 
     public function agendamentoReuniao(){
