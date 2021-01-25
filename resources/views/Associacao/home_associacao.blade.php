@@ -133,10 +133,12 @@
                                                       <br>
                                                       <br>
                                                   </div>
+                                                  @if(!$ocs->coordenador())
                                                   <div class="col-md-2 mb-3">
-                                                      <button type="button" class="btn edit-bt small-bt bg-verde" style="width: 200px;" data-toggle = "modal" data-target="#novoCoordenador{{$ocs->id}}" >Novo Coordenador</button>
+                                                      <button id="novoCoord" type="button" class="btn edit-bt small-bt bg-verde" style="width: 200px;" data-toggle = "modal" data-target="#novoCoordenador{{$ocs->id}}" >Novo Coordenador</button>
                                                       <br>
                                                   </div>
+                                                  @endif
                                               </div>
                                               <div class="form-row">
                                                   <table class="table">
@@ -152,7 +154,7 @@
                                                           @foreach ($ocs->produtor as $prod)
                                                             @if($prod->perfil_coordenador)
                                                             <tr>
-                                                                <td class="nome_reuniao basic-space">{{$prod->nome}}</td>
+                                                                <td class="nome_reuniao basic-space">{{$prod->user->nome}}</td>
                                                                 <td class="nome_reuniao basic-space">{{$prod->user->tipo_perfil}}</td>
                                                                 <td class="nome_reuniao basic-space">{{$prod->cpf}}</td>
                                                                 <td id="coluna-images" class="basic-space">

@@ -32,7 +32,7 @@
             </div>
             @if ($reuniao->registrada == true)
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label class="label-static">Participantes</label><br>
                     @php
                     $nomeParticipantes = explode('/', $reuniao->reuniaoRegistrada->participantes);
@@ -43,12 +43,16 @@
                     @endif
                     @endforeach
                 </div>
-                <div class="col-md-4">
-                    <label class="label-static">Ata</label><br>
-                    <label class="label-ntstatic">{{$reuniao->reuniaoRegistrada->ata}}</label>
-                </div>
             </div>
             <br>
+            <div class="inner-div">
+                <label class="">ATA da reunião</label><br>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <center><img src="{{asset('storage/' . $reuniao->reuniaoRegistrada->ata)}}" alt="" width="600px"> <br> <br></center>
+              </div>
+            </div>
             <div class="inner-div">
                 <label class="">Imagens da reunião</label><br>
             </div>

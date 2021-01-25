@@ -106,11 +106,11 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="row">
                 <div class="col-md-4">
                     <label class="label-static">Logradouro</label>
-                    <input disabled="true"type="text" class="form-control input-stl" id="nome_rua" name="nome_rua" placeholder="Rua onde se localiza a OCS" value="{{ old('nome_rua', $associacao->user->endereco->nome_rua) }}">
+                    <input disabled="true"type="text" class="form-control input-stl" id="nome_rua" name="nome_rua" placeholder="Logradouro da associação" value="{{ old('nome_rua', $associacao->user->endereco->nome_rua) }}">
                 </div>
                 <div class="col-md-4">
                     <label class="label-static">Bairro</label>
-                    <input disabled="true"type="text" class="form-control input-stl" id="bairro" name="bairro" placeholder="Bairro onde se localiza a OCS" value="{{ old('bairro', $associacao->user->endereco->bairro) }}">
+                    <input disabled="true"type="text" class="form-control input-stl" id="bairro" name="bairro" placeholder="Bairro da associação" value="{{ old('bairro', $associacao->user->endereco->bairro) }}">
                     <br>
                 </div>
                 <div class="col-md-4">

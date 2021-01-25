@@ -59,6 +59,13 @@ function removeImage(file, image) {
     lbfoto.innerHTML = 'Escolha mais imagens';
 }
 
+function removeAta() {
+    ata.value = '';
+    prvata.innerHTML = '';
+    lbata.innerHTML = 'Escolha outra ATA';
+    console.log(ata.files);
+}
+
 function mudaCorAll(pros){
   for (var i = pros.length - 1; i >=  0; i--) {
     mudaCor(pros[i]['id'], pros[i]['nome']);
@@ -66,12 +73,44 @@ function mudaCorAll(pros){
 }
 
 
-function previewImages() {
+function previewAta() {
 
+    var atapv = document.querySelector('#prvata');
+
+    if (ata.files) {
+      atapv.innerHTML = '';
+     var a = readAndPreviewAta(ata.files[0]);
+    }
+    function readAndPreviewAta(file) {
+        // Make sure `file.name` matches our extensions criteria
+        if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+            return alert(file.name + " is not an image");
+        } // else...
+        var read = new FileReader();
+
+        read.addEventListener("load", function() {
+          document.getElementById('lbata').innerHTML =  file.name;
+          var image = new Image();
+          image.className = 'bt-spec';
+          image.title  = file.name;
+          image.src    = this.result;
+          image.style.width = "80%";
+          image.style.height = "auto";
+          image.style.marginLeft = "90px";
+          image.style.marginBottom = "50px";
+          image.onclick = function(){removeAta();};
+          atapv.appendChild(image);
+        });
+        read.readAsDataURL(file);
+
+    }
+
+}
+function previewImages() {
     var preview = document.querySelector('#preview');
 
-    if (this.files) {
-        [].forEach.call(this.files, readAndPreview);
+    if (fotos.files) {
+        [].forEach.call(fotos.files, readAndPreview);
     }
     function readAndPreview(file) {
         // Make sure `file.name` matches our extensions criteria
@@ -103,6 +142,7 @@ function enviarFotos(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('#ata').addEventListener("change", previewAta);
     document.querySelector('#fotos').addEventListener("change", previewImages);
     document.querySelector('#botao-registrar-reuniao').addEventListener("click", enviarFotos);
 
@@ -197,9 +237,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 {{-- Ata --}}
                 <div>
                     <label id="nome-tabela-reuniao" class = "col-md-12" for="">Ata</label>
-                    <label class="corLabelReuniao" for="">Ata da reunião</label> <br>
-                    <div>
-                        <textarea class="form-control" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "5"></textarea>
+                    <input style="margin-top: -100px" type="file" name='ata' class="custom-file-input input-stl" id="ata" accept="image/*" placeholder="Envie a imagem da ATA">
+                    <label class="btn btn-primary btn-block btn-outlined" id="lbata" for="ata">Envio da ata</label>
+                    <br>
+                    <div class="col-md-12" id="prvata">
+
                     </div>
                 </div>
                 <!--<img src="" height="200" alt="Image preview...">   -->
@@ -209,13 +251,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div style="background-color: #05856F;" class="form-row inner-div">
                         <label class="">Você pode remover as imagens clicando sobre elas!</label>
                     </div>
-                    <div class="col-md-6">
-                        <input type="file" multiple='multiple' name='fotos[]' class="custom-file-input input-stl" id="fotos" accept="image/*" placeholder="Escolha as fotos">
-                        <label class="btn btn-primary btn-block btn-outlined" id="lbfoto" for="fotos">Escolha as fotos</label>
-                    </div>
-                    <div class="col-md-12" id="preview">
+                      <input style="margin-top: -100px" type="file" multiple='multiple' name='fotos[]' class="custom-file-input input-stl" id="fotos" accept="image/*" placeholder="Escolha as fotos">
+                      <label class="btn btn-primary btn-block btn-outlined" id="lbfoto" for="fotos">Escolha as fotos</label>
+                    <div class="col-md-12 justify-content-center" id="preview">
 
                     </div>
+                    <br>
                 </div>
             </div>
             <div>

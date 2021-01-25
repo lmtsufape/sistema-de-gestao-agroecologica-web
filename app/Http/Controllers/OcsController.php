@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class OcsController extends Controller
 {
     public function listarProdutores(){
+        $this->authorize('primeiroAcesso', User::class);
         $user = User::find(Auth::id());
 
         return view('Coordenador.listar_produtores', [

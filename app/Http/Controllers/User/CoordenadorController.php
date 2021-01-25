@@ -14,6 +14,7 @@ use App\Models\Ocs;
 use App\Models\AgendamentoReuniao;
 use App\Models\Reuniao;
 use App\Models\Retificacao;
+use App\Models\Produtor;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class CoordenadorController extends Controller {
     ];
 
     public function mudaPerfil($id){
+      $this->authorize('gerenciar', User::class);
       $user = User::find($id);
       if($user->tipo_perfil == "Coordenador"){
           $user->tipo_perfil = "Produtor";
@@ -41,110 +43,39 @@ class CoordenadorController extends Controller {
     }
 
     public function cadastroProdutor() {
-        $logado = User::find(Auth::id());
-        if ($logado->tipo_perfil == "Coordenador") {
-            return view('Coordenador.criar_produtor');
-        }
-        return redirect()->back();
+        $this->authorize('coordenar', User::class);
+        return view('Coordenador.criar_produtor');
     }
 
-    public function cadastroCoordenador() {
-        return view('Coordenador.cadastro_coordenador');
-    }
-
-    public function cadastroOcs() {
-        return view('Coordenador.cadastro_ocs');
-    }
 
     public function cadastroReuniao($id_reuniao){
-        $logado = User::find(Auth::id());
+        $this->authorize('coordenar', User::class);
         $reuniaoAgendada = AgendamentoReuniao::find($id_reuniao);
-        if($logado->tipo_perfil == "Coordenador"){
-            return view('Coordenador.cadastro_reuniao')->with([
-              'produtores' => $this->getProdutoresDaOcs(),
-              'reuniao' => $reuniaoAgendada,
-              'allProds' => json_encode($this->getProdutoresDaOcs()),
-            ]);
-        }
-        return redirect()->back();
+        return view('Coordenador.cadastro_reuniao')->with([
+          'produtores' => $this->getProdutoresDaOcs(),
+          'reuniao' => $reuniaoAgendada,
+          'allProds' => json_encode($this->getProdutoresDaOcs()),
+        ]);
     }
 
     public function verOcs(){
-        $userLogado = User::find(Auth::id());
-        if ($userLogado->tipo_perfil == "Associacao") {
-          return redirect()->back();
-        }
+        $this->authorize('primeiroAcesso', User::class);
         return view('Produtor.ver_ocs', [
-            'ocs' => $userLogado->produtor->ocs,
+            'ocs' => Auth::user()->produtor->ocs,
         ]);
 
     }
 
     public function agendamentoReuniao(){
-        $logado = User::find(Auth::id());
-        if($logado->tipo_perfil == "Coordenador"){
-            return view('Coordenador.cadastro_agendamento_reuniao');
-        }
-        return redirect()->back();
-    }
-
-    public function editarOcs(){
-        $coordenadorlogado = User::find(Auth::id());
-        if ($coordenadorlogado->tipo_perfil == "Coordenador") {
-            return view('Coordenador.editar_ocs', [
-                'ocs' => $coordenadorlogado->ocs,
-            ]);
-        }
-        return redirect()->back();
-    }
-
-    public function salvarEditarOcs(Request $request){
-        $entrada = $request->all();
-        $coordenadorlogado = User::find(Auth::id());
-        $ocs =  $coordenadorlogado->ocs;
-
-        $messages = [
-            'required' => 'O campo :attribute é obrigatório.',
-            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
-            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
-            'password.required' => 'A senha é obrigatória.',
-            'unique' => 'O :attribute já existe',
-        ];
-
-
-        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao, $messages);
-        if ($validator_endereco->fails()) {
-            return redirect()->back()
-                             ->withErrors($validator_endereco)
-                             ->withInput();
-        }
-
-        $validator_ocs = Validator::make($entrada, Ocs::$regras_validacao_editar, $messages);
-        if ($validator_ocs->fails()) {
-            return redirect()->back()
-                             ->withErrors($validator_ocs)
-                             ->withInput();
-        }
-
-
-
-        $endereco = new Endereco;
-        $endereco->fill($entrada);
-        $endereco->save();
-
-        $ocs->fill($entrada);
-        $ocs->endereco_id = $endereco->id;
-        $ocs->unidade_federacao = $endereco->estado;
-
-        $ocs->save();
-
-        return redirect()->route('user.coordenador.ver_ocs');
+        $this->authorize('coordenar', User::class);
+        return view('Coordenador.cadastro_agendamento_reuniao');
     }
 
 
     public function verReuniao($id_reuniao){
+        $this->authorize('primeiroAcesso', User::class);
         $reuniaoAgendada = AgendamentoReuniao::find($id_reuniao);
-        $userLogado = User::find(Auth::id());
+        $userLogado = Auth::user()->produtor;
 
         if($reuniaoAgendada){
             return view('Coordenador.ver_reuniao', ['reuniao' => $reuniaoAgendada, 'usuario' => $userLogado]);
@@ -159,6 +90,7 @@ class CoordenadorController extends Controller {
     }
 
     public function salvarCadastrarProdutor(Request $request) {
+        $this->authorize('coordenar', User::class);
         $entrada = $request->all();
 
         $messages = [
@@ -169,30 +101,43 @@ class CoordenadorController extends Controller {
         ];
 
 
-        $validator_produtor = Validator::make($entrada, User::$regras_validacao_criar_produtor, $messages);
+        $validator_user = Validator::make($entrada, User::$regras_validacao_criar_produtor, $messages);
+        if ($validator_user->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_user)
+                             ->withInput();
+        }
+
+        $validator_produtor = Validator::make($entrada, Produtor::$regras_validacao_criar_produtor, $messages);
         if ($validator_produtor->fails()) {
             return redirect()->back()
                              ->withErrors($validator_produtor)
                              ->withInput();
         }
 
+        $user = new User;
+        $user->fill($entrada);
+        $user->tipo_perfil = "Produtor";
+        $user->password = Hash::make('123123123');
+        $user->save();
 
-        $produtor = new User;
+        $produtor = new Produtor;
         $produtor->fill($entrada);
-        $produtor->tipo_perfil = 'Produtor';
         $produtor->primeiro_acesso = true;
-        $produtor->password = Hash::make('123123123');
-
-        $coordenadorlogado = User::find(Auth::id());
-        $produtor->ocs_id = $coordenadorlogado->ocs_id;
+        $produtor->user_id = $user->id;
+        $produtor->ocs_id = Auth::user()->produtor->ocs_id;
 
         $produtor->save();
 
-        //Todo: Tem que tirar o comment e ajustar a tela de view do produtor...
+        if(!$produtor->id){
+          User::find($user->id)->delete();
+        }
+
         return redirect(route('user.coordenador.listar_produtores'));
     }
 
     public function salvarCadastrarReuniao(Request $request, $reuniao_agendada_id){
+        $this->authorize('coordenar', User::class);
         $entrada = $request->all();
 
         $messages = [
@@ -208,11 +153,16 @@ class CoordenadorController extends Controller {
 
         $participantes = $entrada['participantes'];
 
-
         $reuniao = new Reuniao();
         $reuniao->participantes = $participantes;
-        $reuniao->ata = $entrada['ata'];
         $reuniao->agendamento_id = $reuniao_agendada_id;
+
+        if($request->hasFile('ata')){
+            $file = $request->allFiles()['ata'];
+            $reuniao->ata = $file->store('public/fotosReuniao/ata' . $reuniao->ocs_id . '/' . $reuniao->id);
+            echo $reuniao->ata;
+        }
+
         $reuniao->save();
 
         $reuniaoAgendada = AgendamentoReuniao::find($reuniao_agendada_id);
@@ -220,6 +170,7 @@ class CoordenadorController extends Controller {
         $reuniaoAgendada->save();
 
         //Persistindo as fotos
+
 
         $request->validate([
             'fotos'	=> 'required', //'required|image|mimes:jpg,jpeg,png'
@@ -260,11 +211,13 @@ class CoordenadorController extends Controller {
     }
 
     public function getReunioesAgendadasDaOcs(){
-        $coordenadorLogado = User::find(Auth::id());
+        $this->authorize('primeiroAcesso', User::class);
+        $coordenadorLogado = Auth::user()->produtor;
         return $coordenadorLogado->ocs->agendamentoReuniao->reverse();
     }
 
     public function salvarCadastrarAgendamentoReuniao(Request $request){
+        $this->authorize('coordenar', User::class);
         $entrada = $request->all();
 
         $time = strtotime($entrada['data']);
@@ -282,7 +235,7 @@ class CoordenadorController extends Controller {
             return redirect()->back()->withErrors($validator_reuniao)->withInput();
         }
 
-        $coordenadorlogado = User::find(Auth::id());
+        $coordenadorlogado = Auth::user()->produtor;
 
         $agendamentoReuniao = new AgendamentoReuniao();
         $agendamentoReuniao->nome = $entrada['nome'];
@@ -298,6 +251,7 @@ class CoordenadorController extends Controller {
     }
 
     public function cancelarReuniaoAgendada($reuniao_agendada_id){
+        $this->authorize('coordenar', User::class);
         $reuniaoAgendada = AgendamentoReuniao::find($reuniao_agendada_id);
 
         if($reuniaoAgendada->registrada == false){
@@ -308,6 +262,7 @@ class CoordenadorController extends Controller {
     }
 
     public function editarReuniao($id_reuniao){
+        $this->authorize('coordenar', User::class);
         $reuniao = AgendamentoReuniao::find($id_reuniao);
         if ($reuniao) {
             return view('Coordenador.editar_reuniao', [
@@ -319,6 +274,7 @@ class CoordenadorController extends Controller {
     }
 
     public function salvarEditarReuniao(Request $request){
+        $this->authorize('coordenar', User::class);
         $entrada = $request->all();
 
         $data = date('Y-m-d');

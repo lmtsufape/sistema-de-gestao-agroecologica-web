@@ -40,6 +40,15 @@ class Ocs extends Model
         return $this->hasMany('App\Models\Produtor', 'ocs_id');
     }
 
+    public function coordenador(){
+      foreach ($this->produtor as $prod) {
+        if($prod->user->tipo_perfil == 'Coordenador'){
+          return true;
+        }
+      }
+      return false;
+    }
+
     public function agendamentoReuniao(){
         return $this->hasMany('App\Models\AgendamentoReuniao', 'ocs_id', 'id'); // foreign_key e local_key
     }

@@ -26,6 +26,7 @@ class PropriedadeController extends Controller {
     ];
 
     public function cadastrarProducao($id_canteiro){
+        $this->authorize('coordenadorProdutor', User::class);
         $produtos = Produto::all();
         $canteiroexiste = CanteiroDeProducao::find($id_canteiro);
         if ($canteiroexiste) {
@@ -39,6 +40,7 @@ class PropriedadeController extends Controller {
     }
 
     public function salvarCadastrarProducao(Request $request){
+        $this->authorize('coordenadorProdutor', User::class);
         $entrada = $request->all();
         $ids_prods = "";
 
@@ -57,6 +59,7 @@ class PropriedadeController extends Controller {
     }
 
     public function removerProducao($id_producao){
+        $this->authorize('coordenadorProdutor', User::class);
         $producao = Producao::find($id_producao);
         if($producao){
             $producao->delete();
@@ -66,6 +69,7 @@ class PropriedadeController extends Controller {
     }
 
     public function editarProducao($id_producao){
+        $this->authorize('coordenadorProdutor', User::class);
         $producao = Producao::find($id_producao);
         if($producao){
             $produtor = $producao->canteirodeproducaos->propriedade->produtor;
@@ -83,6 +87,7 @@ class PropriedadeController extends Controller {
     }
 
     public function salvarEditarProducao(Request $request){
+        $this->authorize('coordenadorProdutor', User::class);
         $entrada = $request->all();
 
         $producao = Producao::find($entrada['id_producao']);
@@ -129,7 +134,8 @@ class PropriedadeController extends Controller {
     }
 
     public function cadastrarPropriedade(){
-        $produtor = User::find(Auth::id());
+        $this->authorize('coordenadorProdutor', User::class);
+        $produtor = Auth::user()->produtor;
         if($produtor->propriedade){
             return view('Produtor/propriedade_ver', [
                 'propriedade' => $produtor->propriedade,
@@ -140,8 +146,9 @@ class PropriedadeController extends Controller {
     }
 
     public function salvarEditarPropriedade(Request $request){
+        $this->authorize('coordenadorProdutor', User::class);
         $entrada = $request->all();
-        $produtor = User::find(Auth::id());
+        $produtor = Auth::user()->produtor;
         $propriedade =  $produtor->propriedade;
 
         $mensagens = [
@@ -170,7 +177,7 @@ class PropriedadeController extends Controller {
 
         $propriedade->fill($entrada);
         $propriedade->endereco_id = $endereco->id;
-        $propriedade->user_id = Auth::id();
+        $propriedade->user_id = $produtor->id;
         $propriedade->save();
 
         return redirect()->route('user.verPropriedade');
@@ -178,6 +185,7 @@ class PropriedadeController extends Controller {
     }
 
     public function salvarCadastrarCanteiroDeProducao(Request $request){
+        $this->authorize('coordenadorProdutor', User::class);
         $entrada = $request->all();
         $mensagens = [
             'required' => 'O campo :attribute é obrigatório.',
@@ -194,7 +202,7 @@ class PropriedadeController extends Controller {
 
         $canteiro = new CanteiroDeProducao;
         $canteiro->fill($entrada);
-        $canteiro->propriedade_id = $entrada['id_propriedade'];
+        $canteiro->propriedade_id = Auth::user()->produtor->propriedade->id;
         $canteiro->save();
 
         return redirect()->route('user.canteiroProducao.listar');
@@ -202,6 +210,7 @@ class PropriedadeController extends Controller {
     }
 
     public function verProducao($id_producao){
+        $this->authorize('coordenadorProdutor', User::class);
         $producao = Producao::find($id_producao);
         if($producao){
             $user_id = $producao->canteirodeproducaos->propriedade->produtor->id;
@@ -216,7 +225,8 @@ class PropriedadeController extends Controller {
 
 
     public function listarCanteiroDeProducao(){
-        $produtor = User::find(Auth::id());
+        $this->authorize('coordenadorProdutor', User::class);
+        $produtor = Auth::user()->produtor;
         if($produtor->propriedade){
             return view('Produtor/listar_canteiros', [
                 'canteiro' => $produtor->propriedade->canteirodeproducaos,
@@ -230,6 +240,7 @@ class PropriedadeController extends Controller {
 
 
     public function salvarCadastrarPropriedade(Request $request){
+        $this->authorize('coordenadorProdutor', User::class);
         $entrada = $request->all();
         $mensagens = [
             'required' => 'O campo :attribute é obrigatório.',
@@ -259,18 +270,19 @@ class PropriedadeController extends Controller {
         $propriedade = new Propriedade;
         $propriedade->fill($entrada);
         $propriedade->endereco_id = $endereco->id;
-        $propriedade->user_id = Auth::id();
+        $propriedade->user_id = Auth::user()->produtor->id;
         $propriedade->save();
 
         return redirect()->route('user.verPropriedade');
     }
 
     public function verPropriedade(){
-        $propriedade = Propriedade::where('user_id', Auth::id())->get();
-        if(count($propriedade) > 0){
-            $canteiros = CanteiroDeProducao::where('propriedade_id', $propriedade[0]->id)->get();
+        $this->authorize('coordenadorProdutor', User::class);
+        $propriedade = Auth::user()->produtor->propriedade;
+        if($propriedade){
+            $canteiros = $propriedade->canteirodeproducaos;
             return view('Produtor/propriedade_ver', [
-                'propriedade' => $propriedade[0],
+                'propriedade' => $propriedade,
                 'canteiros' => $canteiros,
             ]);
         } else {

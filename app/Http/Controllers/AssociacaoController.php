@@ -83,6 +83,7 @@ class AssociacaoController extends Controller
 
 
     public function editarOcs($id){
+      $this->authorize('gerenciar', User::class);
       $ocs = Ocs::find($id);
       return view('Associacao.editar_ocs', [
         'ocs' => $ocs,
@@ -91,6 +92,7 @@ class AssociacaoController extends Controller
     }
 
     public function editarAssociacao(){
+      $this->authorize('gerenciar', User::class);
       $associacao = User::find(Auth::id());
       return view('Associacao.info_associacao', [
         'associacao' => $associacao->associacao,
@@ -101,6 +103,7 @@ class AssociacaoController extends Controller
 
 
     public function salvarCadastrarCoordenador(Request $request) {
+        $this->authorize('gerenciar', User::class);
         $entrada = $request->all();
 
 
@@ -149,10 +152,9 @@ class AssociacaoController extends Controller
 
 
     public function salvarCadastrarOcs(Request $request){
+        $this->authorize('gerenciar', User::class);
         $entrada = $request->all();
 
-        #AQUI È PRA VER SE A ASSOCIAÇÂO TA LOGADAAAAAA
-        #$coordenadorlogado = User::find(Auth::id());
 
         $messages = [
             'required' => 'O campo :attribute é obrigatório.',
