@@ -17,7 +17,6 @@ class CreateOcsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nome_ocs');
-            $table->string('orgao_fiscalizador')->nullable();
             $table->unsignedBigInteger('associacao_id');
             $table->foreign('associacao_id')->references('id')->on('associacaos');
 

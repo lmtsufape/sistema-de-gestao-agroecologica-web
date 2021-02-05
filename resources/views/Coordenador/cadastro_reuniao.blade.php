@@ -165,15 +165,26 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="container-registrar-reuniao">
     <div class = 'jumbotron' id="jumbotron-registrar-reuniao">
         <div id = 'cabecalho'>
-            <div>
-                <label id="cabecalho-reuniao" for="botao-agendar">Registrar reunião</label>
-                <hr id="linha-registrar-reuniao" class="linha-cabecalho">
-            </div>
+          <br>
             <form method="POST" action="{{route('user.coordenador.registrarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}" enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="marker">Registrar reunião</h1>
+                  </div>
+              </div>
+              <hr class="outliner"></hr>
                 @csrf
                 {{-- Reunião --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reunião</label>
+                  <br>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Reunião</label>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
                     <div class="form-row">
                         <div class="col-md-10 mb-4">
                             <label class="corLabelReuniao" for="">Nome da reunião</label> <br>
@@ -187,14 +198,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 {{-- Participantes --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Participantes</label>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Participantes</label>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
                     <div class="form-row has-search" id="search-bar">
                         <div class="col-md-2">
-                            <label class="corLabelReuniao" id="labelProdutor">Produtor</label>
+                            <label class="corLabelReuniao" id="labelProdutor">Membro</label>
                         </div>
                         <div class="col-md-3">
                             <span class="fa fa-search form-control-feedback" id='search-icon'></span>
-                            <input type="text" class="form-control" placeholder="Nome ou CPF do participante" id='searchbar' onkeyup="myFunction()">
+                            <input type="text" class="form-control input-stl" placeholder="Nome ou CPF do participante" id='searchbar' onkeyup="myFunction()">
                         </div>
                         <div class="col-md-5">
                             <img id="botao-pesquisa" class="imagens-acoes" src="{{asset('images/logo_procurar.png')}}" alt="">
@@ -236,9 +254,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 {{-- Ata --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Ata</label>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Ata</label>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
                     <input style="margin-top: -100px" type="file" name='ata' class="custom-file-input input-stl" id="ata" accept="image/*" placeholder="Envie a imagem da ATA">
-                    <label class="btn btn-primary btn-block btn-outlined" id="lbata" for="ata">Envio da ata</label>
+                    <label class="btn btn-primary btn-block btn-outlined bg-verde" id="lbata" for="ata">Envio da ata</label>
                     <br>
                     <div class="col-md-12" id="prvata">
 
@@ -247,12 +272,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 <!--<img src="" height="200" alt="Image preview...">   -->
                 {{-- Álbum --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Álbum</label>
-                    <div style="background-color: #05856F;" class="form-row inner-div">
-                        <label class="">Você pode remover as imagens clicando sobre elas!</label>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Álbum</label>
                     </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
                       <input style="margin-top: -100px" type="file" multiple='multiple' name='fotos[]' class="custom-file-input input-stl" id="fotos" accept="image/*" placeholder="Escolha as fotos">
-                      <label class="btn btn-primary btn-block btn-outlined" id="lbfoto" for="fotos">Escolha as fotos</label>
+                      <label class="btn btn-primary btn-block btn-outlined bg-verde" id="lbfoto" for="fotos">Escolha as fotos</label>
                     <div class="col-md-12 justify-content-center" id="preview">
 
                     </div>
@@ -272,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="col-md-3 mb-4">
                         <a id="labelCancelar-registrar" class="fonteFooter" href="{{route('user.coordenador.listar_reunioes')}}">Cancelar</a>
                     </div>
-                    <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter">Registrar reunião</button>
+                    <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter bg-verde">Registrar reunião</button>
                 </div>
             </div>
         </form>

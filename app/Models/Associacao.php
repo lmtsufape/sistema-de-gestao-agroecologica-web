@@ -16,20 +16,15 @@ class Associacao extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'cnpj',
         'celular',
-        'fax',
     ];
 
     public static $regras_validacao_criar = [
-        'cnpj' => 'required|max:20|unique:associacaos,cnpj',
         'celular' => 'nullable|numeric|min:10',
-        'fax' => 'max:255',
     ];
 
     public static $regras_validacao_editar = [
         'celular' => 'nullable|numeric|min:10',
-        'fax' => 'max:255',
     ];
 
     public function user() {

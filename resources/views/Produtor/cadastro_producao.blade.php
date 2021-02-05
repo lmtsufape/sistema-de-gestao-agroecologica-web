@@ -13,31 +13,36 @@ function showDiv(id, id1, id2) {
     <div class="col-md-12 upper-div">
         <div class="especifies">
             <br>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="marker">Nova produção</h1>
-                </div>
-            </div>
-            <hr class="divider"></hr>
 
-            {{-- Novo canteiro modal --}}
-
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul style="padding: 0px;">
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
-            <br>
 
             <div class="formulario">
-                <div class="inner-div">
-                    <label class="">Produção</label>
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="marker">Nova produção</h1>
+                  </div>
+              </div>
+              <hr class="outliner"></hr>
+
+              {{-- Novo canteiro modal --}}
+
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul style="padding: 0px;">
+                      @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+              @endif
+              <br>
+              <div class="form-row">
+                <div class="col-md-12 mb-3">
+                  <label class="mark">Canteiro</label>
                 </div>
+                <div class="col-md-12 mb-3">
+                  <hr class="divider"></hr>
+                </div>
+              </div>
                 <form class="formulario" method="post" id="testForm" action="{{ route('user.canteiroProducao.producao.salvar') }}">
                     @csrf
                     <div class="row">

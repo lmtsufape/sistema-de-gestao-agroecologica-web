@@ -16,12 +16,10 @@ class Produtor extends Authenticatable
      */
     protected $fillable = [
         'data_nascimento',
-        'cpf',
         'rg',
         'nome_conjugue',
         'nome_filhos',
         'primeiro_acesso',
-        'perfil_coordenador',
     ];
 
     public function dataFormatada(){
@@ -29,14 +27,6 @@ class Produtor extends Authenticatable
         return date('d/m/Y', $time);
     }
 
-    public static $regras_validacao_criar_produtor = [
-        'cpf' => 'required|numeric|unique:produtors,cpf',
-    ];
-
-    public static $regras_validacao_criar_coordenador = [
-        'cpf' => 'required|numeric|unique:produtors,cpf',
-        'perfil_coordenador' => 'required',
-    ];
 
     public static $regras_validacao_primeiro_acesso = [
         'rg' => 'required|numeric|unique:produtors,rg',

@@ -10,9 +10,14 @@
                     <h1 class="marker">Editar reunião</h1>
                 </div>
             </div>
-            <hr class="divider"></hr>
-            <div class="inner-div">
-                <label class="">Detalhes da reunião</label><br>
+            <hr class="outliner"></hr>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label class="mark">Detalhes</label>
+              </div>
+              <div class="col-md-12 mb-3">
+                <hr class="divider"></hr>
+              </div>
             </div>
             <br>
             <div class="row">
@@ -32,7 +37,7 @@
             </div>
             @if ($reuniao->registrada == true)
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label class="label-static">Participantes</label><br>
                     @php
                     $nomeParticipantes = explode('/', $reuniao->reuniaoRegistrada->participantes);
@@ -43,28 +48,45 @@
                     @endif
                     @endforeach
                 </div>
-                <div class="col-md-4">
-                    <label class="label-static">Ata</label><br>
-                    <label class="label-ntstatic">{{$reuniao->reuniaoRegistrada->ata}}</label>
-                </div>
             </div>
             <br>
-            <div class="inner-div">
-                <label class="">Imagens da reunião</label><br>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label class="mark">Ata</label>
+              </div>
+              <div class="col-md-12 mb-3">
+                <hr class="divider"></hr>
+              </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="label-static">Fotos</label><br>
+                    <center><img src="{{asset('storage/' . $reuniao->reuniaoRegistrada->ata)}}" alt="" width="600px"> <br> <br></center>
                 </div>
+            </div>
+            <br>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label class="mark">Imagens da reunião</label>
+              </div>
+              <div class="col-md-12 mb-3">
+                <hr class="divider"></hr>
+              </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     @foreach ($reuniao->reuniaoRegistrada->fotosReuniao as $fotoReuniao)
-                    <center><img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="600px"> <br> <br></center>
+                    <center><img src="{{asset('storage/' . $fotoReuniao->path)}}" alt="" width="300px"> <br> <br></center>
                     @endforeach
                 </div>
 
             </div>
-            <div class="inner-div">
-                <label class="">Retificações</label><br>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label class="mark">Retificação</label>
+              </div>
+              <div class="col-md-12 mb-3">
+                <hr class="divider"></hr>
+              </div>
             </div>
             <div class="row">
                 @foreach ($reuniao->reuniaoRegistrada->retificacao as $ret)
@@ -81,7 +103,7 @@
                     <form method="POST" action="{{route('user.coordenador.editarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}">
                         @csrf
                         <label class="label-static">Nova Retificação</label><br>
-                        <textarea type="text" class="form-control" name="retificacao" id='retificacao' rows="3"></textarea>
+                        <textarea type="text" class="form-control input-stl" name="retificacao" id='retificacao' rows="3"></textarea>
                         <input type="hidden" value="{{$reuniao->reuniaoRegistrada->id}}" name="id_reuniao">
                     </div>
 

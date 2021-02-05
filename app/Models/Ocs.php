@@ -17,18 +17,15 @@ class Ocs extends Model
      */
     protected $fillable = [
         'nome_ocs',
-        'orgao_fiscalizador',
     ];
 
 
     public static $regras_validacao_criar = [
         'nome_ocs' => 'required|max:255',
-        'orgao_fiscalizador' => 'required|max:255',
     ];
 
     public static $regras_validacao_editar = [
         'nome_ocs' => 'required|max:255',
-        'orgao_fiscalizador' => 'required|max:255',
     ];
 
 

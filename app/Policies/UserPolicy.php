@@ -27,7 +27,7 @@ class UserPolicy
     }
 
     public function coordenadorProdutor(User $user){
-      return ((\Auth::user()->tipo_perfil == 'Produtor') || (\Auth::user()->tipo_perfil == 'Coordenador' && \Auth::user()->produtor->perfil_coordenador == 'Produtor'));
+      return ((\Auth::user()->tipo_perfil == 'Produtor') || (\Auth::user()->tipo_perfil == 'Coordenador'));
     }
     /**
      * Determine whether the user can view any models.

@@ -25,6 +25,16 @@ class PropriedadeController extends Controller {
         'password.required' => 'A senha é obrigatória.',
     ];
 
+    public function editarPropriedade(){
+      $this->authorize('coordenadorProdutor', User::class);
+      $produtor =  Auth::user()->produtor;
+      if($produtor->propriedade){
+        return view('Produtor/editar_propriedade', [
+            'propriedade' => $produtor->propriedade,
+        ]);
+      }
+     return redirect()->route('user.cadastrarPropriedade');
+    }
     public function cadastrarProducao($id_canteiro){
         $this->authorize('coordenadorProdutor', User::class);
         $produtos = Produto::all();

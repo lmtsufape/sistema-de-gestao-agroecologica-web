@@ -31,9 +31,16 @@ class CoordenadorController extends Controller {
     public function mudaPerfil($id){
       $this->authorize('gerenciar', User::class);
       $user = User::find($id);
+
       if($user->tipo_perfil == "Coordenador"){
           $user->tipo_perfil = "Produtor";
         } else if($user->tipo_perfil == "Produtor"){
+          foreach ($user->produtor->ocs->produtor as $prod) {
+            if($prod->user->tipo_perfil == "Coordenador"){
+              $prod->user->tipo_perfil = "Produtor";
+              $prod->user->save();
+            }
+          }
           $user->tipo_perfil = "Coordenador";
         } else {
           return redirect()->back();
@@ -56,6 +63,29 @@ class CoordenadorController extends Controller {
           'reuniao' => $reuniaoAgendada,
           'allProds' => json_encode($this->getProdutoresDaOcs()),
         ]);
+    }
+
+    public function criarReuniao(){
+        $this->authorize('coordenar', User::class);
+        return view('Coordenador.criar_reuniao');
+    }
+
+    public function cancelarReuniaoSimples(){
+        $this->authorize('coordenar', User::class);
+        $logado = User::find(Auth::id());
+        return view('Coordenador.cancelar_reuniao')->with(['reunioes_agendadas' => $this->getReunioesAgendadasDaOcs(), 'usuario' => $logado]);
+    }
+
+    public function registarReuniaoSimples(){
+        $this->authorize('coordenar', User::class);
+        $logado = User::find(Auth::id());
+        return view('Coordenador.registrar_reuniao')->with(['reunioes_agendadas' => $this->getReunioesAgendadasDaOcs(), 'usuario' => $logado]);
+    }
+
+    public function retificarReuniaoSimples(){
+        $this->authorize('coordenar', User::class);
+        $logado = User::find(Auth::id());
+        return view('Coordenador.retificar_reuniao')->with(['reunioes_agendadas' => $this->getReunioesAgendadasDaOcs(), 'usuario' => $logado]);
     }
 
     public function verOcs(){
@@ -90,50 +120,50 @@ class CoordenadorController extends Controller {
     }
 
     public function salvarCadastrarProdutor(Request $request) {
-        $this->authorize('coordenar', User::class);
-        $entrada = $request->all();
+      $this->authorize('coordenar', User::class);
+      $entrada = $request->all();
 
-        $messages = [
-            'required' => 'O campo :attribute é obrigatório.',
-            'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
-            'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
-            'password.required' => 'A senha é obrigatória.',
-        ];
+      $messages = [
+          'required' => 'O campo :attribute é obrigatório.',
+          'password.required' => 'A senha é obrigatória.',
+          'email.required' => 'O CPF é obrigatório',
+          'email.min' => 'O CPF deve ter 14 numeros',
+          'email.max' => 'O CPF deve ter 14 numeros',
+          'email.unique' => 'O CPF já foi cadastrado',
+          'email2.unique' => 'O email já existe',
+          'min' => 'O campo :attribute é deve ter no minimo :min caracteres.',
+          'max' => 'O campo :attribute é deve ter no máximo :max caracteres.',
+          'unique' => 'O :attribute já existe',
+      ];
 
 
-        $validator_user = Validator::make($entrada, User::$regras_validacao_criar_produtor, $messages);
-        if ($validator_user->fails()) {
-            return redirect()->back()
-                             ->withErrors($validator_user)
-                             ->withInput();
-        }
+      $validator_user = Validator::make($entrada, User::$regras_validacao_criar_produtor, $messages);
+      if ($validator_user->fails()) {
+          return redirect()->back()
+                           ->withErrors($validator_user)
+                           ->withInput();
+      }
 
-        $validator_produtor = Validator::make($entrada, Produtor::$regras_validacao_criar_produtor, $messages);
-        if ($validator_produtor->fails()) {
-            return redirect()->back()
-                             ->withErrors($validator_produtor)
-                             ->withInput();
-        }
+      $user = new User;
+      $user->fill($entrada);
+      $user->tipo_perfil = 'Produtor';
+      $user->password = Hash::make('123123123');
+      $user->save();
 
-        $user = new User;
-        $user->fill($entrada);
-        $user->tipo_perfil = "Produtor";
-        $user->password = Hash::make('123123123');
-        $user->save();
+      $produtor = new Produtor;
+      $produtor->fill($entrada);
+      $produtor->primeiro_acesso = true;
+      $produtor->user_id = $user->id;
 
-        $produtor = new Produtor;
-        $produtor->fill($entrada);
-        $produtor->primeiro_acesso = true;
-        $produtor->user_id = $user->id;
-        $produtor->ocs_id = Auth::user()->produtor->ocs_id;
+      $produtor->ocs_id = Auth::user()->produtor->ocs_id;
 
-        $produtor->save();
+      $produtor->save();
 
-        if(!$produtor->id){
-          User::find($user->id)->delete();
-        }
+      if(!$produtor->id){
+        User::find($user->id)->delete();
+      }
 
-        return redirect(route('user.coordenador.listar_produtores'));
+      return redirect()->back()->with('Sucesso', 'Cadastro realizado com sucesso!');
     }
 
     public function salvarCadastrarReuniao(Request $request, $reuniao_agendada_id){

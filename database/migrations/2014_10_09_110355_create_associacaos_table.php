@@ -16,9 +16,7 @@ class CreateAssociacaosTable extends Migration
         Schema::create('associacaos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('cnpj')->unique();
             $table->string('celular')->nullable();
-            $table->string('fax')->nullable();
             $table->string('unidade_federacao');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

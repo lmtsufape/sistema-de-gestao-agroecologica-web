@@ -13,7 +13,6 @@ class HomeController extends Controller {
         $user = User::find(Auth::id());
         if($user->associacao){
           return view('Associacao.home_associacao', [
-            'associacao' => $user->associacao,
           ]);
         }
         return view('produtor.home', [

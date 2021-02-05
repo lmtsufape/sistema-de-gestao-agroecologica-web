@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller {
 
     public function verPerfil() {
-        $produtor = User::find(Auth::id());
-        if ($produtor->primeiro_acesso) {
+        $this->authorize('primeiroAcesso', User::class);
+        $produtor = Auth::user();
+        if ($produtor->produtor->primeiro_acesso) {
             return redirect()->back();
         }
         return view('Produtor.ver_perfil', [
@@ -24,10 +25,53 @@ class UserController extends Controller {
         ]);
     }
 
+    public function editarPerfil() {
+        $this->authorize('primeiroAcesso', User::class);
+        $produtor = Auth::user();
+        if ($produtor->produtor->primeiro_acesso) {
+            return redirect()->back();
+        }
+        return view('Produtor.editar_perfil', [
+            'produtor' => $produtor
+        ]);
+    }
+
+    public function alterarSenha(){
+      $this->authorize('primeiroAcesso', User::class);
+      $produtor = Auth::user();
+      return view('Produtor.atualizar_senha', [
+        'associacao' => $produtor->produtor,
+      ]);
+    }
+
+    public function salvarAlterarSenha(Request $request){
+      $this->authorize('primeiroAcesso', User::class);
+      $entrada = $request->all();
+      $user = Auth::user();
+
+      $messages = [
+          'required' => 'O campo :attribute é obrigatório.',
+          'password.required' => 'A senha é obrigatória.',
+      ];
+
+      $validator_user = Validator::make($entrada, User::$regras_validacao_senha, $messages);
+      if ($validator_user->fails()) {
+          return redirect()->back()
+                           ->withErrors($validator_user)
+                           ->withInput();
+      }
+
+      $user->password = Hash::make($entrada['password']);
+      $user->save();
+
+      return redirect()->route('user.ver_perfil')->with('Sucesso', 'Edição finalizada com sucesso!');
+    }
+
     public function salvarEditarPerfil(Request $request){
+        $this->authorize('primeiroAcesso', User::class);
         $entrada = $request->all();
 
-        $produtor = User::find(Auth::id());
+        $produtor = Auth::user();
 
         $messages = [
             'required' => 'O campo :attribute é obrigatório.',
@@ -44,7 +88,14 @@ class UserController extends Controller {
                              ->withInput();
         }
 
-        $validator_produtor = Validator::make($entrada, User::$regras_validacao_editar, $messages);
+        $validator_user = Validator::make($entrada, User::$regras_validacao_editar, $messages);
+        if ($validator_user->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator_user)
+                             ->withInput();
+        }
+
+        $validator_produtor = Validator::make($entrada, Produtor::$regras_validacao_editar, $messages);
         if ($validator_produtor->fails()) {
             return redirect()->back()
                              ->withErrors($validator_produtor)
@@ -56,10 +107,16 @@ class UserController extends Controller {
         $endereco->fill($entrada);
         $endereco->save();
 
-        $produtor->fill($entrada);
+        $produtor->produtor->fill($entrada);
         $produtor->endereco_id = $endereco->id;
+        $produtor->fill($entrada);
+
+        if($entrada['password']){
+          $produtor->password = Hash::make($entrada['password']);
+        }
 
         $produtor->save();
+        $produtor->produtor->save();
 
         return redirect()->route('user.ver_perfil');
     }

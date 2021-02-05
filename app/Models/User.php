@@ -20,6 +20,7 @@ class User extends Authenticatable
         'tipo_perfil',
         'email',
         'password',
+        'email2',
     ];
 
     /**
@@ -44,28 +45,32 @@ class User extends Authenticatable
     public static $regras_validacao_criar_associacao = [
         'nome' => 'required|max:255',
         'telefone' => 'required',
-        'email' => 'required|max:255|unique:users,email',
+        'email' => 'required|min:14|max:14||unique:users,email',
         'password' => 'required|max:255|min:6',
+        'email2' => 'nullable|max:255|unique:users,email2'
     ];
 
     public static $regras_validacao_criar_produtor = [
         'nome' => 'required|max:255',
-        'email' => 'required|max:255|unique:users,email',
+        'email' => 'required|min:11|max:11|unique:users,email',
     ];
 
     public static $regras_validacao_primeiro_acesso = [
         'nome' => 'required|max:255',
         'telefone' => 'required',
-        'email' => 'required|max:255|unique:users,email',
+        'email2' => 'nullable|max:255|unique:users,email2',
         'password' => 'required|max:255|min:6',
     ];
 
     public static $regras_validacao_editar = [
         'nome' => 'required|max:255',
         'telefone' => 'required',
-        'email' => 'required|max:255|unique:users,email',
+    ];
+
+    public static $regras_validacao_senha = [
         'password' => 'required|max:255|min:6',
     ];
+
 
 
 	// Ocs que o produtor participa

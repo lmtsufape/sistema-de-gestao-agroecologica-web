@@ -10,11 +10,16 @@
                     <h1 class="marker">Reunião</h1>
                 </div>
             </div>
-            <hr class="divider"></hr>
-            <div class="inner-div">
-                <label class="">Detalhes da reunião</label><br>
-            </div>
+            <hr class="outliner"></hr>
             <br>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label class="mark">Detalhes</label>
+              </div>
+              <div class="col-md-12 mb-3">
+                <hr class="divider"></hr>
+              </div>
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label class="label-static">Nome</label><br>

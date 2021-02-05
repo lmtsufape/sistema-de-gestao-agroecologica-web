@@ -96,33 +96,34 @@ document.addEventListener('DOMContentLoaded', function () {
                   <div id="verOcs{{$ocs->id}}" class="modal fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                       <div id="contentModal" class="modal-content">
-                        <form class="formulario" method="post" action="{{ route('associacao.infoOcs.salvar') }}">
                         <div class="row">
-                          <div class="col-md-10">
-                            <h1 class="marker">Editar OCS</h1>
+                          <div class="col-md-12">
+                            <h1 class="marker">Remover OCS</h1>
+                          </div>
+                        </div>
+                        <div class="modal-body">
+                        <hr class="outliner"></hr>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h2 class="label-static">Tem certeza que deseja apagar a OCS?</h2>
                           </div>
 
-
                         </div>
-                        <hr class="outliner"></hr>
                         <div class="row">
-                          <label class="label-static required">Nome</label>
-                          <input type="text" class="form-control input-stl" id="nome_ocs" name="nome_ocs" value="{{ old('nome', $ocs->nome_ocs) }}">
-                          <input type="hidden" id="id" name="id" value="{{$ocs->id}}">
+                          <div class="col-md-12">
+                            <center><h3 class="label-static">Isso apagará todos os seus membros também, não há volta!</h3>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-md-6 mb-3">
+                            <a style="background: red" class="btn botao-submit" href="{{route('associacao.removerOcs.salvar', ['id' => $ocs->id])}}">Sim</a>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <a class="btn botao-submit bg-verde" data-dismiss="modal" href="">Não</a>
+                          </div>
                         </div>
                         <hr class="outliner"></hr>
-
-
-                        <div class="form-row">
-                          <div class="col-md-5 mb-3">
-                            </div>
-                            <div class="col-md-1 mb-3">
-                            </div>
-                            <div class="col-md-6">
-                              <button id="botao-agendar-reuniao" type="submit" class="btn btn-success fonteFooter">Atualizar</button>
-                            </div>
-                        </div>
-                      </form>
+                      </div>
                       </div>
                     </div>
                   </div></td>
