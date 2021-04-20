@@ -54,32 +54,32 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
         <div class="especifies upper-div">
             <br>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="marker">Minhas informações</h1>
-                </div>
-            </div>
-            <div class="row esp">
-                <div class="col-md-12">
-                    <hr class="divider"></hr>
-                </div>
-            </div>
-            <br>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul style="padding: 0px;">
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
             <div class="formulario">
                 <form method="post" action="{{ route('user.salvarCadastrarPropriedade') }}">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h1 class="marker">Minha propriedade</h1>
+                      </div>
+                  </div>
+                  @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul style="padding: 0px;">
+                          @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+                  @endif
+                  <hr class="outliner"></hr>
                     @csrf
-                    <div class="form-row inner-div">
-                        <label class="">Informações básicas</label>
+                    <br>
+                    <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                        <label class="mark">Informações básicas</label>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <hr class="divider"></hr>
+                      </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
@@ -91,21 +91,28 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                             <input  type="text" class="form-control input-stl" id="fonte_de_agua" name="fonte_de_agua" placeholder="Fonte de água utilizada na propriedade">
                         </div>
                     </div>
-                    <div class="form-row inner-div">
-                        <label class="">Localização</label>
+                    <br>
+                    <br>
+                    <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                        <label class="mark">Localização</label>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <hr class="divider"></hr>
+                      </div>
                     </div>
                     <div class="row">
+                      <div class="col-md-4 mb-4">
+                          <label class="label-static">Bairro</label>
+                          <input  type="text" class="form-control input-stl" name="bairro" placeholder="Bairro">
+                      </div>
                         <div class="col-md-6 mb-4">
-                            <label class="label-static">Rua</label>
+                            <label class="label-static">Logradouro</label>
                             <input  type="text" class="form-control input-stl" name="nome_rua" placeholder="Rua">
                         </div>
                         <div class="col-md-2 mb-4">
-                            <label class="label-static">Numero</label>
+                            <label class="label-static">Número</label>
                             <input  type="number" class="form-control input-stl" name="numero_casa" placeholder="Numero">
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label class="label-static">Bairro</label>
-                            <input  type="text" class="form-control input-stl" name="bairro" placeholder="Bairro">
                         </div>
                     </div>
 
@@ -116,7 +123,7 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="label-static required">Estado</label>
-                            <select  class="custom-select" id="estado" name="estado" placeholder="Estado">
+                            <select  style="height: 42px;" class="custom-select" id="estado" name="estado" placeholder="Estado">
                                 <option selected disabled value="">Selecionar Estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -154,13 +161,8 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                     </div>
 
                     <div class="form-group">
-                        <label class="label-static">Ponto de Referencia</label>
+                        <label class="label-static">Ponto de Referência</label>
                         <textarea  class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label-static">Descrição</label>
-                        <textarea  class="form-control input-stl" id="descricao" name="descricao" rows="3"></textarea>
                     </div>
 
                     <hr class="outliner"></hr>
@@ -169,7 +171,7 @@ document.getElementById("enable-bt").addEventListener('click', toggleFormElement
                             <label style="color: red" class="label-static required">Campos obrigatórios</label>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <button class="btn botao-submit" type="submit">Cadastrar</button>
+                            <button class="btn botao-submit bg-verde" type="submit">Cadastrar</button>
                         </div>
                     </div>
                 </form>

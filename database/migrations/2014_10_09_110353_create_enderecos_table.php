@@ -23,7 +23,6 @@ class CreateEnderecosTable extends Migration
             $table->string('nome_rua')->nullable(true);
             $table->string('cep')->nullable(true);
             $table->unsignedInteger('numero_casa')->nullable(true);
-            $table->text('descricao')->nullable(true);
             $table->string('ponto_referencia')->nullable(true);
         });
     }

@@ -12,10 +12,10 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 col-form-label labelLogin">{{ __('E-mail') }}</label>
+                            <label for="email" class="col-md-6 col-form-label labelLogin">CPF/CNPJ</label>
 
                             <div class="col-md">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="number" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -40,10 +40,13 @@
                         </div>
 
                         <div class="form-group" id="lembrarUsuario">
+                          <div class="col-md">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                              </div>
+                          </div>
                             <div class="col-md">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
                                     <label class="form-check-label" for="remember">
                                         {{ __('Lembrar usuário/e-mail e senha') }}
                                     </label>
@@ -66,7 +69,7 @@
                             </div>
                             <div class="col-md"><hr></div>
                             <div class="col-md">
-                                <a type="submit" href="{{route('user.coordenador.cadastrarOcs')}}" class="btn btn-primary botao cadastrese">
+                                <a type="submit" href="{{route('associacao.cadastrarAssociacao')}}" class="btn btn-primary botao cadastrese">
                                     {{ __('Cadastre-se') }}
                                 </a>
                             </div>

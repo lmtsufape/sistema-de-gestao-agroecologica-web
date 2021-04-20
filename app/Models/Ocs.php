@@ -5,8 +5,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class Ocs extends Authenticatable
+class Ocs extends Model
 {
 
     /**
@@ -15,42 +16,34 @@ class Ocs extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'cnpj',
-        'nome_entidade',
         'nome_ocs',
-        'telefone',
-        'fax',
-        'email',
-        'nome_para_contato',
-        'orgao_fiscalizador',
     ];
 
 
     public static $regras_validacao_criar = [
-        'cnpj' => 'required|max:20|unique:ocs,cnpj',
-        'nome_entidade' => 'required|max:255',
         'nome_ocs' => 'required|max:255',
-        'telefone' => 'required|numeric|min:10',
-        'fax' => 'max:255',
-        'email' => 'max:255',
-        'orgao_fiscalizador' => 'required|max:255',
     ];
 
     public static $regras_validacao_editar = [
-        'nome_entidade' => 'required|max:255',
         'nome_ocs' => 'required|max:255',
-        'telefone' => 'required|numeric|min:10',
-        'fax' => 'max:255',
-        'email' => 'max:255',
-        'orgao_fiscalizador' => 'required|max:255',
     ];
 
-    public function endereco() {
-        return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
-    }
+
+    public function associacao() {
+  		return $this->belongsTo('App\Models\Associacao');
+  	}
 
     public function produtor(){
-        return $this->hasMany('App\Models\User', 'ocs_id');
+        return $this->hasMany('App\Models\Produtor', 'ocs_id');
+    }
+
+    public function coordenador(){
+      foreach ($this->produtor as $prod) {
+        if($prod->user->tipo_perfil == 'Coordenador'){
+          return true;
+        }
+      }
+      return false;
     }
 
     public function agendamentoReuniao(){

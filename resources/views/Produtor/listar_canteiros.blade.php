@@ -24,30 +24,26 @@ $(document).on("click", "#ativarView", function () {
                     <h1 class="marker">Canteiros de produção</h1>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" class="btn edit-bt bigger-bt bg-verde" data-toggle = "modal" data-target="#novoCanteiro" >Novo canteiro de produções</button>
+                    <button style="margin-left: -117px;" type="button" class="btn edit-bt bigger-bt bg-verde" data-toggle = "modal" data-target="#novoCanteiro" >Novo canteiro de produções</button>
                 </div>
             </div>
-            <hr class="divider"></hr>
+            <hr class="outliner"></hr>
 
             {{-- Novo canteiro modal --}}
 
             <div id="novoCanteiro" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div id="contentModal" class="modal-content">
-                        <div class="col-md-12">
-                            <h5 class="modal-title corLabelReuniao" id="titulo">Novo canteiro</h5>
-                        </div>
-                        <div class="col-md-12">
-                            <hr id="linhaCabecalhoReuniao">
-                        </div>
-                        <div class="col-md-12">
-                            <label id= "labelInformacoes" for="">Informações</label>
-                        </div>
                         <div class="modal-body">
                             <form method="post" action="{{ route('user.canteiroProducao.salvar') }}">
+
+                                    <h5 class="modal-title corLabelReuniao marker" id="titulo">Novo canteiro</h5>
+
+                                    <hr class="outliner"></hr>
+
                                 @csrf
                                 <div class="form-row">
-                                    <input type="hidden" id="id_propriedade" name="id_propriedade" value="{{$propriedade}}">
+                                    <input type="hidden" id="propriedade_id" name="propriedade_id" value="{{$propriedade}}">
                                     <div class="col-md-6 mb-3">
                                         <label class="label-static required">Tamanho</label>
                                         <input type="number" class="form-control input-stl" id="tamanho" name="tamanho" placeholder="Tamanho total do canteiro (metros)">
@@ -58,6 +54,7 @@ $(document).on("click", "#ativarView", function () {
                                     </div>
                                 </div>
                                 <div>
+                                  <hr class="outliner"></hr>
                                     <div class="form-row">
                                         <div id="divCamposObrigatorios" class="col-md-3 mb-4">
                                             <label class="asterisco">* <label class="fonteFooter">Campos obrigatórios</label></label>
@@ -70,8 +67,6 @@ $(document).on("click", "#ativarView", function () {
                                 </div>
 
 
-                                <br>
-                                <br>
                             </form>
                         </div>
                     </div>
@@ -79,7 +74,6 @@ $(document).on("click", "#ativarView", function () {
             </div>
 
 
-            <label id="nome-tabela-reuniao" class = "col-md-12" for="">Lista de canteiros</label>
             <div style="overflow: auto;">
                 <table class="table">
                     <thead>
@@ -106,14 +100,23 @@ $(document).on("click", "#ativarView", function () {
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div id="contentModal" class="modal-content">
                                             <div class="row">
-                                                <div class="col-md-12">
-                                                    <h1 class="marker">Informações sobre o canteiro</h1>
-                                                </div>
+                                              <div class="col-md-12 mb-3">
+                                                <label class="marker">Informações do canteiro</label>
+                                              </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <hr id="linhaCabecalhoReuniao">
+                                            <div class="row">
+                                              <div class="col-md-12 mb-3">
+                                                <hr class="outliner"></hr>
+                                              </div>
                                             </div>
-                                            <label id="nome-tabela-reuniao" class = "col-md-12" for="">Canteiro</label>
+                                            <div class="form-row">
+                                              <div class="col-md-12 mb-3">
+                                                <label class="mark">Canteiro</label>
+                                              </div>
+                                              <div class="col-md-12 mb-3">
+                                                <hr class="divider"></hr>
+                                              </div>
+                                            </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <label class="label-static">Localização na propriedade</label><br>
@@ -124,10 +127,9 @@ $(document).on("click", "#ativarView", function () {
                                                     <label class="label-ntstatic">{{$cant->tamanho}}</label>
                                                 </div>
                                             </div>
-                                            <label id="nome-tabela-reuniao" class = "col-md-12" for="">Produção</label>
                                             <div class="form-row">
                                                 <div class="col-md-10 mb-3">
-                                                    <label class="label-static">Produtos da produção</label><br>
+                                                    <label class="mark">Produções</label><br>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <a type="button" class="btn edit-bt small-bt bg-verde"  href="{{route('user.canteiroProducao.producao.cadastrar', ['id_canteiro' => $cant->id])}}" >Nova produção</a>
@@ -180,6 +182,11 @@ $(document).on("click", "#ativarView", function () {
                                                         <label class= "cor-texto" for="">Colher produção</label>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-md-12 mb-3">
+                                                <hr class="outliner"></hr>
+                                              </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-11 mb-3">

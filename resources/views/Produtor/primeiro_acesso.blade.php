@@ -13,7 +13,7 @@
                 </div>
                 <div class="row esp">
                     <div class="col-md-12">
-                        <hr class="divider"></hr>
+                        <hr class="outliner"></hr>
                     </div>
                 </div>
                 <br>
@@ -29,8 +29,13 @@
 
             <form class="formulario" method="post" action="{{ route('user.primeiro_acesso_salvar') }}">
                 @csrf
-                <div class="form-row inner-div">
-                    <label class="">Informações básicas</label>
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                    <label class="mark">Informações básicas</label>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <hr class="divider"></hr>
+                  </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
@@ -38,20 +43,28 @@
                         <input type="text" class="form-control input-stl" id="nome" name="nome" placeholder="Nome Completo" value="{{ old('nome', $produtor->nome) }}">
                     </div>
                 </div>
-
                 <div class="form-row">
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-12 mb-3">
+                        <label class="label-static required" for="Email">CPF</label>
+                        <input type="number" class="form-control input-stl" id="email" name="email" placeholder="CPF, 11 números" value="{{ old('email', $produtor->email) }}">
+                    </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                      <label class="label-static">Email</label>
+                      <input type="text" class="form-control input-stl" name="email2" placeholder="Email para contato" value="{{ old('email2', $produtor->email2) }}">
+                  </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
                         <label class="label-static required" for="data de nascimento">Data de Nascimento</label>
                         <input type="date" class="form-control input-stl" name="data_nascimento">
                     </div>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-6 mb-3">
                         <label class="label-static required">RG</label>
                         <input type="number" class="form-control input-stl" name="rg" placeholder="RG">
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <label class="label-static required">CPF</label>
-                        <input type="number" class="form-control input-stl" name="cpf" placeholder="CPF" value="{{ old('cpf', $produtor->cpf) }}">
-                    </div>
+
                 </div>
 
                 <div class="form-row">
@@ -70,20 +83,6 @@
                     <textarea class="form-control input-stl" id="nome-filhos" name="nome_filhos" placeholder="Nome dos Filhos" rows="2"></textarea>
                 </div>
 
-                <div class="form-row inner-div">
-                    <label class="">Acesso ao site</label>
-                </div>
-                <div style="background-color: #05856F;" class="form-row inner-div">
-                    <label class=""><b>Produtor/a!</b> É através do email e senha que você vai ter acesso ao sistema!</label>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-3">
-                        <label class="label-static required" for="Email">Email</label>
-                        <input type="email" class="form-control input-stl" id="email" name="email" placeholder="Email">
-                    </div>
-                </div>
-
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label class="label-static required" for="senha">Senha</label>
@@ -94,17 +93,22 @@
                         <input type="password" class="form-control input-stl" id="senha" name="password" placeholder="Senha">
                     </div>
                 </div>
-
-                <div class="form-row inner-div">
-                    <label class="">Endereço</label>
+                <br>
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                    <label class="mark">Endereço</label>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <hr class="divider"></hr>
+                  </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-4">
-                        <label class="label-static">Rua</label>
+                        <label class="label-static">Logradouro</label>
                         <input type="text" class="form-control input-stl" name="nome_rua" placeholder="Rua">
                     </div>
                     <div class="col-md-2 mb-4">
-                        <label class="label-static">Numero</label>
+                        <label class="label-static">Número</label>
                         <input type="number" class="form-control input-stl" name="numero_casa" placeholder="Numero">
                     </div>
                     <div class="col-md-4 mb-4">
@@ -119,8 +123,8 @@
                         <input type="text" class="form-control input-stl" id="cidade" name="cidade" placeholder="Cidade">
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label class="label-static required">Estado</label>
-                        <select class="custom-select input-stl" id="estado" name="estado" placeholder="Estado">
+                        <label class="label-static required ">Estado</label>
+                        <select class="custom-select input-stl"  style="height: 42px;" id="estado" name="estado" placeholder="Estado">
                             <option selected disabled value="">Selecionar Estado</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -158,16 +162,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="label-static">Ponto de Referencia</label>
+                    <label class="label-static">Ponto de Referência</label>
                     <textarea class="form-control input-stl" id="ponto_referencia" name="ponto_referencia" rows="1"></textarea>
                 </div>
-
-                <div class="form-group">
-                    <label class="label-static">Descrição</label>
-                    <textarea class="form-control input-stl" id="descricao" name="descricao" rows="3"></textarea>
-                </div>
-
-                <button class="btn botao-submit" type="submit">Finalizar Editar</button>
+                <button class="btn botao-submit bg-verde" type="submit">Finalizar Perfil</button>
                 <br>
                 <br>
             </form>

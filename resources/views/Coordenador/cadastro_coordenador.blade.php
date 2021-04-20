@@ -107,11 +107,11 @@
 
                     <div class="form-row">
                         <div class="col-md-6 mb-4">
-                            <label class="label-static">Rua</label>
+                            <label class="label-static">Logradouro</label>
                             <input type="text" class="form-control input-stl" name="nome_rua" placeholder="Rua">
                         </div>
                         <div class="col-md-2 mb-4">
-                            <label class="label-static">Numero</label>
+                            <label class="label-static">Número</label>
                             <input type="number" class="form-control input-stl" name="numero_casa" placeholder="Numero">
                         </div>
                         <div class="col-md-4 mb-4">

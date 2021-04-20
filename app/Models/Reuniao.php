@@ -22,10 +22,10 @@ class Reuniao extends Model
     }
 
     public function fotosReuniao(){
-        return $this->hasMany('\App\Models\FotosReuniao', 'id_reuniao', 'id');
+        return $this->hasMany('\App\Models\FotosReuniao', 'reuniao_id', 'id');
     }
 
     public function retificacao(){
-        return $this->hasMany('\App\Models\Retificacao', 'id_reuniao', 'id');
+        return $this->hasMany('\App\Models\Retificacao', 'reuniao_id', 'id');
     }
 }

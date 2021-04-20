@@ -5,6 +5,7 @@ use App\Http\Controllers\User\CoordenadorController;
 use App\Http\Controllers\User\PropriedadeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\OcsController;
+use App\Http\Controllers\AssociacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,57 @@ use App\Http\Controllers\OcsController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'log'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'log'])->name('home2');
 
+Route::prefix('/associacao')->name('associacao')->namespace('Associacao')->group(function(){
+  Route::prefix('/criar')->name('.cadastrarAssociacao')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'cadastroAssociacao']);
+      Route::post('/salvar', [AssociacaoController::class, 'salvarCadastroAssociacao'])->name('.salvar');
+  });
+
+  Route::prefix('/editar')->name('.editarAssociacao')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'editarAssociacao'])->middleware('auth');
+      Route::post('/salvar', [AssociacaoController::class, 'salvarEditarAssociacao'])->name('.salvar')->middleware('auth');
+  });
+
+  Route::prefix('/ver')->name('.verAssociacao')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'verAssociacao'])->middleware('auth');
+  });
+
+  Route::prefix('/senha')->name('.alterarSenha')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'alterarSenha'])->middleware('auth');
+      Route::post('/salvar', [AssociacaoController::class, 'salvarAlterarSenha'])->name('.salvar')->middleware('auth');
+  });
+
+
+  Route::prefix('/criar_ocs')->name('.cadastrarOcs')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'cadastrarOcs'])->middleware('auth');
+      Route::post('/salvar', [AssociacaoController::class, 'salvarCadastrarOcs'])->name('.salvar')->middleware('auth');
+  });
+
+  Route::prefix('/remover_ocs')->name('.removerOcs')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'verRemover'])->middleware('auth');
+      Route::get('/{id}', [AssociacaoController::class, 'removerOcs'])->name('.salvar')->middleware('auth');
+  });
+
+  Route::prefix('/listar')->name('.listarOcs')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'listarOcs'])->middleware('auth');
+  });
+
+  Route::prefix('/info_ocs')->name('.infoOcs')->group(function () {
+    Route::get('/', [AssociacaoController::class, 'editarOcs'])->middleware('auth');
+    Route::post('/salvar', [AssociacaoController::class, 'salvarEditarOcs'])->name('.salvar')->middleware('auth');
+  });
+
+  Route::prefix('/criar_membro')->name('.cadastrarMembro')->group(function () {
+      Route::get('/', [AssociacaoController::class, 'cadastrarMembro'])->middleware('auth');
+      Route::post('/salvar', [AssociacaoController::class, 'salvarCadastrarMembro'])->name('.salvar')->middleware('auth');
+  });
+
+  Route::prefix('/muda_perfil/{id}')->name('.mudaPerfil')->group(function () {
+    Route::get('/', [CoordenadorController::class, 'mudaPerfil'])->middleware('auth');
+  });
+});
 
 
 Route::prefix('/user')->name('user')->namespace('User')->group(function(){
@@ -28,17 +78,7 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarProdutor'])->name('.salvar');
         });
 
-        Route::prefix('/criar_coordenador')->name('.cadastrarCoordenador')->group(function () {
-            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarCoordenador'])->name('.salvar');
-        });
-        Route::prefix('/criar_ocs')->name('.cadastrarOcs')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'cadastroOcs']);
-            Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarOcs'])->name('.salvar');
-        });
-        Route::prefix('/editar_ocs')->name('.editarOcs')->group(function () {
-            Route::get('/', [CoordenadorController::class, 'editarOcs'])->middleware('auth');
-            Route::post('/salvar', [CoordenadorController::class, 'salvarEditarOcs'])->name('.salvar')->middleware('auth');
-        });
+
 
         Route::prefix('/agendar_reuniao')->name('.agendarReuniao')->group(function(){
             Route::get('/', [CoordenadorController::class, 'agendamentoReuniao'])->middleware('auth');
@@ -61,10 +101,13 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
             Route::post('/salvar', [CoordenadorController::class, 'salvarEditarReuniao'])->name('.salvar')->middleware('auth');
         });
 
-        // Route::prefix('/criar_reuniao')->name('.cadastrarReuniao')->group(function () {
-        //     Route::get('/', [CoordenadorController::class, 'cadastroReuniao'])->middleware('auth');
-        //     Route::post('/salvar', [CoordenadorController::class, 'salvarCadastrarReuniao'])->name('.salvar')->middleware('auth');
-        // });
+        Route::prefix('/reuniao')->name('.reunioes')->group(function(){
+          Route::get('/criarReuniao', [CoordenadorController::class, 'criarReuniao'])->name('.criar')->middleware('auth');
+          Route::get('/cancelarReuniao', [CoordenadorController::class, 'cancelarReuniaoSimples'])->name('.cancelar')->middleware('auth');
+          Route::get('/retificar', [CoordenadorController::class, 'retificarReuniaoSimples'])->name('.retificar')->middleware('auth');
+          Route::get('/registrar', [CoordenadorController::class, 'registarReuniaoSimples'])->name('.registrar')->middleware('auth');
+        });
+
 
         Route::get('/ver_ocs',  [CoordenadorController::class, 'verOcs'])->name('.ver_ocs')->middleware('auth');
         Route::get('/listarReunioes', [CoordenadorController::class, 'listarReunioes'])->name('.listar_reunioes')->middleware('auth');
@@ -76,13 +119,23 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
     Route::get('/ver_perfil',  [UserController::class, 'verPerfil'])->name('.ver_perfil')->middleware('auth');
     Route::get('/primeiro_acesso',  [UserController::class, 'primeiroAcessoTela'])->name('.primeiro_acesso')->middleware('auth');
     Route::post('/primeiro_acesso/salvar',  [UserController::class, 'primeiroAcesso'])->name('.primeiro_acesso_salvar')->middleware('auth');
-    Route::post('/ver_perfil/editar/salvar',  [UserController::class, 'salvarEditarPerfil'])->name('.salvar_editar_perfil')->middleware('auth');
+
+    Route::prefix('/editar_perfil')->name('.editarPerfil')->group(function(){
+        Route::get('/', [UserController::class, 'editarPerfil'])->middleware('auth');
+        Route::post('/salvar', [UserController::class, 'salvarEditarPerfil'])->name('.salvar')->middleware('auth');
+    });
+
+    Route::prefix('/senha')->name('.alterarSenha')->group(function () {
+        Route::get('/', [UserController::class, 'alterarSenha'])->middleware('auth');
+        Route::post('/salvar', [UserController::class, 'salvarAlterarSenha'])->name('.salvar')->middleware('auth');
+    });
 
     Route::get('/cadastrar_propriedade',  [PropriedadeController::class, 'cadastrarPropriedade'])->name('.cadastrarPropriedade')->middleware('auth');
     Route::get('/ver_propriedade',  [PropriedadeController::class, 'verPropriedade'])->name('.verPropriedade')->middleware('auth');;
     Route::post('/cadastrar_propriedade/salvar',  [PropriedadeController::class, 'salvarCadastrarPropriedade'])->name('.salvarCadastrarPropriedade')->middleware('auth');
 
     Route::prefix('/editar_propriedade')->name('.editarPropriedade')->group(function () {
+        Route::get('/',  [PropriedadeController::class, 'editarPropriedade'])->middleware('auth');
         Route::post('/salvar', [PropriedadeController::class, 'salvarEditarPropriedade'])->name('.salvar')->middleware('auth');
     });
 
@@ -109,9 +162,6 @@ Route::prefix('/user')->name('user')->namespace('User')->group(function(){
         });
     });
 });
-
-//Todo: Criar controller home e a funçãod e erro!!!
-//Route::get('/erro', 'HomeController@mostrarErro')->name('erro');
 
 Auth::routes();
 

@@ -12,7 +12,6 @@ class Endereco extends Model
         'cep',
         'nome_rua',
         'numero_casa',
-        'descricao',
         'ponto_referencia',
     ];
 

@@ -27,34 +27,30 @@ function showDiv(id, id1, id2) {
             <br>
             <div class="row">
                 <div class="col-md-10">
-                    <h1 class="marker">Produtores</h1>
+                    <h1 class="marker">Membros da OCS</h1>
                 </div>
                 @if($perfil=='Coordenador')
                 <div class="col-md-2">
-                    <a class="btn edit-bt bigger-bt bg-verde" href="{{ route('user.coordenador.cadastrarProdutor') }}" >Cadastrar produtor</a>
+                    <a style="margin-left: -117px;" class="btn edit-bt bigger-bt bg-verde" href="{{ route('user.coordenador.cadastrarProdutor') }}" >Cadastrar membro</a>
                 </div>
                 @endif
             </div>
-            <hr class="divider"></hr>
-            <div class="inner-div">
-                <label class="">Lista de produtores</label>
-            </div>
+            <hr class="outliner"></hr>
             <div class="wrp-bigger">
             <table class="table">
                 <thead class="black white-text">
                     <tr>
-                        <th scope="col" class="nome-col"><b>Nome do Produtor</b></th>
+                        <th scope="col" class="nome-col"><b>Nome do membro</b></th>
                         <th scope="col" class="nome-col"><b>Cpf</b></th>
                         <th scope="col" class="nome-col" colspan="2"><b>Ações</b></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($produtores as $produtor)
-                    @if($produtor->tipo_perfil == 'Produtor')
                     @if(!$produtor->primeiro_acesso)
                     <tr>
-                        <td class="basic-space label-ntstatic">{{$produtor->nome}}</td>
-                        <td class="basic-space">{{$produtor->cpf}}</td>
+                        <td class="basic-space label-ntstatic">{{$produtor->user->nome}}</td>
+                        <td class="basic-space">{{$produtor->user->email}}</td>
                         <td class="basic-space label-ntstatic" id="ativarView"  data-id="{{$produtor->id}}" data-toggle = "modal" data-target="#verProdutor{{$produtor->id}}">
                             <span class="label-ntstatic"><img id="botao-editar" class="imagens-acoes" src="{{asset('images/person.png')}}" alt=""></span>
                         </td>
@@ -64,7 +60,7 @@ function showDiv(id, id1, id2) {
                             <div id="contentModal" class="modal-content">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h1 class="marker">Informações sobre o canteiro</h1>
+                                        <h1 class="marker">Informações sobre o membro</h1>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -76,7 +72,7 @@ function showDiv(id, id1, id2) {
                                     </div>
                                     <div class="col-md-1">
                                     </div>
-                                    @if($produtor->propriedade)
+                                    @if($produtor->propriedade && $perfil=='Coordenador')
                                     <div class="col-md-2">
                                         <button href="#prop"class="bt-aba" onclick="showDiv('prop{{$produtor->id}}', 'prod{{$produtor->id}}', 'produ{{$produtor->id}}')">Propriedade</button>
                                     </div>
@@ -98,11 +94,11 @@ function showDiv(id, id1, id2) {
                                             <div class="row">
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Nome</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->nome}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->nome}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Cpf</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->cpf}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->email}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Rg</label> <br>
@@ -113,7 +109,7 @@ function showDiv(id, id1, id2) {
                                             <div class="row">
                                                 <div class="col-md-6 mb-2">
                                                     <label class="label-static">Telefone</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->telefone}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->telefone}}</label>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <label class="label-static">Data de Nascimento</label> <br>
@@ -133,7 +129,7 @@ function showDiv(id, id1, id2) {
                                                 @endif
                                                 <div class="col-md-12 mb-2">
                                                     <label class="label-static">OCS</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->ocs->nome_entidade}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->ocs->nome_ocs}}</label>
 
                                                 </div>
                                             </div>
@@ -144,40 +140,36 @@ function showDiv(id, id1, id2) {
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Rua</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->nome_rua}}</label>
+                                                    <label class="label-static">Logradouro</label> <br>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->nome_rua}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Bairro</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->bairro}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->bairro}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Nº</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->numero_casa}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->numero_casa}}</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Cidade</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->cidade}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->cidade}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">Estado</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->estado}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->estado}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <label class="label-static">CEP</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->cep}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->cep}}</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 mb-2">
-                                                    <label class="label-static">Descricao</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->descricao}}</label>
-                                                </div>
-                                                <div class="col-md-12 mb-2">
                                                     <label class="label-static">Ponto de Referência</label> <br>
-                                                    <label class="label-ntstatic">{{$produtor->endereco->ponto_referencia}}</label>
+                                                    <label class="label-ntstatic">{{$produtor->user->endereco->ponto_referencia}}</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -194,7 +186,7 @@ function showDiv(id, id1, id2) {
                                         <div style="margin-left: 15px;">
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="label-static required">Tamanho total (Metros)</label><br>
+                                                    <label class="label-static required">Tamanho total (HA)</label><br>
                                                     <label class="label-ntstatic">{{$produtor->propriedade->tamanho_total}}</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
@@ -205,20 +197,22 @@ function showDiv(id, id1, id2) {
                                             <div class="form-row inner-div">
                                                 <label class="">Localização</label>
                                             </div>
+                                            @if($produtor->propriedade->endereco->rua)
                                             <div class="row">
+                                              <div class="col-md-4 mb-2">
+                                                  <label class="label-static">Bairro</label><br>
+                                                  <label class="label-ntstatic">{{$produtor->propriedade->endereco->bairro}}</label>
+                                              </div>
                                                 <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Rua</label><br>
+                                                    <label class="label-static">Logradouro</label><br>
                                                     <label class="label-ntstatic">{{$produtor->propriedade->endereco->rua}}</label>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Numero</label><br>
+                                                    <label class="label-static">Número</label><br>
                                                     <label class="label-ntstatic">{{$produtor->propriedade->endereco->numero_casa}}</label>
                                                 </div>
-                                                <div class="col-md-4 mb-2">
-                                                    <label class="label-static">Bairro</label><br>
-                                                    <label class="label-ntstatic">{{$produtor->propriedade->endereco->bairro}}</label>
-                                                </div>
                                             </div>
+                                            @endif
 
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
@@ -236,7 +230,7 @@ function showDiv(id, id1, id2) {
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="label-static required">Ponto de Referencia</label><br>
+                                                <label class="label-static required">Ponto de Referência</label><br>
                                                 <label class="label-ntstatic">{{$produtor->propriedade->endereco->ponto_referencia}}</label>
                                             </div>
 
@@ -300,7 +294,6 @@ function showDiv(id, id1, id2) {
                             </div>
                         </div>
                     </div>
-                    @endif
                     @endif
                     @endforeach
 

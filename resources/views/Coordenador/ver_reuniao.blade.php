@@ -10,11 +10,16 @@
                     <h1 class="marker">Reunião</h1>
                 </div>
             </div>
-            <hr class="divider"></hr>
-            <div class="inner-div">
-                <label class="">Detalhes da reunião</label><br>
-            </div>
+            <hr class="outliner"></hr>
             <br>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label class="mark">Detalhes</label>
+              </div>
+              <div class="col-md-12 mb-3">
+                <hr class="divider"></hr>
+              </div>
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label class="label-static">Nome</label><br>
@@ -32,7 +37,7 @@
             </div>
             @if ($reuniao->registrada == true)
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label class="label-static">Participantes</label><br>
                     @php
                     $nomeParticipantes = explode('/', $reuniao->reuniaoRegistrada->participantes);
@@ -43,12 +48,16 @@
                     @endif
                     @endforeach
                 </div>
-                <div class="col-md-4">
-                    <label class="label-static">Ata</label><br>
-                    <label class="label-ntstatic">{{$reuniao->reuniaoRegistrada->ata}}</label>
-                </div>
             </div>
             <br>
+            <div class="inner-div">
+                <label class="">ATA da reunião</label><br>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <center><img src="{{asset('storage/' . $reuniao->reuniaoRegistrada->ata)}}" alt="" width="600px"> <br> <br></center>
+              </div>
+            </div>
             <div class="inner-div">
                 <label class="">Imagens da reunião</label><br>
             </div>

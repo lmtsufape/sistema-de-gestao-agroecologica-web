@@ -24,35 +24,37 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div id="contentModal" class="modal-content">
                             <div class="col-md-12">
-                                <h5 class="modal-title corLabelReuniao" id="titulo">Agendar reunião</h5>
+                                <h5 class="modal-title corLabelReuniao marker" id="titulo">Agendar reunião</h5>
                             </div>
                             <div class="col-md-12">
-                                <hr id="linhaCabecalhoReuniao">
-                            </div>
-                            <div class="col-md-12">
-                                <label id= "labelInformacoes" for="">Informações</label>
+                                <hr class="outliner"></hr>
                             </div>
                             <div class="modal-body">
                                 <form id="formAgendarReuniao" method="post" action="{{route('user.coordenador.agendarReuniao.salvar')}}">
                                     @csrf
                                     <div class="form-row">
-                                        <div class="col-md-8 mb-4">
-                                            <label class="corLabelReuniao">Nome da reunião <label class="asterisco">*</label></label>
+                                      <div class="col-md-12 mb-3">
+                                        <label class="mark">Informações</label>
+                                      </div>
+                                      <div class="col-md-12 mb-3">
+                                        <hr class="divider"></hr>
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-8 mb-3">
+                                            <label class="label-static required">Nome da reunião</label>
                                             <input type="text" class="form-control" name='nome' id='nome' placeholder="Digite o nome da reunião" value="{{old('nome')}}">
                                           </div>
-                                          <div class="col-md-4 mb-4">
-                                            <label class="corLabelReuniao">Data da reunião <label class="asterisco">*</label></label>
+                                          <div class="col-md-4 mb-3">
+                                            <label class="label-static required">Data da reunião</label>
                                             <input type="date" class="form-control" name="data" id="data" value="{{old('data')}}">
                                           </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-12 mb-4">
-                                            <label class="corLabelReuniao">Local da reunião <label class="asterisco">*</label></label>
+                                        <div class="col-md-12 mb-3">
+                                            <label class="label-static required">Local da reunião</label>
                                             <input type="text" class="form-control" name="local" id="local" placeholder="Digite o local da reunião" value="{{old('local')}}">
                                         </div>
-                                    </div>
-                                    <div>
-                                        <hr>
                                     </div>
                                     <div>
                                         <div class="form-row">
@@ -73,8 +75,7 @@
             @endif
         </div>
 
-        <hr class="divider"></hr>
-        <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reuniões Agendadas</label>
+        <hr class="outliner"></hr>
 
         <div style="overflow: auto; height: 450px">
             <table class="table">
@@ -83,7 +84,9 @@
                     <th scope="col" class="nome-col">Nome da reunião</th>
                     <th scope="col" class="nome-col">Data</th>
                     <th scope="col" class="nome-col">Status</th>
+                    @if($usuario->tipo_perfil == 'Coordenador')
                     <th scope="col" class="nome-col">Ações</th>
+                    @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -100,6 +103,7 @@
                                     <font color="#2BC855">Registrada</font>
                                 @endif
                             </td>
+                            @if($usuario->tipo_perfil == 'Coordenador')
                             <td class="basic-space" id="coluna-images">
                                 @if ($reuniao_agendada->registrada == false)
                                     <a href="{{route('user.coordenador.registrarReuniao', ['id_reuniao' => $reuniao_agendada->id])}}"><img id="botao-registrar" class="imagens-acoes" src="{{asset('images/logo_registrar_reuniao.png')}}" alt=""></a>
@@ -110,11 +114,13 @@
                                     <a class="disabled" href="{{route('user.coordenador.cancelarReuniao', ['reuniao_agendada_id' => $reuniao_agendada->id])}}"><img id="botao-cancelar" class="imagens-acoes" src="{{asset('images/logo_deletar_reuniao.png')}}" alt=""></a>
                                 @endif
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @if($usuario->tipo_perfil == 'Coordenador')
         <div>
             <div id="linha-legenda"><hr></div>
             <div>
@@ -133,6 +139,7 @@
                 <label class= "cor-texto" for="">Cancelar reunião</label>
             </div>
         </div>
+        @endif
     </div>
 </div>
 

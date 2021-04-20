@@ -59,13 +59,58 @@ function removeImage(file, image) {
     lbfoto.innerHTML = 'Escolha mais imagens';
 }
 
+function removeAta() {
+    ata.value = '';
+    prvata.innerHTML = '';
+    lbata.innerHTML = 'Escolha outra ATA';
+    console.log(ata.files);
+}
 
+function mudaCorAll(pros){
+  for (var i = pros.length - 1; i >=  0; i--) {
+    mudaCor(pros[i]['id'], pros[i]['nome']);
+  }
+}
+
+
+function previewAta() {
+
+    var atapv = document.querySelector('#prvata');
+
+    if (ata.files) {
+      atapv.innerHTML = '';
+     var a = readAndPreviewAta(ata.files[0]);
+    }
+    function readAndPreviewAta(file) {
+        // Make sure `file.name` matches our extensions criteria
+        if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+            return alert(file.name + " is not an image");
+        } // else...
+        var read = new FileReader();
+
+        read.addEventListener("load", function() {
+          document.getElementById('lbata').innerHTML =  file.name;
+          var image = new Image();
+          image.className = 'bt-spec';
+          image.title  = file.name;
+          image.src    = this.result;
+          image.style.width = "80%";
+          image.style.height = "auto";
+          image.style.marginLeft = "90px";
+          image.style.marginBottom = "50px";
+          image.onclick = function(){removeAta();};
+          atapv.appendChild(image);
+        });
+        read.readAsDataURL(file);
+
+    }
+
+}
 function previewImages() {
-
     var preview = document.querySelector('#preview');
 
-    if (this.files) {
-        [].forEach.call(this.files, readAndPreview);
+    if (fotos.files) {
+        [].forEach.call(fotos.files, readAndPreview);
     }
     function readAndPreview(file) {
         // Make sure `file.name` matches our extensions criteria
@@ -97,6 +142,7 @@ function enviarFotos(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('#ata').addEventListener("change", previewAta);
     document.querySelector('#fotos').addEventListener("change", previewImages);
     document.querySelector('#botao-registrar-reuniao').addEventListener("click", enviarFotos);
 
@@ -119,15 +165,26 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="container-registrar-reuniao">
     <div class = 'jumbotron' id="jumbotron-registrar-reuniao">
         <div id = 'cabecalho'>
-            <div>
-                <label id="cabecalho-reuniao" for="botao-agendar">Registrar reunião</label>
-                <hr id="linha-registrar-reuniao" class="linha-cabecalho">
-            </div>
+          <br>
             <form method="POST" action="{{route('user.coordenador.registrarReuniao.salvar', ['id_reuniao' => $reuniao->id])}}" enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="marker">Registrar reunião</h1>
+                  </div>
+              </div>
+              <hr class="outliner"></hr>
                 @csrf
                 {{-- Reunião --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Reunião</label>
+                  <br>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Reunião</label>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
                     <div class="form-row">
                         <div class="col-md-10 mb-4">
                             <label class="corLabelReuniao" for="">Nome da reunião</label> <br>
@@ -141,14 +198,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 {{-- Participantes --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Participantes</label>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Participantes</label>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
                     <div class="form-row has-search" id="search-bar">
                         <div class="col-md-2">
-                            <label class="corLabelReuniao" id="labelProdutor">Produtor</label>
+                            <label class="corLabelReuniao" id="labelProdutor">Membro</label>
                         </div>
                         <div class="col-md-3">
                             <span class="fa fa-search form-control-feedback" id='search-icon'></span>
-                            <input type="text" class="form-control" placeholder="Nome ou CPF do participante" id='searchbar' onkeyup="myFunction()">
+                            <input type="text" class="form-control input-stl" placeholder="Nome ou CPF do participante" id='searchbar' onkeyup="myFunction()">
                         </div>
                         <div class="col-md-5">
                             <img id="botao-pesquisa" class="imagens-acoes" src="{{asset('images/logo_procurar.png')}}" alt="">
@@ -168,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <th scope="col" class="nome-col">CPF</th>
                                     <th scope="col" class="nome-col">Status</th>
                                     <th scope="col" class="nome-col">Ação</th>
+                                    <th scope="col" class="nome-col"><button class="btn botaoPresente" type="button" id="btFirst"  onclick="mudaCorAll({{$allProds}})">Selecionar Todos</button></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <td>
                                         <img class="imagens-acoes" style="width: 45px; display: none" src="{{asset('images/logo_registrado.png')}}" alt="" id="confirm{{$produtor->id}}">
                                     </td>
-                                    <td>
+                                    <td colspan="2">
                                         <button class="btn botaoPresente" type="button" id="bt{{$produtor->id}}" onclick="mudaCor('{{$produtor->id}}', '{{$produtor->nome}}')"><img id="imagemPresente" src="{{asset('images/logo_presente.png')}}" alt="">Presente</button>
                                     </td>
                                 </tr>
@@ -189,26 +254,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 {{-- Ata --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Ata</label>
-                    <label class="corLabelReuniao" for="">Ata da reunião</label> <br>
-                    <div>
-                        <textarea class="form-control" placeholder = "Digite a ata da reunião" name='ata' id='ata' rows = "5"></textarea>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Ata</label>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
+                    </div>
+                  </div>
+                    <input style="margin-top: -100px" type="file" name='ata' class="custom-file-input input-stl" id="ata" accept="image/*" placeholder="Envie a imagem da ATA">
+                    <label class="btn btn-primary btn-block btn-outlined bg-verde" id="lbata" for="ata">Envio da ata</label>
+                    <br>
+                    <div class="col-md-12" id="prvata">
+
                     </div>
                 </div>
                 <!--<img src="" height="200" alt="Image preview...">   -->
                 {{-- Álbum --}}
                 <div>
-                    <label id="nome-tabela-reuniao" class = "col-md-12" for="">Álbum</label>
-                    <div style="background-color: #05856F;" class="form-row inner-div">
-                        <label class="">Você pode remover as imagens clicando sobre elas!</label>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mark">Álbum</label>
                     </div>
-                    <div class="col-md-6">
-                        <input type="file" multiple='multiple' name='fotos[]' class="custom-file-input input-stl" id="fotos" accept="image/*" placeholder="Escolha as fotos">
-                        <label class="btn btn-primary btn-block btn-outlined" id="lbfoto" for="fotos">Escolha as fotos</label>
+                    <div class="col-md-12 mb-3">
+                      <hr class="divider"></hr>
                     </div>
-                    <div class="col-md-12" id="preview">
+                  </div>
+                      <input style="margin-top: -100px" type="file" multiple='multiple' name='fotos[]' class="custom-file-input input-stl" id="fotos" accept="image/*" placeholder="Escolha as fotos">
+                      <label class="btn btn-primary btn-block btn-outlined bg-verde" id="lbfoto" for="fotos">Escolha as fotos</label>
+                    <div class="col-md-12 justify-content-center" id="preview">
 
                     </div>
+                    <br>
                 </div>
             </div>
             <div>
@@ -224,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="col-md-3 mb-4">
                         <a id="labelCancelar-registrar" class="fonteFooter" href="{{route('user.coordenador.listar_reunioes')}}">Cancelar</a>
                     </div>
-                    <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter">Registrar reunião</button>
+                    <button id="botao-registrar-reuniao" type="submit" class="btn btn-success fonteFooter bg-verde">Registrar reunião</button>
                 </div>
             </div>
         </form>

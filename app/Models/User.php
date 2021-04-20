@@ -16,17 +16,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'nome',
-        'data_nascimento',
-        'cpf',
-        'rg',
         'telefone',
         'tipo_perfil',
-        'nome_conjugue',
-        'nome_filhos',
         'email',
         'password',
-        'primeiro_acesso',
-        'perfil_coordenador',
+        'email2',
     ];
 
     /**
@@ -47,62 +41,50 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function dataFormatada(){
-        $time = strtotime($this->data_nascimento);
-        return date('d/m/Y', $time);
-    }
 
-
-    public static $regras_validacao_criar = [
+    public static $regras_validacao_criar_associacao = [
         'nome' => 'required|max:255',
-        'data_nascimento' => 'required',
-        'cpf' => 'required|numeric|unique:users,cpf',
-        'rg' => 'required|numeric|unique:users,rg',
         'telefone' => 'required',
-        'nome_conjugue' => 'nullable|max:255',
-        'nome_filhos'=> 'nullable',
-        'email' => 'required|max:255|unique:users,email',
+        'email' => 'required|min:14|max:14||unique:users,email',
         'password' => 'required|max:255|min:6',
+        'email2' => 'nullable|max:255|unique:users,email2'
     ];
 
     public static $regras_validacao_criar_produtor = [
         'nome' => 'required|max:255',
-        'cpf' => 'required|numeric|unique:users,cpf',
-        'email' => 'required|max:255|unique:users,email',
+        'email' => 'required|min:11|max:11|unique:users,email',
     ];
 
     public static $regras_validacao_primeiro_acesso = [
         'nome' => 'required|max:255',
-        'rg' => 'required|numeric|unique:users,rg',
-        'data_nascimento' => 'required',
         'telefone' => 'required',
-        'nome_conjugue' => 'nullable|max:255',
-        'nome_filhos'=> 'nullable',
+        'email2' => 'nullable|max:255|unique:users,email2',
         'password' => 'required|max:255|min:6',
     ];
 
     public static $regras_validacao_editar = [
         'nome' => 'required|max:255',
-        'data_nascimento' => 'required',
         'telefone' => 'required',
-        'nome_conjugue' => 'nullable|max:255',
-        'nome_filhos'=> 'nullable',
+    ];
+
+    public static $regras_validacao_senha = [
+        'password' => 'required|max:255|min:6',
     ];
 
 
+
 	// Ocs que o produtor participa
-	public function ocs() {
-		return $this->belongsTo('App\Models\Ocs', 'ocs_id');
+	public function associacao() {
+		return $this->belongsTo('App\Models\Associacao', 'id', 'user_id');
 	}
 
-    public function endereco() {
-        return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
-    }
+  public function produtor() {
+		return $this->belongsTo('App\Models\Produtor', 'id', 'user_id');
+	}
 
-    public function propriedade() {
-        //return Propriedade::find('id_propriedade');
-        //return Propriedade::where('id', '=', 'id_propriedade')->get();
-        return $this->hasOne('\App\Models\Propriedade', 'user_id', 'id');
-    }
+  public function endereco() {
+      return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
+  }
+
 
 }
