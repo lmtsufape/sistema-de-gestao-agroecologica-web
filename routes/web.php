@@ -6,6 +6,7 @@ use App\Http\Controllers\User\PropriedadeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\OcsController;
 use App\Http\Controllers\AssociacaoController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
