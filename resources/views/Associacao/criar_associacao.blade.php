@@ -58,8 +58,8 @@
 
           <div class="form-row ">
             <div class="col-md-12 mb-3">
-              <label class="label-static">Email</label>
-              <input class="form-control input-stl" type="email" class="form-control" id="email2" name="email2" placeholder="email2">
+              <label class="label-static required">Email</label>
+              <input class="form-control input-stl" type="email" class="form-control" id="email2" name="email2" placeholder="Email">
             </div>
           </div>
           <div class="form-row">
@@ -84,17 +84,17 @@
           </div>
 
           <div class="form-row">
-            <div class="col-md-4 mb-4">
-              <label class="label-static">Bairro</label>
-              <input class="form-control input-stl" type="text" class="form-control" name="bairro" placeholder="Bairro">
-            </div>
             <div class="col-md-6 mb-4">
               <label class="label-static">Logradouro</label>
               <input class="form-control input-stl" type="text" class="form-control" name="nome_rua" placeholder="Rua">
             </div>
+            <div class="col-md-4 mb-4">
+              <label class="label-static">Bairro</label>
+              <input class="form-control input-stl" type="text" class="form-control" name="bairro" placeholder="Bairro">
+            </div>
             <div class="col-md-2 mb-4">
               <label class="label-static">Número</label>
-              <input class="form-control input-stl" type="number" class="form-control" name="numero_casa" placeholder="Numero">
+              <input class="form-control input-stl" type="number" class="form-control" name="numero_casa" placeholder="Número">
             </div>
 
           </div>

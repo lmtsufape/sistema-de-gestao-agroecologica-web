@@ -8,7 +8,7 @@
         <ul class="navbar-nav ml-auto">
             @guest
                 <li class="nav-item row">
-                    <a class="nav-link" href=""><button type="button" class="btn btn-outline-light botão">Início</button></a>
+                    <a class="nav-link" href="{{route('home')}}"><button type="button" class="btn btn-outline-light botão">Início</button></a>
                     <a class="nav-link" href=""><button type="button" class="btn btn-outline-light botão">Sobre</button></a>
                 {{-- @if(Route::currentRouteName() == 'register')
                     <a class="nav-link" href="{{ route('login') }}"><button type="button" class="btn btn-outline-light botão">Login</button></a>
