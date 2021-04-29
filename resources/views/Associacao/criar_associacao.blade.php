@@ -88,15 +88,14 @@
               <label class="label-static">Logradouro</label>
               <input class="form-control input-stl" type="text" class="form-control" name="nome_rua" placeholder="Rua">
             </div>
-            <div class="col-md-4 mb-4">
-              <label class="label-static">Bairro</label>
-              <input class="form-control input-stl" type="text" class="form-control" name="bairro" placeholder="Bairro">
-            </div>
             <div class="col-md-2 mb-4">
               <label class="label-static">Número</label>
               <input class="form-control input-stl" type="number" class="form-control" name="numero_casa" placeholder="Número">
             </div>
-
+            <div class="col-md-4 mb-4">
+              <label class="label-static">Bairro</label>
+              <input class="form-control input-stl" type="text" class="form-control" name="bairro" placeholder="Bairro">
+            </div>            
           </div>
 
           <div class="form-row">
