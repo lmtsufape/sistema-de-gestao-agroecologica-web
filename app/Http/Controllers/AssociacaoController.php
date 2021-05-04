@@ -22,7 +22,7 @@ class AssociacaoController extends Controller
     public function salvarEditarAssociacao(Request $request) {
         $this->authorize('gerenciar', User::class);
         $entrada = $request->all();
-        $user = Auth::user();
+        $user = new User();
 
         $messages = [
             'required' => 'O campo :attribute é obrigatório.',
@@ -231,7 +231,7 @@ class AssociacaoController extends Controller
     public function salvarAlterarSenha(Request $request){
       $this->authorize('gerenciar', User::class);
       $entrada = $request->all();
-      $user = Auth::user();
+      $user = new User();
 
       $messages = [
           'required' => 'O campo :attribute é obrigatório.',

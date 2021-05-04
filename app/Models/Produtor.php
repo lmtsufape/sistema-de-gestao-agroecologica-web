@@ -41,6 +41,8 @@ class Produtor extends Authenticatable
         'nome_filhos'=> 'nullable',
     ];
 
+    public static $regras_validacao_criar_coordenador =[];
+
 
 	// Ocs que o produtor participa
 	public function ocs() {
