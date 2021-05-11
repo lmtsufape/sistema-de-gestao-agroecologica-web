@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
+
 class LoginController extends Controller
 {
     /*
