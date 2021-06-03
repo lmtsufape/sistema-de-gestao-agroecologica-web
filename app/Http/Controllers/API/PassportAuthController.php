@@ -44,6 +44,9 @@ class PassportAuthController extends Controller
 
     public function userInfo(){
         $user = auth()->user();   
+        //Passa a tabela produtor como atributo da variável $user
+        $produtor =  $user->produtor;
+        //$endereco = $user->endereco;
         return response()->json(['user' => $user], 200);
     }
 
