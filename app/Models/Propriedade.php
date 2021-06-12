@@ -22,6 +22,11 @@ class Propriedade extends Model
         'fonte_de_agua' => 'required|max:20',
     ];
 
+    public static $regras_validacao_api = [
+        'tamanho_total' => 'required|integer',
+        'fonte_de_agua' => 'bail|required|max:200',
+    ];
+
 
 	public function produtor() {
 		return $this->belongsTo('App\Models\User', 'user_id', 'id');
@@ -33,6 +38,10 @@ class Propriedade extends Model
 
     public function endereco(){
         return $this->hasOne('\App\Models\Endereco', 'id', 'endereco_id');
+    }
+
+    public function fotoMapa(){
+        return $this->hasOne('App\Models\FotoMapa','propriedade_id','id');
     }
 
     /*
