@@ -27,4 +27,5 @@ Route::middleware('auth:api')->group(function(){
     Route::get('get-user',[PassportAuthController::class,'userInfo']);
     Route::post('cadastrar-propriedade',[PassportAuthController::class,'cadastrarPropriedade']);
     Route::get('listar-reunioes',[PassportAuthController::class,'listarReunioes']);
+    Route::post('agendar-reuniao',[PassportAuthController::class,'agendarReuniao']);
 });

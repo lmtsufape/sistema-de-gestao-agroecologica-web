@@ -16,7 +16,7 @@ class CreateAgendamentoReuniaosTable extends Migration
         Schema::create('agendamento_reuniaos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->date('data');
+            $table->dateTime('data');
             $table->text('local');
             $table->boolean('registrada');
             $table->unsignedBigInteger('ocs_id');

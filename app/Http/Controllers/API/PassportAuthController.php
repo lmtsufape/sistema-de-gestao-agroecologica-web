@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Endereco;
+use App\Models\FotoMapa;
 use App\Models\Propriedade;
+use App\Models\AgendamentoReuniao;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,6 +43,7 @@ class PassportAuthController extends Controller
             return response()->json(['token' => $token], 200);
         } else{
             return response()->json(['error' => 'Unauthorised'], 401);
+            //return response($request->email,401)->header('Content-Type', 'text/plain');;
         }
 
     }
@@ -60,7 +63,7 @@ class PassportAuthController extends Controller
     public function cadastrarPropriedade(Request $request){
         $user = auth()->user();
         $entrada = $request->all();
-
+        
         $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao_api);
         if ($validator_endereco->fails()) {
             return response()->json(['erro' => 'endereco'],400);
@@ -81,6 +84,17 @@ class PassportAuthController extends Controller
         $propriedade->user_id = $user->produtor->id;
         $propriedade->save();
 
+        $fotoMapa = new FotoMapa();
+        $fotoMapa->propriedade_id = $propriedade->id;
+
+        if($request->has('mapa')){
+            if($request->hasFile('mapa')){
+                $file = $request->file('mapa'); 
+                $fotoMapa->path = $file->storeAs('fotosMapas',time().".jpg");
+                $fotoMapa->save();  
+            }
+        }        
+
         $produtor = $user->produtor;
         $produtor->primeiro_acesso = false;
         $produtor->save();
@@ -92,5 +106,28 @@ class PassportAuthController extends Controller
         $user = auth()->user();
 
         return response()->json(['reunioes' => $user->produtor->ocs->agendamentoReuniao],200);
+    }
+
+    public function agendarReuniao(Request $request){
+        $user = auth()->user();
+        if($user->tipo_perfil != "Coordenador"){
+            return response()->json(['error' => 'Unauthorised'], 401);
+        } 
+
+        $entrada = $request->all();
+        //  $time = strtotime($request->data);
+        //  $entrada['data'] = date("Y-m-d", $time);
+
+        $agendamentoReuniao = new AgendamentoReuniao();
+        $agendamentoReuniao->nome = $entrada['nome'];
+        $agendamentoReuniao->data = $entrada['data'];
+        $agendamentoReuniao->local = $entrada['local'];
+        $agendamentoReuniao->registrada = false;
+
+        $agendamentoReuniao->ocs_id = $user->produtor->ocs_id;
+        //return response()->json(['error' => 'Unauthorised'], 402);
+        $agendamentoReuniao->save();
+        
+        return response()->json(['ok' => 'sucesso'],200);
     }
 }
