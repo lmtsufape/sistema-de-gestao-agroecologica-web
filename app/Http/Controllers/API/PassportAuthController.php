@@ -34,10 +34,10 @@ class PassportAuthController extends Controller
 
     public function login(Request $request){
         $data = [
-            'email' => $request->email,
-            'password' => $request->password,
+            'email' => base64_decode($request->email),
+            'password' => base64_decode($request->password),
         ];
-
+        
         if(auth()->attempt($data)){
             $token = auth()->user()->createToken('Laravel8PassportAuth')->accessToken;
             return response()->json(['token' => $token], 200);
@@ -63,6 +63,14 @@ class PassportAuthController extends Controller
     public function cadastrarPropriedade(Request $request){
         $user = auth()->user();
         $entrada = $request->all();
+        $entrada['fonte_de_agua'] = base64_decode($request->fonte_de_agua);
+        $entrada['nome_rua'] = base64_decode($request->nome_rua);
+        $entrada['bairro'] = base64_decode($request->bairro);
+        $entrada['cidade'] = base64_decode($request->cidade);
+        $entrada['estado'] = base64_decode($request->estado);
+        $entrada['cep'] = base64_decode($request->cep);
+        $entrada['ponto_referencia'] = base64_decode($request->ponto_referencia);
+
         
         $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao_api);
         if ($validator_endereco->fails()) {
@@ -115,13 +123,11 @@ class PassportAuthController extends Controller
         } 
 
         $entrada = $request->all();
-        //  $time = strtotime($request->data);
-        //  $entrada['data'] = date("Y-m-d", $time);
 
         $agendamentoReuniao = new AgendamentoReuniao();
-        $agendamentoReuniao->nome = $entrada['nome'];
-        $agendamentoReuniao->data = $entrada['data'];
-        $agendamentoReuniao->local = $entrada['local'];
+        $agendamentoReuniao->nome = base64_decode($entrada['nome']);
+        $agendamentoReuniao->data = base64_decode($entrada['data']);
+        $agendamentoReuniao->local = base64_decode($entrada['local']);
         $agendamentoReuniao->registrada = false;
 
         $agendamentoReuniao->ocs_id = $user->produtor->ocs_id;
@@ -129,5 +135,40 @@ class PassportAuthController extends Controller
         $agendamentoReuniao->save();
         
         return response()->json(['ok' => 'sucesso'],200);
+    }
+
+    public function editarReuniao(Request $request){
+        $user = auth()->user();
+        if($user->tipo_perfil != "Coordenador"){
+            return response()->json(['error' => 'Unauthorised'], 401);
+        } 
+        
+        $entrada = $request->all();
+
+        $agendamentoReuniao = AgendamentoReuniao::find($request->id);
+        $agendamentoReuniao->nome = base64_decode($request->nome);
+        $agendamentoReuniao->data = base64_decode($request->data);
+        $agendamentoReuniao->local = base64_decode($request->local);
+        $agendamentoReuniao->registrada = false;
+
+        $agendamentoReuniao->save();
+        
+        return response()->json(['ok' => 'sucesso'],200);
+    }
+
+    public function excluirReuniao($id){
+        $user = auth()->user();
+        if($user->tipo_perfil != "Coordenador"){
+            return response()->json(['error' => 'Unauthorised'], 401);
+        } 
+
+        $reuniaoAgendada = AgendamentoReuniao::find($id);
+
+        if($reuniaoAgendada->registrada == false){
+            $reuniaoAgendada->delete();
+            return response()->json(['ok' => 'sucesso'],200);
+        }
+
+        return response()->json(['erro' => 'erro'],406);
     }
 }
