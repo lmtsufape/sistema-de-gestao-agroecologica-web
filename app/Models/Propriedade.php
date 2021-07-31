@@ -41,7 +41,8 @@ class Propriedade extends Model
     }
 
     public function fotoMapa(){
-        return $this->hasOne('App\Models\FotoMapa','id','fotoMapa_id');
+        return $this->hasOne('App\Models\FotoMapa','propriedade_id','id');
+        //return $this->hasOne('App\Models\FotoMapa','fotoMapa_id','id');
     }
 
     /*

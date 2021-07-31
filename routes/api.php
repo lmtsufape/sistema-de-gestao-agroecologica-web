@@ -30,4 +30,8 @@ Route::middleware('auth:api')->group(function(){
     Route::post('agendar-reuniao',[PassportAuthController::class,'agendarReuniao']);
     Route::post('editar-agenda-reuniao',[PassportAuthController::class,'editarReuniao']);
     Route::get('excluir-agenda-reuniao/{id}',[PassportAuthController::class,'excluirReuniao']);
+    Route::get('exibir-reuniao/{id}',[PassportAuthController::class,'exibirReuniao']);
+    Route::post('registrar-reuniao',[PassportAuthController::class,'registrarReuniao']);
+    Route::get('get-propriedade',[PassportAuthController::class,'getPropriedade']);
+    Route::post('atualizar-propriedade',[PassportAuthController::class,'atualizarPropriedade']);
 });

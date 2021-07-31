@@ -9,8 +9,11 @@ use App\Models\Endereco;
 use App\Models\FotoMapa;
 use App\Models\Propriedade;
 use App\Models\AgendamentoReuniao;
+use App\Models\Reuniao;
+use App\Models\FotosReuniao;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class PassportAuthController extends Controller
 {
@@ -170,5 +173,71 @@ class PassportAuthController extends Controller
         }
 
         return response()->json(['erro' => 'erro'],406);
+    }
+
+    public function exibirReuniao($id){
+        $user = auth()->user();
+
+        $reuniaoAgendada = AgendamentoReuniao::find($id);
+        $reuniao = $reuniaoAgendada->reuniaoRegistrada;
+        //$fotos = file($reuniao->fotosReuniao->path);
+        $ata = Storage::get($reuniao->ata);
+        //$fotos = Storage::get($reuniao->fotosReuniao);
+        $mapa = Storage::get($user->produtor->propriedade->fotoMapa->path);
+        $produtor = $user->produtor;
+        
+        return response(['ata' => $ata,'fotos' => $ata],200)->header('Content-Type','application/json;image/jpeg');
+        //return response()->json(['fotos' => $mapa],200);
+    }
+
+    public function registrarReuniao(Request $request){
+        $user = auth()->user();
+        if($user->tipo_perfil != "Coordenador"){
+            return response()->json(['error' => 'Unauthorised'], 401);
+        } 
+
+        $reuniaoAgendada = AgendamentoReuniao::find($request->id_agenda);
+
+        if($request->hasFile('ata')){
+            $reuniao = new Reuniao();
+            for($i = 0; $i < count($request->allFiles()['ata']); $i++){
+                $file = $request->allFiles()['ata'][$i];
+
+                $reuniao->agendamento_id = $request->id_agenda;
+                $reuniao->ata = $file->store('atas/' . $reuniao->agendamento_id);
+            }
+            $reuniao->save();
+        }
+
+        if($request->hasFile('fotos')){
+            for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
+                $fotosReuniao = new FotosReuniao();
+                $fotosReuniao->reuniao_id = $request->id_agenda;
+                $fotosReuniao->path = $file->store('fotosReuniao/' . $fotosReuniao->reuniao_id);
+
+                $fotosReuniao->save();
+            }
+        }
+        return response()->json(['ok' => 'sucesso'],200);
+    }
+
+    public function getPropriedade(){
+        $user = auth()->user();   
+        //Passa a tabela produtor como atributo da variável $user
+        $propriedade =  $user->produtor->propriedade;
+        
+        return response()->json(['propriedade' => $propriedade], 200);
+    }
+
+    public function atualizarPropriedade(Request $request){
+        $user = auth()->user();
+        $entrada = $request->all();
+        $entrada['fonte_de_agua'] = base64_decode($request->fonte_de_agua);
+        $propriedade =  $user->produtor->propriedade;
+        $propriedade->fonte_de_agua = $entrada['fonte_de_agua'];
+        $propriedade->tamanho_total = $entrada['tamanho_total'];
+        $propriedade->save();
+        
+        return response()->json(['ok' => 'sucesso'],200);
     }
 }
