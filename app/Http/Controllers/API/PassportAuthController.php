@@ -197,6 +197,14 @@ class PassportAuthController extends Controller
         } 
 
         $reuniaoAgendada = AgendamentoReuniao::find($request->id_agenda);
+        //return response(is_file($request->allFiles()['fotos']),200);
+        // $i = 0;
+        // foreach($request->fotos as $image){
+        //     $i++;
+        // }
+        // return response($i,200);
+
+        //return response()->file($request->allFiles()['fotos']);
 
         if($request->hasFile('ata')){
             $reuniao = new Reuniao();
@@ -209,7 +217,7 @@ class PassportAuthController extends Controller
             $reuniao->save();
         }
 
-        if($request->hasFile('fotos')){
+/*         if($request->hasFile('fotos')){
             for($i = 0; $i < count($request->allFiles()['fotos']); $i++){
                 $fotosReuniao = new FotosReuniao();
                 $fotosReuniao->reuniao_id = $request->id_agenda;
@@ -217,7 +225,7 @@ class PassportAuthController extends Controller
 
                 $fotosReuniao->save();
             }
-        }
+        } */
         return response()->json(['ok' => 'sucesso'],200);
     }
 
@@ -238,6 +246,38 @@ class PassportAuthController extends Controller
         $propriedade->tamanho_total = $entrada['tamanho_total'];
         $propriedade->save();
         
+        return response()->json(['ok' => 'sucesso'],200);
+    }
+
+    public function getEndereco(){
+        $user = auth()->user();   
+
+        $endereco =  $user->produtor->propriedade->endereco;
+        
+        return response()->json(['endereco' => $endereco], 200);
+    }
+
+    public function atualizarEndereco(Request $request){
+        $user = auth()->user();
+        $entrada = $request->all();
+
+        $entrada['nome_rua'] = base64_decode($request->nome_rua);
+        $entrada['bairro'] = base64_decode($request->bairro);
+        $entrada['cidade'] = base64_decode($request->cidade);
+        $entrada['estado'] = base64_decode($request->estado);
+        $entrada['cep'] = base64_decode($request->cep);
+        $entrada['ponto_referencia'] = base64_decode($request->ponto_referencia);
+
+        
+        $validator_endereco = Validator::make($entrada, Endereco::$regras_validacao_api);
+        if ($validator_endereco->fails()) {
+            return response()->json(['erro' => 'endereco'],400);
+        }
+
+        $endereco = $user->produtor->propriedade->endereco;
+        $endereco->fill($entrada);
+        $endereco->save();
+
         return response()->json(['ok' => 'sucesso'],200);
     }
 }

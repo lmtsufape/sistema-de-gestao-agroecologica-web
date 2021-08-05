@@ -34,4 +34,6 @@ Route::middleware('auth:api')->group(function(){
     Route::post('registrar-reuniao',[PassportAuthController::class,'registrarReuniao']);
     Route::get('get-propriedade',[PassportAuthController::class,'getPropriedade']);
     Route::post('atualizar-propriedade',[PassportAuthController::class,'atualizarPropriedade']);
+    Route::get('get-endereco',[PassportAuthController::class,'getEndereco']);
+    Route::post('atualizar-endereco',[PassportAuthController::class,'atualizarEndereco']);
 });
