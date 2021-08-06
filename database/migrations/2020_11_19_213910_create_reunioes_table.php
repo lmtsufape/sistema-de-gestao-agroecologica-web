@@ -30,6 +30,7 @@ class CreateReunioesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reuniaos');
+        //Schema::dropIfExists('reuniaos');
+        DB::statement('drop table reuniaos cascade');
     }
 }

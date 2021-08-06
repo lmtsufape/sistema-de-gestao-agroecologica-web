@@ -20,4 +20,10 @@ class Endereco extends Model
         'estado' => 'required',
         'cidade' => 'required',
     ];
+
+    public static $regras_validacao_api = [
+        'estado' => 'required',
+        'cidade' => 'required',
+        'numero_casa' =>'bail|integer'
+    ];
 }

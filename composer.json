@@ -15,6 +15,7 @@
         "gnahotelsolutions/laravel-weather": "^1.2",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
+        "laravel/passport": "^10.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0"
     },
